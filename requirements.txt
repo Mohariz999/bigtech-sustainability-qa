@@ -1,3 +1,6 @@
 pymupdf==1.28.2
 fastembed==0.9.0
 numpy==2.5.4
+anthropic==1.15.0
+pydantic==2.14.1
+pytest==9.1.1

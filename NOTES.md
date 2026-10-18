@@ -73,6 +73,19 @@ Hybrid beats both methods on their own, which supports combining them.
 
 **What still fails (7 of 26):** 3 of 4 **table** questions (numbers in a flat row; the question words aren't near them), 2 questions with **no single year** that drift to the older report, and 2 where the answer is in a summary sentence that ranks below more detailed pages. Fix for the tables: step 6 (extract table values into a `facts` table and query it with SQL).
 
+## Step 5: answering with citations (built and tested; not yet run on the real API)
+
+`answer.py`: hybrid search → top 5 passages → Claude (`claude-opus-5-5`, effort `medium`) → JSON answer → checks.
+
+- **Structured output:** the API is told to reply in a fixed JSON schema (`status`, `answer`, `citations`). The reply is then validated with Pydantic. If it's invalid, I retry once with the error message; if it's still invalid, the result is an error, never a guess.
+- **The model cites passage numbers, not documents.** My code maps [3] to (doc_id, page), so the model can't invent a source.
+- **Grounding check after the answer:** every quote must appear in its cited passage, and every number in the answer must appear in the cited passages. Otherwise the answer is flagged.
+- **No passages → no LLM call** (no cost).
+- **Reliability:** 90-second timeout, 3 automatic retries with backoff (SDK), refusal handled, and a server-side fallback model if Claude declines.
+- **Cost + latency logged per call:** tokens in/out, $ (cache reads and writes priced separately), seconds. `eval/run_answers.py --dry-run` estimates a full run at **about $0.61, roughly 2 cents per question**, before spending anything.
+- **15 unit tests** (`tests/test_answer.py`) use a fake Claude client, so the logic is tested for free: made-up numbers get flagged, bad quotes get flagged, invalid JSON is retried, refusals are handled, and the scoring rules work.
+- **Prompt caching: deliberately not used.** The fixed system prompt is below the minimum size the API caches, so turning it on would do nothing. If the prompt grew, it would be worth it.
+
 ## Plan
 
 | # | Step | What gets built | Capability |
@@ -81,10 +94,10 @@ Hybrid beats both methods on their own, which supports combining them.
 | 2 | Eval questions ✅ | 30 checked questions | Evaluation |
 | 3 | Ingest + chunk into **SQLite** ✅ | `documents` and `chunks` tables (company, data year, page) | Structured, queryable data; SQL |
 | 4 | Retrieval ✅ | Hybrid search, company/year filter first: **73% hit@5** | Retrieval |
-| 5 | Answer with citations | Answers only from retrieved text, cites report + page, otherwise "not found" | Retrieval, failure modes |
+| 5 | Answer with citations 🟡 built + tested, needs API key to run | Answers only from retrieved text, cites report + page, otherwise "not found" | Retrieval, failure modes |
 | 6 | Structured extraction | Pydantic schema: company, metric (PUE, emissions, water...), value, unit, year, page → `facts` table | Structured extraction |
 | 7 | Small agent | Tools: `search_docs`, `query_facts` (SQL), `calculator`. Compare with the plain pipeline | Tool-calling agents |
 | 8 | Run the full eval | Retrieval hit@5, answer accuracy, not-found accuracy, pipeline vs agent | Evaluation |
-| 9 | Cost + reliability | Tokens, $, latency per question; retries, timeouts | Cost, latency, failure modes |
+| 9 | Cost + reliability 🟡 built (logged per call) | Tokens, $, latency per question; retries, timeouts | Cost, latency, failure modes |
 | 10 | Ship it | FastAPI + simple page, Dockerfile, GitHub Actions running tests on every push | Full-stack, CI/CD |
 | 11 | README | Results, failures, cost per query, next steps | Communication |
