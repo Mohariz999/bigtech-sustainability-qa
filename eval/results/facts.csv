@@ -1,0 +1,681 @@
+company,doc_id,page,metric,value,unit,period,basis,quote
+Amazon,amazon_sr_2024,9,clean_energy_contracted,34.0,GW,2024,,621 Total renewable energy projects globally—including 124 new projects—representing 34 GW of capacity
+Amazon,amazon_sr_2024,10,clean_energy_contracted,34.0,GW,2024,,"as of January 2025, we had invested in 621 renewable energy projects—including 124 new projects in 2024 alone— representing 34 GW of carbon-free energy capacity."
+Amazon,amazon_sr_2024,50,clean_energy_contracted,33485.0,MW,2024,,"Total 33,485"
+Amazon,amazon_sr_2025,46,clean_energy_contracted,41670.0,MW,2025,,"Total 712 41,670"
+Amazon,amazon_sr_2024,14,clean_energy_contracted,34.0,GW,January 2025,,621 total renewable energy projects announced globally as of January 2025—including 124 new projects in 2024—representing 34 GW of carbon-free energy capacity
+Amazon,amazon_sr_2025,10,clean_energy_contracted,42.0,GW,January 2026,,more than 712 projects in 30 countries as of January 2026—including 80 new projects in 2025—representing 42 GW of carbon-free energy capacity
+Amazon,amazon_sr_2024,7,pue,1.15,ratio,2024,,"1.15 Global Power Usage Effectiveness (PUE) for AWS data centers, compared to the industry average of 1.25"
+Amazon,amazon_sr_2024,9,pue,1.15,ratio,2024,,"1.15 Global Power Usage Effectiveness (PUE) for AWS data centers, compared to the industry average of 1.25"
+Amazon,amazon_sr_2024,10,pue,1.15,ratio,2024,,"In 2024, AWS reported a global PUE of 1.15"
+Amazon,amazon_sr_2024,11,pue,1.15,ratio,2024,,"In 2024, AWS had a global PUE of 1.15."
+Amazon,amazon_sr_2025,10,pue,1.14,ratio,2025,,"In 2025, Amazon's data centers achieved a global PUE of 1.14"
+Amazon,amazon_sr_2024,6,renewable_electricity_pct,90.0,%,2022,,90% matched
+Amazon,amazon_sr_2024,6,renewable_electricity_pct,100.0,%,2023,,100% matched
+Amazon,amazon_sr_2025,5,renewable_electricity_pct,100.0,%,2023,,Match 100% of the electricity consumed by our global operations with renewable energy by 2025— five years ahead of our original target of 2030 100% matched 100% matched 100% matched
+Amazon,amazon_sr_2024,6,renewable_electricity_pct,100.0,%,2024,,100% matched
+Amazon,amazon_sr_2024,8,renewable_electricity_pct,100.0,%,2024,,"100% Of electricity consumed by Amazon was matched with renewable energy sources in 2024, for the second consecutive year"
+Amazon,amazon_sr_2024,10,renewable_electricity_pct,100.0,%,2024,,"For the past two years, 100% of the electricity consumed by Amazon was matched with renewable energy sources."
+Amazon,amazon_sr_2024,14,renewable_electricity_pct,100.0,%,2024,,"100% of electricity consumed by Amazon was matched with renewable energy sources in 2024, for the second consecutive year"
+Amazon,amazon_sr_2025,5,renewable_electricity_pct,100.0,%,2024,,Match 100% of the electricity consumed by our global operations with renewable energy by 2025— five years ahead of our original target of 2030 100% matched 100% matched 100% matched
+Amazon,amazon_sr_2025,5,renewable_electricity_pct,100.0,%,2025,,Match 100% of the electricity consumed by our global operations with renewable energy by 2025— five years ahead of our original target of 2030 100% matched 100% matched 100% matched
+Amazon,amazon_sr_2025,7,renewable_electricity_pct,100.0,%,2025,,"100% Of the electricity consumed by Amazon was matched with renewable energy sources in 2025, for the third consecutive year"
+Amazon,amazon_sr_2025,10,renewable_electricity_pct,100.0,%,2025,,These investments enabled us to match 100% of the electricity consumed by Amazon operations with renewable energy sources for the third year in a row.
+Amazon,amazon_sr_2024,50,scope1_emissions,5.76,MMT CO₂e,2019,,Emissions from Direct Operations (Scope 1) 5.76 9.62 12.11 13.02 14.22 15.13 6%
+Amazon,amazon_sr_2025,46,scope1_emissions,5.76,MMTCO2e,2019,,Emissions from Direct Operations (Scope 1)* 5.76 9.62 12.11 13.02 14.22 15.13 15.37
+Amazon,amazon_sr_2024,9,scope1_emissions,9.62,MMT CO₂e,2020,,9.62 12.11 13.02 14.22 15.13
+Amazon,amazon_sr_2024,50,scope1_emissions,9.62,MMT CO₂e,2020,,Emissions from Direct Operations (Scope 1) 5.76 9.62 12.11 13.02 14.22 15.13 6%
+Amazon,amazon_sr_2025,46,scope1_emissions,9.62,MMTCO2e,2020,,Emissions from Direct Operations (Scope 1)* 5.76 9.62 12.11 13.02 14.22 15.13 15.37
+Amazon,amazon_sr_2024,9,scope1_emissions,12.11,MMT CO₂e,2021,,9.62 12.11 13.02 14.22 15.13
+Amazon,amazon_sr_2024,50,scope1_emissions,12.11,MMT CO₂e,2021,,Emissions from Direct Operations (Scope 1) 5.76 9.62 12.11 13.02 14.22 15.13 6%
+Amazon,amazon_sr_2025,46,scope1_emissions,12.11,MMTCO2e,2021,,Emissions from Direct Operations (Scope 1)* 5.76 9.62 12.11 13.02 14.22 15.13 15.37
+Amazon,amazon_sr_2024,9,scope1_emissions,13.02,MMT CO₂e,2022,,9.62 12.11 13.02 14.22 15.13
+Amazon,amazon_sr_2024,50,scope1_emissions,13.02,MMT CO₂e,2022,,Emissions from Direct Operations (Scope 1) 5.76 9.62 12.11 13.02 14.22 15.13 6%
+Amazon,amazon_sr_2025,46,scope1_emissions,13.02,MMTCO2e,2022,,Emissions from Direct Operations (Scope 1)* 5.76 9.62 12.11 13.02 14.22 15.13 15.37
+Amazon,amazon_sr_2024,9,scope1_emissions,14.22,MMT CO₂e,2023,,9.62 12.11 13.02 14.22 15.13
+Amazon,amazon_sr_2024,50,scope1_emissions,14.22,MMT CO₂e,2023,,Emissions from Direct Operations (Scope 1) 5.76 9.62 12.11 13.02 14.22 15.13 6%
+Amazon,amazon_sr_2025,46,scope1_emissions,14.22,MMTCO2e,2023,,Emissions from Direct Operations (Scope 1)* 5.76 9.62 12.11 13.02 14.22 15.13 15.37
+Amazon,amazon_sr_2024,9,scope1_emissions,15.13,MMT CO₂e,2024,,9.62 12.11 13.02 14.22 15.13
+Amazon,amazon_sr_2024,50,scope1_emissions,15.13,MMT CO₂e,2024,,Emissions from Direct Operations (Scope 1) 5.76 9.62 12.11 13.02 14.22 15.13 6%
+Amazon,amazon_sr_2025,46,scope1_emissions,15.13,MMTCO2e,2024,,Emissions from Direct Operations (Scope 1)* 5.76 9.62 12.11 13.02 14.22 15.13 15.37
+Amazon,amazon_sr_2025,46,scope1_emissions,15.37,MMTCO2e,2025,,Emissions from Direct Operations (Scope 1)* 5.76 9.62 12.11 13.02 14.22 15.13 15.37
+Amazon,amazon_sr_2024,9,scope2_market_emissions,5.5,MMT CO₂e,2019,market-based,39.91 5.50
+Amazon,amazon_sr_2024,50,scope2_market_emissions,5.5,MMT CO₂e,2019,market-based,Emissions from Purchased Electricity (Scope 2)* 5.50 5.27 4.07 3.06 2.76 2.80 1%
+Amazon,amazon_sr_2025,46,scope2_market_emissions,5.5,MMTCO2e,2019,,Emissions from Purchased Electricity (Scope 2) 5.50 5.27 4.07 3.06 2.76 2.80 3.74
+Amazon,amazon_sr_2024,9,scope2_market_emissions,5.27,MMT CO₂e,2020,market-based,45.75 5.27
+Amazon,amazon_sr_2024,50,scope2_market_emissions,5.27,MMT CO₂e,2020,market-based,Emissions from Purchased Electricity (Scope 2)* 5.50 5.27 4.07 3.06 2.76 2.80 1%
+Amazon,amazon_sr_2025,46,scope2_market_emissions,5.27,MMTCO2e,2020,,Emissions from Purchased Electricity (Scope 2) 5.50 5.27 4.07 3.06 2.76 2.80 3.74
+Amazon,amazon_sr_2024,9,scope2_market_emissions,4.07,MMT CO₂e,2021,market-based,55.36 4.07
+Amazon,amazon_sr_2024,50,scope2_market_emissions,4.07,MMT CO₂e,2021,market-based,Emissions from Purchased Electricity (Scope 2)* 5.50 5.27 4.07 3.06 2.76 2.80 1%
+Amazon,amazon_sr_2025,46,scope2_market_emissions,4.07,MMTCO2e,2021,,Emissions from Purchased Electricity (Scope 2) 5.50 5.27 4.07 3.06 2.76 2.80 3.74
+Amazon,amazon_sr_2024,9,scope2_market_emissions,3.06,MMT CO₂e,2022,market-based,49.02 3.06
+Amazon,amazon_sr_2024,50,scope2_market_emissions,3.06,MMT CO₂e,2022,market-based,Emissions from Purchased Electricity (Scope 2)* 5.50 5.27 4.07 3.06 2.76 2.80 1%
+Amazon,amazon_sr_2025,46,scope2_market_emissions,3.06,MMTCO2e,2022,,Emissions from Purchased Electricity (Scope 2) 5.50 5.27 4.07 3.06 2.76 2.80 3.74
+Amazon,amazon_sr_2024,9,scope2_market_emissions,2.76,MMT CO₂e,2023,market-based,47.40 2.76
+Amazon,amazon_sr_2024,50,scope2_market_emissions,2.76,MMT CO₂e,2023,market-based,Emissions from Purchased Electricity (Scope 2)* 5.50 5.27 4.07 3.06 2.76 2.80 1%
+Amazon,amazon_sr_2025,46,scope2_market_emissions,2.76,MMTCO2e,2023,,Emissions from Purchased Electricity (Scope 2) 5.50 5.27 4.07 3.06 2.76 2.80 3.74
+Amazon,amazon_sr_2024,9,scope2_market_emissions,2.8,MMT CO₂e,2024,market-based,50.32 2.80
+Amazon,amazon_sr_2024,50,scope2_market_emissions,2.8,MMT CO₂e,2024,market-based,Emissions from Purchased Electricity (Scope 2)* 5.50 5.27 4.07 3.06 2.76 2.80 1%
+Amazon,amazon_sr_2025,46,scope2_market_emissions,2.8,MMTCO2e,2024,,Emissions from Purchased Electricity (Scope 2) 5.50 5.27 4.07 3.06 2.76 2.80 3.74
+Amazon,amazon_sr_2025,46,scope2_market_emissions,3.74,MMTCO2e,2025,,Emissions from Purchased Electricity (Scope 2) 5.50 5.27 4.07 3.06 2.76 2.80 3.74
+Amazon,amazon_sr_2024,9,scope3_emissions,39.91,MMT CO₂e,2019,market-based,39.91 5.50
+Amazon,amazon_sr_2024,50,scope3_emissions,39.91,MMT CO₂e,2019,market-based,Emissions from Indirect Sources (Scope 3)* 39.91 45.75 55.36 49.02 47.40 50.32 6%
+Amazon,amazon_sr_2025,46,scope3_emissions,39.91,MMTCO2e,2019,,Emissions from Indirect Sources (Scope 3)* 39.91 45.75 55.36 49.29 48.30 51.62 61.74
+Amazon,amazon_sr_2024,9,scope3_emissions,45.75,MMT CO₂e,2020,market-based,45.75 5.27
+Amazon,amazon_sr_2024,50,scope3_emissions,45.75,MMT CO₂e,2020,market-based,Emissions from Indirect Sources (Scope 3)* 39.91 45.75 55.36 49.02 47.40 50.32 6%
+Amazon,amazon_sr_2025,46,scope3_emissions,45.75,MMTCO2e,2020,,Emissions from Indirect Sources (Scope 3)* 39.91 45.75 55.36 49.29 48.30 51.62 61.74
+Amazon,amazon_sr_2024,9,scope3_emissions,55.36,MMT CO₂e,2021,market-based,55.36 4.07
+Amazon,amazon_sr_2024,50,scope3_emissions,55.36,MMT CO₂e,2021,market-based,Emissions from Indirect Sources (Scope 3)* 39.91 45.75 55.36 49.02 47.40 50.32 6%
+Amazon,amazon_sr_2025,46,scope3_emissions,55.36,MMTCO2e,2021,,Emissions from Indirect Sources (Scope 3)* 39.91 45.75 55.36 49.29 48.30 51.62 61.74
+Amazon,amazon_sr_2024,9,scope3_emissions,49.02,MMT CO₂e,2022,market-based,49.02 3.06
+Amazon,amazon_sr_2024,50,scope3_emissions,49.02,MMT CO₂e,2022,market-based,Emissions from Indirect Sources (Scope 3)* 39.91 45.75 55.36 49.02 47.40 50.32 6%
+Amazon,amazon_sr_2025,46,scope3_emissions,49.29,MMTCO2e,2022,,Emissions from Indirect Sources (Scope 3)* 39.91 45.75 55.36 49.29 48.30 51.62 61.74
+Amazon,amazon_sr_2024,9,scope3_emissions,47.4,MMT CO₂e,2023,market-based,47.40 2.76
+Amazon,amazon_sr_2024,50,scope3_emissions,47.4,MMT CO₂e,2023,market-based,Emissions from Indirect Sources (Scope 3)* 39.91 45.75 55.36 49.02 47.40 50.32 6%
+Amazon,amazon_sr_2025,46,scope3_emissions,48.3,MMTCO2e,2023,,Emissions from Indirect Sources (Scope 3)* 39.91 45.75 55.36 49.29 48.30 51.62 61.74
+Amazon,amazon_sr_2024,9,scope3_emissions,50.32,MMT CO₂e,2024,market-based,50.32 2.80
+Amazon,amazon_sr_2024,50,scope3_emissions,50.32,MMT CO₂e,2024,market-based,Emissions from Indirect Sources (Scope 3)* 39.91 45.75 55.36 49.02 47.40 50.32 6%
+Amazon,amazon_sr_2025,46,scope3_emissions,51.62,MMTCO2e,2024,,Emissions from Indirect Sources (Scope 3)* 39.91 45.75 55.36 49.29 48.30 51.62 61.74
+Amazon,amazon_sr_2025,46,scope3_emissions,61.74,MMTCO2e,2025,,Emissions from Indirect Sources (Scope 3)* 39.91 45.75 55.36 49.29 48.30 51.62 61.74
+Amazon,amazon_sr_2024,9,total_emissions,51.17,MMT CO₂e,2019,,51.17 60.64 71.54 65.10 64.38 68.25
+Amazon,amazon_sr_2024,50,total_emissions,51.17,MMT CO₂e,2019,,Amazon's Carbon Footprint 51.17 60.64 71.54 65.10 64.38 68.25 6%
+Amazon,amazon_sr_2025,46,total_emissions,51.17,MMTCO2e,2019,,Amazon's Carbon Footprint 51.17 60.64 71.54 65.37 65.28 69.55 80.85
+Amazon,amazon_sr_2024,9,total_emissions,60.64,MMT CO₂e,2020,,51.17 60.64 71.54 65.10 64.38 68.25
+Amazon,amazon_sr_2024,50,total_emissions,60.64,MMT CO₂e,2020,,Amazon's Carbon Footprint 51.17 60.64 71.54 65.10 64.38 68.25 6%
+Amazon,amazon_sr_2025,46,total_emissions,60.64,MMTCO2e,2020,,Amazon's Carbon Footprint 51.17 60.64 71.54 65.37 65.28 69.55 80.85
+Amazon,amazon_sr_2024,9,total_emissions,71.54,MMT CO₂e,2021,,51.17 60.64 71.54 65.10 64.38 68.25
+Amazon,amazon_sr_2024,50,total_emissions,71.54,MMT CO₂e,2021,,Amazon's Carbon Footprint 51.17 60.64 71.54 65.10 64.38 68.25 6%
+Amazon,amazon_sr_2025,46,total_emissions,71.54,MMTCO2e,2021,,Amazon's Carbon Footprint 51.17 60.64 71.54 65.37 65.28 69.55 80.85
+Amazon,amazon_sr_2024,6,total_emissions,65.1,M MTCO2e,2022,,65.10M MTCO2e
+Amazon,amazon_sr_2024,9,total_emissions,65.1,MMT CO₂e,2022,,51.17 60.64 71.54 65.10 64.38 68.25
+Amazon,amazon_sr_2024,50,total_emissions,65.1,MMT CO₂e,2022,,Amazon's Carbon Footprint 51.17 60.64 71.54 65.10 64.38 68.25 6%
+Amazon,amazon_sr_2025,46,total_emissions,65.37,MMTCO2e,2022,,Amazon's Carbon Footprint 51.17 60.64 71.54 65.37 65.28 69.55 80.85
+Amazon,amazon_sr_2024,6,total_emissions,64.38,M MTCO2e,2023,,64.38M MTCO2e
+Amazon,amazon_sr_2024,9,total_emissions,64.38,MMT CO₂e,2023,,51.17 60.64 71.54 65.10 64.38 68.25
+Amazon,amazon_sr_2024,50,total_emissions,64.38,MMT CO₂e,2023,,Amazon's Carbon Footprint 51.17 60.64 71.54 65.10 64.38 68.25 6%
+Amazon,amazon_sr_2025,5,total_emissions,65.28,MMTCO2e,2023,,Reach net-zero carbon emissions across our global operations by 2040 65.28 MMTCO2e 69.55 MMTCO2e 80.85 MMTCO2e*
+Amazon,amazon_sr_2025,46,total_emissions,65.28,MMTCO2e,2023,,Amazon's Carbon Footprint 51.17 60.64 71.54 65.37 65.28 69.55 80.85
+Amazon,amazon_sr_2024,6,total_emissions,68.25,M MTCO2e,2024,,68.25M MTCO2e*
+Amazon,amazon_sr_2024,9,total_emissions,68.25,MMT CO₂e,2024,,51.17 60.64 71.54 65.10 64.38 68.25
+Amazon,amazon_sr_2024,50,total_emissions,68.25,MMT CO₂e,2024,,Amazon's Carbon Footprint 51.17 60.64 71.54 65.10 64.38 68.25 6%
+Amazon,amazon_sr_2025,5,total_emissions,69.55,MMTCO2e,2024,,Reach net-zero carbon emissions across our global operations by 2040 65.28 MMTCO2e 69.55 MMTCO2e 80.85 MMTCO2e*
+Amazon,amazon_sr_2025,46,total_emissions,69.55,MMTCO2e,2024,,Amazon's Carbon Footprint 51.17 60.64 71.54 65.37 65.28 69.55 80.85
+Amazon,amazon_sr_2025,5,total_emissions,80.85,MMTCO2e,2025,,Reach net-zero carbon emissions across our global operations by 2040 65.28 MMTCO2e 69.55 MMTCO2e 80.85 MMTCO2e*
+Amazon,amazon_sr_2025,46,total_emissions,80.85,MMTCO2e,2025,,Amazon's Carbon Footprint 51.17 60.64 71.54 65.37 65.28 69.55 80.85
+Amazon,amazon_sr_2024,7,water_replenished,4.3,billion liters,2024,,4.3B Liters of water returned to communities from active replenishment projects
+Amazon,amazon_sr_2024,24,water_replenished,4.3,B Liters,2024,,4.3B Liters of water returned to communities from active replenishment projects
+Amazon,amazon_sr_2024,25,water_replenished,4.3,billion liters,2024,,"In 2024, these projects returned 4.3 billion liters of water to communities."
+Amazon,amazon_sr_2025,14,water_replenished,9.4,billion liters,2025,,9.4B Liters of water returned to communities from active replenishment projects at the end of 2025
+Amazon,amazon_sr_2025,16,water_replenished,9.4,billion liters,2025,,"In 2025, water replenishment projects returned 9.4 billion liters of water to communities."
+Apple,apple_epr_2025,24,clean_energy_contracted,1.8,GW,2024,,Apple-created renewable sources account for about 89 percent of the renewable electricity that our facilities use — currently around 1.8 gigawatts.
+Apple,apple_epr_2025,99,clean_energy_contracted,1782.0,MW,2024,,"To reach 100 percent renewable electricity for Apple's own facilities, Apple has helped create 1782 MW of renewable energy around the world."
+Apple,apple_epr_2026,88,clean_energy_contracted,889.0,MW,Cumulative since FY2020 to FY2025,,Renewable energy capacity MW 889 Cumulative since FY2020 to FY2025
+Apple,apple_epr_2026,85,clean_energy_contracted,889.0,MW,FY2025,,889MW INSTALLED RENEWABLE ENERGY CAPACITY
+Apple,apple_epr_2026,85,clean_energy_contracted,2200.0,MW,FY2025,,"Apple's combined investments, including those made with partners, have resulted in over 2,200 MW installed renewable energy capacity from fiscal year 2020."
+Apple,apple_epr_2025,91,clean_energy_contracted,707.0,MW,Fiscal year 2024,,707MW installed renewable energy capacity11
+Apple,apple_epr_2025,91,clean_energy_contracted,2200.0,MW,Fiscal year 2024,,"Apple's combined investments, including those made with partners, have resulted in over 2200 MW installed renewable energy capacity from fiscal year 2020."
+Apple,apple_epr_2026,93,clean_energy_contracted,1780.0,MW,March 2026,,"To reach 100 percent renewable electricity for Apple's own facilities, Apple has helped create 1,780 megawatts of renewable energy around the world."
+Apple,apple_epr_2025,99,datacenter_electricity,2515.0,million kWh,2024,,"Data center 868 0 5,330 2,515 2,515 837,859"
+Apple,apple_epr_2025,100,datacenter_electricity,2.5,billion kWh,2024,,"In 2024, we used over 2.5 billion kWh of electricity to power our data centers and colocation facilities around the world."
+Apple,apple_epr_2025,101,datacenter_electricity,454.0,million kWh,2024,,"Reno, Nevada: Grid mix versus Apple-sourced renewable energy Electricity use in 2024: 454 million kWh"
+Apple,apple_epr_2025,101,datacenter_electricity,59.0,million kWh,2024,,Denmark: Grid mix versus Apple-sourced renewable energy Electricity use in 2024: 59 million kWh
+Apple,apple_epr_2025,101,datacenter_electricity,214.0,million kWh,2024,,China: Grid mix versus Apple-sourced renewable energy Electricity use in 2024: 214 million kWh
+Apple,apple_epr_2026,94,datacenter_electricity,2585.0,million kWh,2025,,"Data center 901 0 4,756 2,585 2,585 828,456"
+Apple,apple_epr_2026,95,datacenter_electricity,2.5,billion kWh,2025,,"In 2025, we used over 2.5 billion kWh of electricity to power our data centers and colocation facilities around the world."
+Apple,apple_epr_2026,96,datacenter_electricity,267.0,M kWh,2025,,ELECTRICITY USE IN 2025 267M KWH
+Apple,apple_epr_2026,96,datacenter_electricity,563.0,M kWh,2025,,ELECTRICITY USE IN 2025 563M KWH
+Apple,apple_epr_2026,97,datacenter_electricity,422.0,M kWh,2025,,ELECTRICITY USE IN 2025 422M KWH
+Apple,apple_epr_2026,97,datacenter_electricity,30.0,M kWh,2025,,ELECTRICITY USE IN 2025 30M KWH
+Apple,apple_epr_2026,98,datacenter_electricity,71.0,M kWh,2025,,ELECTRICITY USE IN 2025 71M KWH
+Apple,apple_epr_2026,98,datacenter_electricity,218.0,M kWh,2025,,ELECTRICITY USE IN 2025 218M KWH
+Apple,apple_epr_2025,102,datacenter_electricity,327663800.0,kWh,FY 2018,,"FY 2018 327,663,800 326,959,700 146,600 400 100"
+Apple,apple_epr_2025,102,datacenter_electricity,339047649.0,kWh,FY 2019,,"FY 2019 339,047,649 339,047,649 146,400 0 100"
+Apple,apple_epr_2025,102,datacenter_electricity,372901398.0,kWh,FY 2020,,"FY 2020 372,901,398 372,901,398 153,459 0 100"
+Apple,apple_epr_2025,102,datacenter_electricity,384727076.0,kWh,FY 2021,,"FY 2021 384,727,076 384,727,076 146,780 0 100"
+Apple,apple_epr_2025,102,datacenter_electricity,487921930.0,kWh,FY 2022,,"FY 2022 487,921,930 487,921,930 182,700 0 100"
+Apple,apple_epr_2025,102,datacenter_electricity,483299062.0,kWh,FY 2023,,"FY 2023 483,299,062 483,299,062 186,141 0 100"
+Apple,apple_epr_2026,99,datacenter_electricity,483299062.0,kWh,FY 2023,,"FY 2023 483,299,062 483,299,062 186,141 0 100"
+Apple,apple_epr_2025,102,datacenter_electricity,527655650.0,kWh,FY 2024,,"FY 2024 527,655,650 527,655,650 182,944 0 100"
+Apple,apple_epr_2026,99,datacenter_electricity,527655650.0,kWh,FY 2024,,"FY 2024 527,655,650 527,655,650 182,944 0 100"
+Apple,apple_epr_2026,99,datacenter_electricity,543594587.0,kWh,FY 2025,,"FY 2025 543,594,587 543,594,587 190,356 0 100"
+Apple,apple_epr_2025,10,renewable_electricity_pct,100.0,%,2018,,"We accelerated our progress with our transition to sourcing 100 percent renewable electricity for our offices, retail stores, and data centers in 2018."
+Apple,apple_epr_2025,98,renewable_electricity_pct,100.0,%,2018,,2018 100 percent renewable electricity generated or sourced for our corporate operations. Achieved
+Apple,apple_epr_2026,9,renewable_electricity_pct,100.0,%,2018,,"We transitioned to sourcing 100 percent renewable electricity for our offices, retail stores, and data centers in 2018"
+Apple,apple_epr_2025,86,renewable_electricity_pct,100.0,%,2020,,Renewable electricity percentage4 % of total energy 100 100 100 100 100
+Apple,apple_epr_2025,86,renewable_electricity_pct,100.0,%,2021,,Renewable electricity percentage4 % of total energy 100 100 100 100 100
+Apple,apple_epr_2026,80,renewable_electricity_pct,100.0,%,2021,,Renewable electricity percentage Note 4 % of total energy 100 100 100 100 100
+Apple,apple_epr_2025,86,renewable_electricity_pct,100.0,%,2022,,Renewable electricity percentage4 % of total energy 100 100 100 100 100
+Apple,apple_epr_2026,80,renewable_electricity_pct,100.0,%,2022,,Renewable electricity percentage Note 4 % of total energy 100 100 100 100 100
+Apple,apple_epr_2025,86,renewable_electricity_pct,100.0,%,2023,,Renewable electricity percentage4 % of total energy 100 100 100 100 100
+Apple,apple_epr_2026,80,renewable_electricity_pct,100.0,%,2023,,Renewable electricity percentage Note 4 % of total energy 100 100 100 100 100
+Apple,apple_epr_2025,12,renewable_electricity_pct,100.0,%,2024,,sourcing 100 percent renewable energy for our facilities
+Apple,apple_epr_2025,24,renewable_electricity_pct,100.0,%,2024,,"Our retail stores, data centers, R&D facilities, and offices around the world currently source 100 percent renewable electricity."
+Apple,apple_epr_2025,86,renewable_electricity_pct,100.0,%,2024,,Renewable electricity percentage4 % of total energy 100 100 100 100 100
+Apple,apple_epr_2025,100,renewable_electricity_pct,100.0,%,2024,,"We're proud that 100 percent of that electricity came from renewable sources including solar, wind, biogas fuel cells, and low-impact hydropower."
+Apple,apple_epr_2026,80,renewable_electricity_pct,100.0,%,2024,,Renewable electricity percentage Note 4 % of total energy 100 100 100 100 100
+Apple,apple_epr_2026,11,renewable_electricity_pct,100.0,%,2025,,including sourcing 100 percent renewable energy for our facilities
+Apple,apple_epr_2026,80,renewable_electricity_pct,100.0,%,2025,,Renewable electricity percentage Note 4 % of total energy 100 100 100 100 100
+Apple,apple_epr_2026,95,renewable_electricity_pct,100.0,%,2025,,"We're proud that 100 percent of that electricity came from renewable sources including solar, wind, and low-impact hydropower."
+Apple,apple_epr_2025,102,renewable_electricity_pct,100.0,%,FY 2018,,"FY 2018 327,663,800 326,959,700 146,600 400 100"
+Apple,apple_epr_2025,102,renewable_electricity_pct,100.0,%,FY 2019,,"FY 2019 339,047,649 339,047,649 146,400 0 100"
+Apple,apple_epr_2025,102,renewable_electricity_pct,100.0,%,FY 2020,,"FY 2020 372,901,398 372,901,398 153,459 0 100"
+Apple,apple_epr_2025,102,renewable_electricity_pct,100.0,%,FY 2021,,"FY 2021 384,727,076 384,727,076 146,780 0 100"
+Apple,apple_epr_2025,102,renewable_electricity_pct,100.0,%,FY 2022,,"FY 2022 487,921,930 487,921,930 182,700 0 100"
+Apple,apple_epr_2025,102,renewable_electricity_pct,100.0,%,FY 2023,,"FY 2023 483,299,062 483,299,062 186,141 0 100"
+Apple,apple_epr_2025,102,renewable_electricity_pct,100.0,%,FY 2024,,"FY 2024 527,655,650 527,655,650 182,944 0 100"
+Apple,apple_epr_2026,99,renewable_electricity_pct,100.0,%,FY 2024,,"FY 2024 527,655,650 527,655,650 182,944 0 100"
+Apple,apple_epr_2026,99,renewable_electricity_pct,100.0,%,FY 2025,,"FY 2025 543,594,587 543,594,587 190,356 0 100"
+Apple,apple_epr_2025,82,scope1_emissions,47430.0,metric tons CO2e,2020,,"Scope 1 55,200 55,200 55,200 55,200 47,430"
+Apple,apple_epr_2025,82,scope1_emissions,55200.0,metric tons CO2e,2021,,"Scope 1 55,200 55,200 55,200 55,200 47,430"
+Apple,apple_epr_2026,76,scope1_emissions,55200.0,metric tons CO2e,2021,,"Scope 1 55,200 55,200 55,200 55,200 55,200"
+Apple,apple_epr_2025,82,scope1_emissions,55200.0,metric tons CO2e,2022,,"Scope 1 55,200 55,200 55,200 55,200 47,430"
+Apple,apple_epr_2026,76,scope1_emissions,55200.0,metric tons CO2e,2022,,"Scope 1 55,200 55,200 55,200 55,200 55,200"
+Apple,apple_epr_2025,82,scope1_emissions,55200.0,metric tons CO2e,2023,,"Scope 1 55,200 55,200 55,200 55,200 47,430"
+Apple,apple_epr_2026,76,scope1_emissions,55200.0,metric tons CO2e,2023,,"Scope 1 55,200 55,200 55,200 55,200 55,200"
+Apple,apple_epr_2025,82,scope1_emissions,55200.0,metric tons CO2e,2024,,"Scope 1 55,200 55,200 55,200 55,200 47,430"
+Apple,apple_epr_2025,99,scope1_emissions,63710.0,metric tons CO2e,2024,,"Total 413,348 625,053 63,710 3,776 3,776 1,196,072"
+Apple,apple_epr_2025,104,scope1_emissions,55200.0,tCO2e,2024,,"Scope 1 GHG Emissions 55,200 Metric tonnes of carbon dioxide equivalent (tCO2e)"
+Apple,apple_epr_2026,76,scope1_emissions,55200.0,metric tons CO2e,2024,,"Scope 1 55,200 55,200 55,200 55,200 55,200"
+Apple,apple_epr_2026,76,scope1_emissions,55200.0,metric tons CO2e,2025,,"Scope 1 55,200 55,200 55,200 55,200 55,200"
+Apple,apple_epr_2026,94,scope1_emissions,55197.0,metric tons CO2e,2025,,"Total 548,142 648,652 55,197 3,737 3,737 1,140,231"
+Apple,apple_epr_2026,101,scope1_emissions,55200.0,t CO2e,fiscal year 2025,,"Scope 1 GHG Emissions 55,200 Metric tonnes of carbon dioxide equivalent (t C O 2 e)"
+Apple,apple_epr_2025,104,scope2_location_emissions,1224500.0,tCO2e,2024,location-based,"Scope 2 GHG Emissions (Location-Based) 1,224,500 tCO2e"
+Apple,apple_epr_2026,94,scope2_location_emissions,1140231.0,metric tons CO2e,2025,location-based,"Total 548,142 648,652 55,197 3,737 3,737 1,140,231"
+Apple,apple_epr_2026,101,scope2_location_emissions,1210200.0,t CO2e,fiscal year 2025,location-based,"Scope 2 GHG Emissions (Location-Based) 1,210,200 t C O 2 e"
+Apple,apple_epr_2025,82,scope2_market_emissions,0.0,metric tons CO2e,2020,market-based,"Scope 2 (market-based) 3,300 3,400 3,000 2,780 0"
+Apple,apple_epr_2025,82,scope2_market_emissions,2780.0,metric tons CO2e,2021,market-based,"Scope 2 (market-based) 3,300 3,400 3,000 2,780 0"
+Apple,apple_epr_2026,76,scope2_market_emissions,2780.0,metric tons CO2e,2021,market-based,"Scope 2 (market-based) 1,100 3,300 3,400 3,000 2,780"
+Apple,apple_epr_2025,82,scope2_market_emissions,3000.0,metric tons CO2e,2022,market-based,"Scope 2 (market-based) 3,300 3,400 3,000 2,780 0"
+Apple,apple_epr_2026,76,scope2_market_emissions,3000.0,metric tons CO2e,2022,market-based,"Scope 2 (market-based) 1,100 3,300 3,400 3,000 2,780"
+Apple,apple_epr_2025,82,scope2_market_emissions,3400.0,metric tons CO2e,2023,market-based,"Scope 2 (market-based) 3,300 3,400 3,000 2,780 0"
+Apple,apple_epr_2026,76,scope2_market_emissions,3400.0,metric tons CO2e,2023,market-based,"Scope 2 (market-based) 1,100 3,300 3,400 3,000 2,780"
+Apple,apple_epr_2025,82,scope2_market_emissions,3300.0,metric tons CO2e,2024,market-based,"Scope 2 (market-based) 3,300 3,400 3,000 2,780 0"
+Apple,apple_epr_2025,99,scope2_market_emissions,1196072.0,metric tons CO2e,2024,market-based,"Total 413,348 625,053 63,710 3,776 3,776 1,196,072"
+Apple,apple_epr_2025,104,scope2_market_emissions,3300.0,tCO2e,2024,market-based,"Scope 2 GHG Emissions (Market-Based) 3,300 tCO2e"
+Apple,apple_epr_2026,76,scope2_market_emissions,3300.0,metric tons CO2e,2024,market-based,"Scope 2 (market-based) 1,100 3,300 3,400 3,000 2,780"
+Apple,apple_epr_2026,76,scope2_market_emissions,1100.0,metric tons CO2e,2025,market-based,"Scope 2 (market-based) 1,100 3,300 3,400 3,000 2,780"
+Apple,apple_epr_2026,101,scope2_market_emissions,1100.0,t CO2e,fiscal year 2025,market-based,"Scope 2 GHG Emissions (Market-Based) 1,100 t C O 2 e"
+Apple,apple_epr_2025,82,scope3_emissions,22550000.0,metric tons CO2e,2020,,"Total gross scope 3 emissions (corporate and product) (metric tons CO2e) 15,110,000 15,982,800 20,545,800 23,130,000 22,550,000"
+Apple,apple_epr_2025,82,scope3_emissions,23130000.0,metric tons CO2e,2021,,"Total gross scope 3 emissions (corporate and product) (metric tons CO2e) 15,110,000 15,982,800 20,545,800 23,130,000 22,550,000"
+Apple,apple_epr_2026,76,scope3_emissions,108400.0,metric tons CO2e,2021,corporate,"Scope 3 513,700 608,300 412,800 265,800 108,400"
+Apple,apple_epr_2026,76,scope3_emissions,23020000.0,metric tons CO2e,2021,product life cycle,"Gross emissions (Scope 3) 14,710,000 14,600,000 15,570,000 20,280,000 23,020,000"
+Apple,apple_epr_2025,82,scope3_emissions,20545800.0,metric tons CO2e,2022,,"Total gross scope 3 emissions (corporate and product) (metric tons CO2e) 15,110,000 15,982,800 20,545,800 23,130,000 22,550,000"
+Apple,apple_epr_2026,76,scope3_emissions,265800.0,metric tons CO2e,2022,corporate,"Scope 3 513,700 608,300 412,800 265,800 108,400"
+Apple,apple_epr_2026,76,scope3_emissions,20280000.0,metric tons CO2e,2022,product life cycle,"Gross emissions (Scope 3) 14,710,000 14,600,000 15,570,000 20,280,000 23,020,000"
+Apple,apple_epr_2025,82,scope3_emissions,15982800.0,metric tons CO2e,2023,,"Total gross scope 3 emissions (corporate and product) (metric tons CO2e) 15,110,000 15,982,800 20,545,800 23,130,000 22,550,000"
+Apple,apple_epr_2026,76,scope3_emissions,412800.0,metric tons CO2e,2023,corporate,"Scope 3 513,700 608,300 412,800 265,800 108,400"
+Apple,apple_epr_2026,76,scope3_emissions,15570000.0,metric tons CO2e,2023,product life cycle,"Gross emissions (Scope 3) 14,710,000 14,600,000 15,570,000 20,280,000 23,020,000"
+Apple,apple_epr_2025,82,scope3_emissions,15110000.0,metric tons CO2e,2024,,"Total gross scope 3 emissions (corporate and product) (metric tons CO2e) 15,110,000 15,982,800 20,545,800 23,130,000 22,550,000"
+Apple,apple_epr_2026,76,scope3_emissions,608300.0,metric tons CO2e,2024,corporate,"Scope 3 513,700 608,300 412,800 265,800 108,400"
+Apple,apple_epr_2026,76,scope3_emissions,14600000.0,metric tons CO2e,2024,product life cycle,"Gross emissions (Scope 3) 14,710,000 14,600,000 15,570,000 20,280,000 23,020,000"
+Apple,apple_epr_2026,76,scope3_emissions,513700.0,metric tons CO2e,2025,corporate,"Scope 3 513,700 608,300 412,800 265,800 108,400"
+Apple,apple_epr_2026,76,scope3_emissions,14710000.0,metric tons CO2e,2025,product life cycle,"Gross emissions (Scope 3) 14,710,000 14,600,000 15,570,000 20,280,000 23,020,000"
+Apple,apple_epr_2025,106,scope3_emissions,35.73,million metric tons CO2e,FY2024,location-based,"The total scope 3 product related carbon footprint is reported to be 35.73 million metric tons CO2e, applying a location-based method"
+Apple,apple_epr_2026,103,scope3_emissions,39.71,million metric tons CO2e,FY2025,location-based,"The total scope 3 product related carbon footprint is reported to be 39.71 million metric tons C O 2 e, applying a location-based method"
+Apple,apple_epr_2025,86,total_electricity,2580000.0,MWh,2020,,"Electricity Total MWh 3,777,000 3,487,000 3,199,000 2,854,000 2,580,000"
+Apple,apple_epr_2025,86,total_electricity,2854000.0,MWh,2021,,"Electricity Total MWh 3,777,000 3,487,000 3,199,000 2,854,000 2,580,000"
+Apple,apple_epr_2026,80,total_electricity,2854000.0,MWh,2021,,"Electricity Total MWh 3,737,000 3,777,000 3,487,000 3,199,000 2,854,000"
+Apple,apple_epr_2025,86,total_electricity,3199000.0,MWh,2022,,"Electricity Total MWh 3,777,000 3,487,000 3,199,000 2,854,000 2,580,000"
+Apple,apple_epr_2026,80,total_electricity,3199000.0,MWh,2022,,"Electricity Total MWh 3,737,000 3,777,000 3,487,000 3,199,000 2,854,000"
+Apple,apple_epr_2025,86,total_electricity,3487000.0,MWh,2023,,"Electricity Total MWh 3,777,000 3,487,000 3,199,000 2,854,000 2,580,000"
+Apple,apple_epr_2026,80,total_electricity,3487000.0,MWh,2023,,"Electricity Total MWh 3,737,000 3,777,000 3,487,000 3,199,000 2,854,000"
+Apple,apple_epr_2025,86,total_electricity,3777000.0,MWh,2024,,"Electricity Total MWh 3,777,000 3,487,000 3,199,000 2,854,000 2,580,000"
+Apple,apple_epr_2025,99,total_electricity,3776.0,million kWh,2024,,"Total 413,348 625,053 63,710 3,776 3,776 1,196,072"
+Apple,apple_epr_2025,104,total_electricity,3800.0,Million kilowatt hours (mkWh),2024,,"Electricity Consumption 3,800 Million kilowatt hours (mkWh) Worldwide occupied properties / Apple Internal Protocol"
+Apple,apple_epr_2026,80,total_electricity,3777000.0,MWh,2024,,"Electricity Total MWh 3,737,000 3,777,000 3,487,000 3,199,000 2,854,000"
+Apple,apple_epr_2026,80,total_electricity,3737000.0,MWh,2025,,"Electricity Total MWh 3,737,000 3,777,000 3,487,000 3,199,000 2,854,000"
+Apple,apple_epr_2026,94,total_electricity,3737.0,million kWh,2025,,"Total 548,142 648,652 55,197 3,737 3,737 1,140,231"
+Apple,apple_epr_2026,101,total_electricity,6900.0,Million kilowatt hours (mkWh),fiscal year 2025,,"Electricity Consumption 6,900 Million kilowatt hours (mkWh) Worldwide occupied properties / Apple Internal Protocol"
+Apple,apple_epr_2025,82,total_emissions,22600000.0,metric tons CO2e,2020,gross (without offsets),"Total gross carbon footprint (without offsets) (metric tons CO2e)14 15,300,000 16,100,000 20,600,000 23,200,000 22,600,000"
+Apple,apple_epr_2025,82,total_emissions,22530000.0,metric tons CO2e,2020,net (after applying offsets),"Total net carbon footprint (after applying offsets) (metric tons CO2e)14 14,500,000 15,600,000 20,300,000 22,530,000 22,530,000"
+Apple,apple_epr_2025,82,total_emissions,23200000.0,metric tons CO2e,2021,gross (without offsets),"Total gross carbon footprint (without offsets) (metric tons CO2e)14 15,300,000 16,100,000 20,600,000 23,200,000 22,600,000"
+Apple,apple_epr_2025,82,total_emissions,22530000.0,metric tons CO2e,2021,net (after applying offsets),"Total net carbon footprint (after applying offsets) (metric tons CO2e)14 14,500,000 15,600,000 20,300,000 22,530,000 22,530,000"
+Apple,apple_epr_2026,76,total_emissions,23200000.0,metric tons CO2e,2021,gross (without offsets),"Total gross carbon footprint (without offsets) (metric tons C O 2 e) Note 14 15,300,000 15,300,000 16,100,000 20,600,000 23,200,000"
+Apple,apple_epr_2026,76,total_emissions,22530000.0,metric tons CO2e,2021,net (after applying offsets),"Total net carbon footprint (after applying offsets) (metric tons C O 2 e) Note 14 14,500,000 14,500,000 15,600,000 20,300,000 22,530,000"
+Apple,apple_epr_2025,82,total_emissions,20600000.0,metric tons CO2e,2022,gross (without offsets),"Total gross carbon footprint (without offsets) (metric tons CO2e)14 15,300,000 16,100,000 20,600,000 23,200,000 22,600,000"
+Apple,apple_epr_2025,82,total_emissions,20300000.0,metric tons CO2e,2022,net (after applying offsets),"Total net carbon footprint (after applying offsets) (metric tons CO2e)14 14,500,000 15,600,000 20,300,000 22,530,000 22,530,000"
+Apple,apple_epr_2026,76,total_emissions,20600000.0,metric tons CO2e,2022,gross (without offsets),"Total gross carbon footprint (without offsets) (metric tons C O 2 e) Note 14 15,300,000 15,300,000 16,100,000 20,600,000 23,200,000"
+Apple,apple_epr_2026,76,total_emissions,20300000.0,metric tons CO2e,2022,net (after applying offsets),"Total net carbon footprint (after applying offsets) (metric tons C O 2 e) Note 14 14,500,000 14,500,000 15,600,000 20,300,000 22,530,000"
+Apple,apple_epr_2025,82,total_emissions,16100000.0,metric tons CO2e,2023,gross (without offsets),"Total gross carbon footprint (without offsets) (metric tons CO2e)14 15,300,000 16,100,000 20,600,000 23,200,000 22,600,000"
+Apple,apple_epr_2025,82,total_emissions,15600000.0,metric tons CO2e,2023,net (after applying offsets),"Total net carbon footprint (after applying offsets) (metric tons CO2e)14 14,500,000 15,600,000 20,300,000 22,530,000 22,530,000"
+Apple,apple_epr_2026,76,total_emissions,16100000.0,metric tons CO2e,2023,gross (without offsets),"Total gross carbon footprint (without offsets) (metric tons C O 2 e) Note 14 15,300,000 15,300,000 16,100,000 20,600,000 23,200,000"
+Apple,apple_epr_2026,76,total_emissions,15600000.0,metric tons CO2e,2023,net (after applying offsets),"Total net carbon footprint (after applying offsets) (metric tons C O 2 e) Note 14 14,500,000 14,500,000 15,600,000 20,300,000 22,530,000"
+Apple,apple_epr_2025,12,total_emissions,14.5,Mmt,2024,net (gross footprint minus carbon offsets),14.5Mmt Net Greenhouse Gas Emissions*
+Apple,apple_epr_2025,82,total_emissions,15300000.0,metric tons CO2e,2024,gross (without offsets),"Total gross carbon footprint (without offsets) (metric tons CO2e)14 15,300,000 16,100,000 20,600,000 23,200,000 22,600,000"
+Apple,apple_epr_2025,82,total_emissions,14500000.0,metric tons CO2e,2024,net (after applying offsets),"Total net carbon footprint (after applying offsets) (metric tons CO2e)14 14,500,000 15,600,000 20,300,000 22,530,000 22,530,000"
+Apple,apple_epr_2026,76,total_emissions,15300000.0,metric tons CO2e,2024,gross (without offsets),"Total gross carbon footprint (without offsets) (metric tons C O 2 e) Note 14 15,300,000 15,300,000 16,100,000 20,600,000 23,200,000"
+Apple,apple_epr_2026,76,total_emissions,14500000.0,metric tons CO2e,2024,net (after applying offsets),"Total net carbon footprint (after applying offsets) (metric tons C O 2 e) Note 14 14,500,000 14,500,000 15,600,000 20,300,000 22,530,000"
+Apple,apple_epr_2026,11,total_emissions,14.5,MMT,2025,net (gross footprint minus carbon offsets),Net GHG Emissions* 14.5MMT
+Apple,apple_epr_2026,76,total_emissions,15300000.0,metric tons CO2e,2025,gross (without offsets),"Total gross carbon footprint (without offsets) (metric tons C O 2 e) Note 14 15,300,000 15,300,000 16,100,000 20,600,000 23,200,000"
+Apple,apple_epr_2026,76,total_emissions,14500000.0,metric tons CO2e,2025,net (after applying offsets),"Total net carbon footprint (after applying offsets) (metric tons C O 2 e) Note 14 14,500,000 14,500,000 15,600,000 20,300,000 22,530,000"
+Apple,apple_epr_2025,105,total_emissions,15258000.0,tCO2e,FY2024,market-based,"Comprehensive Carbon Footprint5 15,258,000 tCO2e Worldwide occupied properties / WRI/WBCSD GHG Protocol"
+Apple,apple_epr_2026,102,total_emissions,570000.0,tCO2e,FY2025,market-based,"Corporate GHG Emissions (Market- Based) Note 1 570,000 t C O 2 e"
+Apple,apple_epr_2026,102,total_emissions,15280000.0,tCO2e,FY2025,market-based,"Comprehensive Carbon Footprint Note 5 15,280,000 t C O 2 e"
+Apple,apple_epr_2025,87,water_consumption,1287.0,million gallons,2020,,"Total million gallons 1,756 1,610 1,527 1,407 1,287"
+Apple,apple_epr_2025,87,water_consumption,1407.0,million gallons,2021,,"Total million gallons 1,756 1,610 1,527 1,407 1,287"
+Apple,apple_epr_2026,81,water_consumption,1407.0,million gallons,2021,,"Water Corporate facilities Total million gallons 1,796 1,756 1,610 1,527 1,407"
+Apple,apple_epr_2025,87,water_consumption,1527.0,million gallons,2022,,"Total million gallons 1,756 1,610 1,527 1,407 1,287"
+Apple,apple_epr_2026,81,water_consumption,1527.0,million gallons,2022,,"Water Corporate facilities Total million gallons 1,796 1,756 1,610 1,527 1,407"
+Apple,apple_epr_2025,87,water_consumption,1610.0,million gallons,2023,,"Total million gallons 1,756 1,610 1,527 1,407 1,287"
+Apple,apple_epr_2026,81,water_consumption,1610.0,million gallons,2023,,"Water Corporate facilities Total million gallons 1,796 1,756 1,610 1,527 1,407"
+Apple,apple_epr_2025,50,water_consumption,1.8,billion gallons,2024,,"In 2024, our facilities used about 1.8 billion gallons of water in our direct operations — a 9 percent increase from 2023."
+Apple,apple_epr_2025,50,water_consumption,1756.0,Mgal,2024,,Water use at corporate facilities 1756 Mgal
+Apple,apple_epr_2025,87,water_consumption,1756.0,million gallons,2024,,"Total million gallons 1,756 1,610 1,527 1,407 1,287"
+Apple,apple_epr_2026,81,water_consumption,1756.0,million gallons,2024,,"Water Corporate facilities Total million gallons 1,796 1,756 1,610 1,527 1,407"
+Apple,apple_epr_2026,81,water_consumption,1796.0,million gallons,2025,,"Water Corporate facilities Total million gallons 1,796 1,756 1,610 1,527 1,407"
+Apple,apple_epr_2025,49,water_replenished,40.0,%,2024,,100% 2030 Target 40% 2024
+Apple,apple_epr_2026,5,water_replenished,55.0,%,2025,,Replenish all of our corporate freshwater withdrawals by 2030.10 55% IN PROGRESS
+Apple,apple_epr_2026,54,water_replenished,800.0,million gallons,2025,,"We fully replenished freshwater withdrawals in seven regions where we operate, delivering more than 800 million gallons of water benefits."
+Google,google_env_2025,107,carbon_free_energy_pct,67.0,%,2020,"hourly, data centers",CFE across Google data % 67 65 64 64 66 centers (hourly)
+Google,google_env_2025,107,carbon_free_energy_pct,65.0,%,2021,"hourly, data centers",CFE across Google data % 67 65 64 64 66 centers (hourly)
+Google,google_env_2026,94,carbon_free_energy_pct,65.0,%,2021,hourly,CFE across Google data centers (hourly) % 65 64 64 66 65
+Google,google_env_2025,79,carbon_free_energy_pct,64.0,%,2022,,Global CFE across Google data centers % 64 64 66
+Google,google_env_2025,107,carbon_free_energy_pct,64.0,%,2022,"hourly, data centers",CFE across Google data % 67 65 64 64 66 centers (hourly)
+Google,google_env_2025,107,carbon_free_energy_pct,54.0,%,2022,"hourly, offices",CFE across Google % - - 54 56 60 offices (hourly)
+Google,google_env_2025,107,carbon_free_energy_pct,64.0,%,2022,"hourly, data centers and offices",CFE across Google data centers and offices % - - 64 64 66 (hourly)
+Google,google_env_2025,108,carbon_free_energy_pct,64.0,%,2022,,Global CFE across Google data centers % 64 64 66
+Google,google_env_2026,73,carbon_free_energy_pct,64.0,%,2022,,64% CFE
+Google,google_env_2026,94,carbon_free_energy_pct,64.0,%,2022,hourly,Global CFE across Google data centers % 64 64 66 65
+Google,google_env_2026,94,carbon_free_energy_pct,54.0,%,2022,hourly,CFE across Google offices (hourly) % - 54 56 60 64
+Google,google_env_2026,94,carbon_free_energy_pct,64.0,%,2022,hourly,CFE across Google data centers and offices (hourly) % - 64 64 66 65
+Google,google_env_2025,4,carbon_free_energy_pct,64.0,%,2023,24/7 CFE,"In 2024, we increased our 24/7 CFE percentage from 64% to 66%"
+Google,google_env_2025,79,carbon_free_energy_pct,64.0,%,2023,,Global CFE across Google data centers % 64 64 66
+Google,google_env_2025,107,carbon_free_energy_pct,64.0,%,2023,"hourly, data centers",CFE across Google data % 67 65 64 64 66 centers (hourly)
+Google,google_env_2025,107,carbon_free_energy_pct,56.0,%,2023,"hourly, offices",CFE across Google % - - 54 56 60 offices (hourly)
+Google,google_env_2025,107,carbon_free_energy_pct,64.0,%,2023,"hourly, data centers and offices",CFE across Google data centers and offices % - - 64 64 66 (hourly)
+Google,google_env_2025,108,carbon_free_energy_pct,64.0,%,2023,,Global CFE across Google data centers % 64 64 66
+Google,google_env_2026,73,carbon_free_energy_pct,64.0,%,2023,,64% CFE
+Google,google_env_2026,94,carbon_free_energy_pct,64.0,%,2023,hourly,Global CFE across Google data centers % 64 64 66 65
+Google,google_env_2026,94,carbon_free_energy_pct,56.0,%,2023,hourly,CFE across Google offices (hourly) % - 54 56 60 64
+Google,google_env_2026,94,carbon_free_energy_pct,64.0,%,2023,hourly,CFE across Google data centers and offices (hourly) % - 64 64 66 65
+Google,google_env_2025,4,carbon_free_energy_pct,66.0,%,2024,24/7 CFE,"In 2024, we increased our 24/7 CFE percentage from 64% to 66%"
+Google,google_env_2025,79,carbon_free_energy_pct,66.0,%,2024,,"In 2024, we achieved approximately 66% global average carbon-free energy across our data centers and offices."
+Google,google_env_2025,79,carbon_free_energy_pct,66.0,%,2024,,Global CFE across Google data centers % 64 64 66
+Google,google_env_2025,107,carbon_free_energy_pct,66.0,%,2024,"hourly, data centers",CFE across Google data % 67 65 64 64 66 centers (hourly)
+Google,google_env_2025,107,carbon_free_energy_pct,60.0,%,2024,"hourly, offices",CFE across Google % - - 54 56 60 offices (hourly)
+Google,google_env_2025,107,carbon_free_energy_pct,66.0,%,2024,"hourly, data centers and offices",CFE across Google data centers and offices % - - 64 64 66 (hourly)
+Google,google_env_2025,108,carbon_free_energy_pct,66.0,%,2024,,Global CFE across Google data centers % 64 64 66
+Google,google_env_2026,72,carbon_free_energy_pct,66.0,%,2024,,remaining relatively flat compared to 66% in 2024 (Figure 25).
+Google,google_env_2026,73,carbon_free_energy_pct,66.0,%,2024,,66% CFE
+Google,google_env_2026,94,carbon_free_energy_pct,66.0,%,2024,hourly,Global CFE across Google data centers % 64 64 66 65
+Google,google_env_2026,94,carbon_free_energy_pct,60.0,%,2024,hourly,CFE across Google offices (hourly) % - 54 56 60 64
+Google,google_env_2026,94,carbon_free_energy_pct,66.0,%,2024,hourly,CFE across Google data centers and offices (hourly) % - 64 64 66 65
+Google,google_env_2026,72,carbon_free_energy_pct,65.0,%,2025,,"In 2025, we achieved a global average of approximately 65% CFE across our data centers and offices"
+Google,google_env_2026,73,carbon_free_energy_pct,65.0,%,2025,,Global average CFE percentage 65% CFE
+Google,google_env_2026,94,carbon_free_energy_pct,65.0,%,2025,hourly,Global CFE across Google data centers % 64 64 66 65
+Google,google_env_2026,94,carbon_free_energy_pct,64.0,%,2025,hourly,CFE across Google offices (hourly) % - 54 56 60 64
+Google,google_env_2026,94,carbon_free_energy_pct,65.0,%,2025,hourly,CFE across Google data centers and offices (hourly) % - 64 64 66 65
+Google,google_env_2025,4,clean_energy_contracted,22.0,GW,2010-2024,,"from 2010 to 2024, we've signed more than 170 agreements to purchase over 22 GW of clean energy generation"
+Google,google_env_2026,18,clean_energy_contracted,35.0,GW,2010-2025,,"From 2010 to 2025, we signed more than 240 agreements to purchase nearly 35 GW of net-new clean energy"
+Google,google_env_2025,4,clean_energy_contracted,8.0,GW,2024,,"In 2024 alone, Google signed contracts to purchase over 8 GW of additional clean energy generation"
+Google,google_env_2025,7,clean_energy_contracted,8.0,GW,2024,,We signed contracts to purchase over 8 gigawatts (GW) of additional clean energy generation 23—more than in any prior year.
+Google,google_env_2025,19,clean_energy_contracted,2.5,GW,2024,,"In 2024, more than 25 clean energy projects we'd contracted over the past several years—some as far back as 2019—came online. Together, they added 2.5 GW of new clean energy to the grids that serve our operations."
+Google,google_env_2025,84,clean_energy_contracted,8.0,GW,2024,,"In 2024, we signed contracts to purchase over 8 GW of additional clean energy generation"
+Google,google_env_2026,4,clean_energy_contracted,12.0,GW,2025,,"In 2025 alone, we signed agreements for over 12 GW of net-new clean energy."
+Google,google_env_2026,8,clean_energy_contracted,12.0,GW,2025,,We signed agreements to purchase over 12 GW of net-new clean energy.
+Google,google_env_2026,18,clean_energy_contracted,12.0,GW,2025,,with more than 12 GW contracted in 2025 alone53— the largest annual total in our history
+Google,google_env_2026,28,clean_energy_contracted,2.0,GW,2025,,"with more than 25 contracted projects coming online, adding nearly 2 GW of new clean energy to the grids supporting our operations"
+Google,google_env_2026,75,clean_energy_contracted,12.0,GW,2025,,"This past year was a record-breaker, with contracts signed for over 12 GW of net-new clean energy."
+Google,google_env_2025,107,datacenter_electricity,14426600.0,MWh,2020,,"Data centers MWh 14,426,600 17,659,000 20,806,200 24,294,900 30,825,600"
+Google,google_env_2025,107,datacenter_electricity,17659000.0,MWh,2021,,"Data centers MWh 14,426,600 17,659,000 20,806,200 24,294,900 30,825,600"
+Google,google_env_2026,93,datacenter_electricity,17429800.0,MWh,2021,,"Data centers MWh 17,429,800 20,616,500 23,980,800 30,637,100 42,415,800"
+Google,google_env_2025,107,datacenter_electricity,20806200.0,MWh,2022,,"Data centers MWh 14,426,600 17,659,000 20,806,200 24,294,900 30,825,600"
+Google,google_env_2026,93,datacenter_electricity,20616500.0,MWh,2022,,"Data centers MWh 17,429,800 20,616,500 23,980,800 30,637,100 42,415,800"
+Google,google_env_2025,107,datacenter_electricity,24294900.0,MWh,2023,,"Data centers MWh 14,426,600 17,659,000 20,806,200 24,294,900 30,825,600"
+Google,google_env_2026,93,datacenter_electricity,23980800.0,MWh,2023,,"Data centers MWh 17,429,800 20,616,500 23,980,800 30,637,100 42,415,800"
+Google,google_env_2025,107,datacenter_electricity,30825600.0,MWh,2024,,"Data centers MWh 14,426,600 17,659,000 20,806,200 24,294,900 30,825,600"
+Google,google_env_2025,114,datacenter_electricity,30825600.0,MWh,2024,,"Data centers 30,825,600"
+Google,google_env_2026,93,datacenter_electricity,30637100.0,MWh,2024,,"Data centers MWh 17,429,800 20,616,500 23,980,800 30,637,100 42,415,800"
+Google,google_env_2026,93,datacenter_electricity,42415800.0,MWh,2025,,"Data centers MWh 17,429,800 20,616,500 23,980,800 30,637,100 42,415,800"
+Google,google_env_2025,118,pue,1.21,ratio,2008,fleet-wide trailing 12-month (TTM),a baseline from our earliest fleet-wide TTM PUE (which was 1.21 in 2008)
+Google,google_env_2026,115,pue,1.21,ratio,2008,fleet-wide trailing 12-month (TTM),a baseline from our earliest fleet-wide TTM PUE (which was 1.21 in 2008)
+Google,google_env_2025,109,pue,1.1,ratio,2020,,Average annual fleet-wide PUE across PUE 1.10 1.10 1.10 1.10 1.09 Google-owned and -operated data center campuses
+Google,google_env_2025,109,pue,1.1,ratio,2021,,Average annual fleet-wide PUE across PUE 1.10 1.10 1.10 1.10 1.09 Google-owned and -operated data center campuses
+Google,google_env_2026,95,pue,1.1,ratio,2021,,Average annual fleet-wide PUE across Google-owned and -operated data center campuses PUE 1.10 1.10 1.10 1.09 1.09
+Google,google_env_2025,109,pue,1.1,ratio,2022,,Average annual fleet-wide PUE across PUE 1.10 1.10 1.10 1.10 1.09 Google-owned and -operated data center campuses
+Google,google_env_2026,95,pue,1.1,ratio,2022,,Average annual fleet-wide PUE across Google-owned and -operated data center campuses PUE 1.10 1.10 1.10 1.09 1.09
+Google,google_env_2025,109,pue,1.1,ratio,2023,,Average annual fleet-wide PUE across PUE 1.10 1.10 1.10 1.10 1.09 Google-owned and -operated data center campuses
+Google,google_env_2026,95,pue,1.1,ratio,2023,,Average annual fleet-wide PUE across Google-owned and -operated data center campuses PUE 1.10 1.10 1.10 1.09 1.09
+Google,google_env_2025,21,pue,1.09,ratio,2024,,the average annual power usage effectiveness (PUE) for our global fleet of data centers dropped below 1.10 to 1.09 (Figure 4)
+Google,google_env_2025,84,pue,1.09,ratio,2024,,"In 2024, the average annual PUE for our global fleet of data centers was 1.09"
+Google,google_env_2025,109,pue,1.09,ratio,2024,,Average annual fleet-wide PUE across PUE 1.10 1.10 1.10 1.10 1.09 Google-owned and -operated data center campuses
+Google,google_env_2026,95,pue,1.09,ratio,2024,,Average annual fleet-wide PUE across Google-owned and -operated data center campuses PUE 1.10 1.10 1.10 1.09 1.09
+Google,google_env_2026,15,pue,1.09,ratio,2025,,operating with a 2025 fleet-wide average PUE of 1.09 (Figure 2)
+Google,google_env_2026,71,pue,1.09,ratio,2025,,operating with a 2025 fleet-wide average PUE of 1.09
+Google,google_env_2026,75,pue,1.09,ratio,2025,,This focus resulted in a 2025 average annual PUE of 1.09 for our global data center fleet
+Google,google_env_2026,95,pue,1.09,ratio,2025,,Average annual fleet-wide PUE across Google-owned and -operated data center campuses PUE 1.10 1.10 1.10 1.09 1.09
+Google,google_env_2025,107,renewable_electricity_pct,100.0,%,2020,,Electricity procured from % 100 100 100 100 100 renewable sources
+Google,google_env_2025,107,renewable_electricity_pct,100.0,%,2021,,Electricity procured from % 100 100 100 100 100 renewable sources
+Google,google_env_2026,93,renewable_electricity_pct,100.0,%,2021,Global renewable energy match,Electricity procured from renewable sources % 100 100 100 100 100
+Google,google_env_2025,107,renewable_electricity_pct,100.0,%,2022,,Electricity procured from % 100 100 100 100 100 renewable sources
+Google,google_env_2026,93,renewable_electricity_pct,100.0,%,2022,Global renewable energy match,Electricity procured from renewable sources % 100 100 100 100 100
+Google,google_env_2025,107,renewable_electricity_pct,100.0,%,2023,,Electricity procured from % 100 100 100 100 100 renewable sources
+Google,google_env_2026,93,renewable_electricity_pct,100.0,%,2023,Global renewable energy match,Electricity procured from renewable sources % 100 100 100 100 100
+Google,google_env_2025,4,renewable_electricity_pct,100.0,%,2024,global annual match,We've maintained a 100% renewable energy match on a global basis every year since 2017
+Google,google_env_2025,29,renewable_electricity_pct,100.0,%,2024,annual match,"For the last eight years, since 2017, we've matched 100% of our global electricity use with renewable energy purchases"
+Google,google_env_2025,107,renewable_electricity_pct,100.0,%,2024,,Electricity procured from % 100 100 100 100 100 renewable sources
+Google,google_env_2025,112,renewable_electricity_pct,100.0,%,2024,,Electricity procured from renewable sources WATER Global Operational Water Use Water withdrawal Water discharge Water consumption 100
+Google,google_env_2026,93,renewable_electricity_pct,100.0,%,2024,Global renewable energy match,Electricity procured from renewable sources % 100 100 100 100 100
+Google,google_env_2026,4,renewable_electricity_pct,100.0,%,2025,global and annual basis,we again matched 100% of our electricity consumption with renewable energy purchases (on a global and annual basis)
+Google,google_env_2026,93,renewable_electricity_pct,100.0,%,2025,Global renewable energy match,Electricity procured from renewable sources % 100 100 100 100 100
+Google,google_env_2025,105,scope1_emissions,81900.0,tCO2e,2019,,"Scope 1 tCO e 81,900 55,800 64,100 91,200 79,400 73,100"
+Google,google_env_2026,77,scope1_emissions,65300.0,tCO2e,2019,ambition-based,"65,300 Scope 1"
+Google,google_env_2025,105,scope1_emissions,55800.0,tCO2e,2020,,"Scope 1 tCO e 81,900 55,800 64,100 91,200 79,400 73,100"
+Google,google_env_2025,105,scope1_emissions,64100.0,tCO2e,2021,,"Scope 1 tCO e 81,900 55,800 64,100 91,200 79,400 73,100"
+Google,google_env_2025,105,scope1_emissions,91200.0,tCO2e,2022,,"Scope 1 tCO e 81,900 55,800 64,100 91,200 79,400 73,100"
+Google,google_env_2025,105,scope1_emissions,79400.0,tCO2e,2023,,"Scope 1 tCO e 81,900 55,800 64,100 91,200 79,400 73,100"
+Google,google_env_2026,90,scope1_emissions,75100.0,tCO2e,2023,,"Scope 1 tCO2e 65,300 50,200 57,600 89,400 75,100 71,700 86,100"
+Google,google_env_2025,80,scope1_emissions,73100.0,tCO2e,2024,,"In 2024, our scope 1 emissions were approximately 73,100 tCO2e"
+Google,google_env_2025,105,scope1_emissions,73100.0,tCO2e,2024,,"Scope 1 tCO e 81,900 55,800 64,100 91,200 79,400 73,100"
+Google,google_env_2025,106,scope1_emissions,73100.0,tCO2e,2024,,"Total tCO2e 73,100 3,059,100 11,283,200"
+Google,google_env_2025,112,scope1_emissions,73100.0,tCO2e,2024,,"Scope 1 73,100 Metric tons of carbon dioxide equivalent (tCO2e)"
+Google,google_env_2025,113,scope1_emissions,73100.0,tCO2e,2024,,"Global total 73,100 3,059,100 11,283,200"
+Google,google_env_2026,90,scope1_emissions,71700.0,tCO2e,2024,,"Scope 1 tCO2e 65,300 50,200 57,600 89,400 75,100 71,700 86,100"
+Google,google_env_2026,70,scope1_emissions,86100.0,tCO2e,2025,,"In 2025, our scope 1 emissions were approximately 86,100 tCO2e, representing less than 1% of our total 2025 carbon footprint."
+Google,google_env_2026,90,scope1_emissions,86100.0,tCO2e,2025,,"Scope 1 tCO2e 65,300 50,200 57,600 89,400 75,100 71,700 86,100"
+Google,google_env_2026,91,scope1_emissions,86100.0,tCO2e,2025,,"Global total tCO2e 86,100 2,815,000 15,148,700"
+Google,google_env_2025,105,scope2_location_emissions,5116900.0,tCO2e,2019,location-based,"Scope 2 (location-based) tCO2e 5,116,900 5,865,100 6,576,200 8,045,400 9,252,900 11,283,200"
+Google,google_env_2025,105,scope2_location_emissions,5865100.0,tCO2e,2020,location-based,"Scope 2 (location-based) tCO2e 5,116,900 5,865,100 6,576,200 8,045,400 9,252,900 11,283,200"
+Google,google_env_2025,105,scope2_location_emissions,6576200.0,tCO2e,2021,location-based,"Scope 2 (location-based) tCO2e 5,116,900 5,865,100 6,576,200 8,045,400 9,252,900 11,283,200"
+Google,google_env_2025,105,scope2_location_emissions,8045400.0,tCO2e,2022,location-based,"Scope 2 (location-based) tCO2e 5,116,900 5,865,100 6,576,200 8,045,400 9,252,900 11,283,200"
+Google,google_env_2025,105,scope2_location_emissions,9252900.0,tCO2e,2023,location-based,"Scope 2 (location-based) tCO2e 5,116,900 5,865,100 6,576,200 8,045,400 9,252,900 11,283,200"
+Google,google_env_2026,90,scope2_location_emissions,9085700.0,tCO2e,2023,location-based,"Scope 2 (location-based) tCO2e 5,173,000 5,845,000 6,498,700 7,963,700 9,085,700 11,067,100 15,148,700"
+Google,google_env_2025,105,scope2_location_emissions,11283200.0,tCO2e,2024,location-based,"Scope 2 (location-based) tCO2e 5,116,900 5,865,100 6,576,200 8,045,400 9,252,900 11,283,200"
+Google,google_env_2025,106,scope2_location_emissions,11283200.0,tCO2e,2024,location-based,"Total tCO2e 73,100 3,059,100 11,283,200"
+Google,google_env_2025,112,scope2_location_emissions,11283200.0,tCO2e,2024,location-based,"Scope 2 location-based 11,283,200 tCO2e"
+Google,google_env_2025,113,scope2_location_emissions,11283200.0,tCO2e,2024,location-based,"Global total 73,100 3,059,100 11,283,200"
+Google,google_env_2026,90,scope2_location_emissions,11067100.0,tCO2e,2024,location-based,"Scope 2 (location-based) tCO2e 5,173,000 5,845,000 6,498,700 7,963,700 9,085,700 11,067,100 15,148,700"
+Google,google_env_2026,90,scope2_location_emissions,15148700.0,tCO2e,2025,location-based,"Scope 2 (location-based) tCO2e 5,173,000 5,845,000 6,498,700 7,963,700 9,085,700 11,067,100 15,148,700"
+Google,google_env_2026,91,scope2_location_emissions,15148700.0,tCO2e,2025,location-based,"Global total tCO2e 86,100 2,815,000 15,148,700"
+Google,google_env_2025,105,scope2_market_emissions,835900.0,tCO2e,2019,market-based,"Scope 2 (market-based) tCO e 835,900 911,600 1,823,500 2,492,100 3,423,400 3,059,100"
+Google,google_env_2026,77,scope2_market_emissions,788200.0,tCO2e,2019,market-based,"788,200 Scope 2 (market-based)"
+Google,google_env_2025,105,scope2_market_emissions,911600.0,tCO2e,2020,market-based,"Scope 2 (market-based) tCO e 835,900 911,600 1,823,500 2,492,100 3,423,400 3,059,100"
+Google,google_env_2025,105,scope2_market_emissions,1823500.0,tCO2e,2021,market-based,"Scope 2 (market-based) tCO e 835,900 911,600 1,823,500 2,492,100 3,423,400 3,059,100"
+Google,google_env_2025,105,scope2_market_emissions,2492100.0,tCO2e,2022,market-based,"Scope 2 (market-based) tCO e 835,900 911,600 1,823,500 2,492,100 3,423,400 3,059,100"
+Google,google_env_2025,105,scope2_market_emissions,3423400.0,tCO2e,2023,market-based,"Scope 2 (market-based) tCO e 835,900 911,600 1,823,500 2,492,100 3,423,400 3,059,100"
+Google,google_env_2026,90,scope2_market_emissions,3288000.0,tCO2e,2023,market-based,"Scope 2 (market-based) tCO2e 788,200 921,200 1,769,400 2,430,200 3,288,000 2,898,600 2,815,000"
+Google,google_env_2025,80,scope2_market_emissions,3.1,million tCO2e,2024,market-based,"In 2024, our scope 2 (market-based) emissions were approximately 3.1 million tCO2e"
+Google,google_env_2025,84,scope2_market_emissions,3.1,million tCO2e,2024,market-based,"In 2024, our scope 2 (market-based) emissions were approximately 3.1 million tCO2e"
+Google,google_env_2025,105,scope2_market_emissions,3059100.0,tCO2e,2024,market-based,"Scope 2 (market-based) tCO e 835,900 911,600 1,823,500 2,492,100 3,423,400 3,059,100"
+Google,google_env_2025,106,scope2_market_emissions,3059100.0,tCO2e,2024,market-based,"Total tCO2e 73,100 3,059,100 11,283,200"
+Google,google_env_2025,112,scope2_market_emissions,3059100.0,tCO2e,2024,market-based,"Scope 2 market-based 3,059,100"
+Google,google_env_2025,113,scope2_market_emissions,3059100.0,tCO2e,2024,market-based,"Global total 73,100 3,059,100 11,283,200"
+Google,google_env_2026,90,scope2_market_emissions,2898600.0,tCO2e,2024,market-based,"Scope 2 (market-based) tCO2e 788,200 921,200 1,769,400 2,430,200 3,288,000 2,898,600 2,815,000"
+Google,google_env_2026,70,scope2_market_emissions,2.8,million tCO2e,2025,market-based,"In 2025, our scope 2 (market-based) emissions were approximately 2.8 million tCO2e, representing 19% of our total 2025 carbon footprint."
+Google,google_env_2026,90,scope2_market_emissions,2815000.0,tCO2e,2025,market-based,"Scope 2 (market-based) tCO2e 788,200 921,200 1,769,400 2,430,200 3,288,000 2,898,600 2,815,000"
+Google,google_env_2026,91,scope2_market_emissions,2815000.0,tCO2e,2025,market-based,"Global total tCO2e 86,100 2,815,000 15,148,700"
+Google,google_env_2025,105,scope3_emissions,8950000.0,tCO2e,2019,,"Scope 3 (total) tCO2e 8,950,000 7,770,000 8,633,000 9,317,000 10,794,000 12,053,000"
+Google,google_env_2025,105,scope3_emissions,7770000.0,tCO2e,2020,,"Scope 3 (total) tCO2e 8,950,000 7,770,000 8,633,000 9,317,000 10,794,000 12,053,000"
+Google,google_env_2025,105,scope3_emissions,8633000.0,tCO2e,2021,,"Scope 3 (total) tCO2e 8,950,000 7,770,000 8,633,000 9,317,000 10,794,000 12,053,000"
+Google,google_env_2025,105,scope3_emissions,9317000.0,tCO2e,2022,,"Scope 3 (total) tCO2e 8,950,000 7,770,000 8,633,000 9,317,000 10,794,000 12,053,000"
+Google,google_env_2025,105,scope3_emissions,10794000.0,tCO2e,2023,,"Scope 3 (total) tCO2e 8,950,000 7,770,000 8,633,000 9,317,000 10,794,000 12,053,000"
+Google,google_env_2026,90,scope3_emissions,11557000.0,tCO2e,2023,GHGP-aligned,"Total scope 3 GHGP-aligned tCO2e 9,501,000 8,398,000 9,332,000 10,079,000 11,557,000 12,967,000 15,946,000"
+Google,google_env_2026,90,scope3_emissions,7543000.0,tCO2e,2023,ambition-based,"Total scope 3 (ambition-based) tCO2e 7,149,000 6,181,000 6,635,000 7,039,000 7,543,000 9,263,000 11,572,000"
+Google,google_env_2025,80,scope3_emissions,8.4,M tCO2e,2024,ambition-based,Scope 3 (ambition-based): 8.4M tCO2e
+Google,google_env_2025,81,scope3_emissions,8.4,million tCO2e,2024,ambition-based,"In 2024, our total scope 3 (ambition-based) emissions were approximately 8.4 million tCO2e"
+Google,google_env_2025,81,scope3_emissions,8.4,million tCO2e,2024,ambition-based,Supply chain: Scope 3 (ambition-based) emissions were 8.4 million tCO2e
+Google,google_env_2025,84,scope3_emissions,8.4,million tCO2e,2024,ambition-based,"In 2024, our total scope 3 (ambition-based) emissions were approximately 8.4 million tCO2e"
+Google,google_env_2025,105,scope3_emissions,12053000.0,tCO2e,2024,,"Scope 3 (total) tCO2e 8,950,000 7,770,000 8,633,000 9,317,000 10,794,000 12,053,000"
+Google,google_env_2025,112,scope3_emissions,12053000.0,tCO2e,2024,,"Scope 3 (total) 12,053,000"
+Google,google_env_2026,90,scope3_emissions,12967000.0,tCO2e,2024,GHGP-aligned,"Total scope 3 GHGP-aligned tCO2e 9,501,000 8,398,000 9,332,000 10,079,000 11,557,000 12,967,000 15,946,000"
+Google,google_env_2026,90,scope3_emissions,9263000.0,tCO2e,2024,ambition-based,"Total scope 3 (ambition-based) tCO2e 7,149,000 6,181,000 6,635,000 7,039,000 7,543,000 9,263,000 11,572,000"
+Google,google_env_2026,69,scope3_emissions,11.6,million tCO2e,2025,ambition-based,Scope 3 (ambition-based): 11.6M tCO2e
+Google,google_env_2026,70,scope3_emissions,11.6,million tCO2e,2025,ambition-based,"In 2025, our total scope 3 (ambition-based) emissions were approximately 11.6 million tCO2e, representing 80% of our total 2025 carbon footprint."
+Google,google_env_2026,74,scope3_emissions,11.6,million tCO2e,2025,ambition-based,Supply chain: Our scope 3 (ambition-based) emissions were 11.6 million tCO2e
+Google,google_env_2026,90,scope3_emissions,15946000.0,tCO2e,2025,GHGP-aligned,"Total scope 3 GHGP-aligned tCO2e 9,501,000 8,398,000 9,332,000 10,079,000 11,557,000 12,967,000 15,946,000"
+Google,google_env_2026,90,scope3_emissions,11572000.0,tCO2e,2025,ambition-based,"Total scope 3 (ambition-based) tCO2e 7,149,000 6,181,000 6,635,000 7,039,000 7,543,000 9,263,000 11,572,000"
+Google,google_env_2025,107,total_electricity,15166800.0,MWh,2020,,"Total electricity consumption 155 MWh 15,166,800 18,287,100 21,776,200 32,179,900"
+Google,google_env_2025,107,total_electricity,18287100.0,MWh,2021,,"Total electricity consumption 155 MWh 15,166,800 18,287,100 21,776,200 32,179,900"
+Google,google_env_2026,93,total_electricity,18058300.0,MWh,2021,,"Total electricity consumption214 MWh 18,058,300 21,586,400 24,994,000 31,713,900 43,586,600"
+Google,google_env_2025,107,total_electricity,21776200.0,MWh,2022,,"Total electricity consumption 155 MWh 15,166,800 18,287,100 21,776,200 32,179,900"
+Google,google_env_2026,93,total_electricity,21586400.0,MWh,2022,,"Total electricity consumption214 MWh 18,058,300 21,586,400 24,994,000 31,713,900 43,586,600"
+Google,google_env_2026,93,total_electricity,24994000.0,MWh,2023,,"Total electricity consumption214 MWh 18,058,300 21,586,400 24,994,000 31,713,900 43,586,600"
+Google,google_env_2025,107,total_electricity,32179900.0,MWh,2024,,"Total electricity consumption 155 MWh 15,166,800 18,287,100 21,776,200 32,179,900"
+Google,google_env_2025,114,total_electricity,32179900.0,MWh,2024,,"Global total 32,179,900 23,995,800"
+Google,google_env_2025,114,total_electricity,32179900.0,MWh,2024,,"Total electricity consumption 17 32,179,900"
+Google,google_env_2026,93,total_electricity,31713900.0,MWh,2024,,"Total electricity consumption214 MWh 18,058,300 21,586,400 24,994,000 31,713,900 43,586,600"
+Google,google_env_2026,93,total_electricity,43586600.0,MWh,2025,,"Total electricity consumption214 MWh 18,058,300 21,586,400 24,994,000 31,713,900 43,586,600"
+Google,google_env_2025,82,total_emissions,7661800.0,tCO2e,2019,ambition-based,"Total 2019 ambition-based emissions 7,661,800"
+Google,google_env_2025,105,total_emissions,9867800.0,tCO2e,2019,market-based,"Total emissions: Scope 1, 2 (market-based), and 3 (total) tCO2e 9,867,800 8,737,400 10,520,600 11,900,300 14,296,800 15,185,200"
+Google,google_env_2025,105,total_emissions,7661800.0,tCO2e,2019,ambition-based,"Total ambition-based emissions tCO2e 7,661,800 6,682,400 8,066,600 8,994,300 10,375,800 11,547,200"
+Google,google_env_2026,77,total_emissions,8002500.0,tCO2e,2019,ambition-based,"Total 2019 base year emissions 8,002,500"
+Google,google_env_2025,105,total_emissions,8737400.0,tCO2e,2020,market-based,"Total emissions: Scope 1, 2 (market-based), and 3 (total) tCO2e 9,867,800 8,737,400 10,520,600 11,900,300 14,296,800 15,185,200"
+Google,google_env_2025,105,total_emissions,6682400.0,tCO2e,2020,ambition-based,"Total ambition-based emissions tCO2e 7,661,800 6,682,400 8,066,600 8,994,300 10,375,800 11,547,200"
+Google,google_env_2025,105,total_emissions,10520600.0,tCO2e,2021,market-based,"Total emissions: Scope 1, 2 (market-based), and 3 (total) tCO2e 9,867,800 8,737,400 10,520,600 11,900,300 14,296,800 15,185,200"
+Google,google_env_2025,105,total_emissions,8066600.0,tCO2e,2021,ambition-based,"Total ambition-based emissions tCO2e 7,661,800 6,682,400 8,066,600 8,994,300 10,375,800 11,547,200"
+Google,google_env_2025,105,total_emissions,11900300.0,tCO2e,2022,market-based,"Total emissions: Scope 1, 2 (market-based), and 3 (total) tCO2e 9,867,800 8,737,400 10,520,600 11,900,300 14,296,800 15,185,200"
+Google,google_env_2025,105,total_emissions,8994300.0,tCO2e,2022,ambition-based,"Total ambition-based emissions tCO2e 7,661,800 6,682,400 8,066,600 8,994,300 10,375,800 11,547,200"
+Google,google_env_2025,105,total_emissions,14296800.0,tCO2e,2023,market-based,"Total emissions: Scope 1, 2 (market-based), and 3 (total) tCO2e 9,867,800 8,737,400 10,520,600 11,900,300 14,296,800 15,185,200"
+Google,google_env_2025,105,total_emissions,10375800.0,tCO2e,2023,ambition-based,"Total ambition-based emissions tCO2e 7,661,800 6,682,400 8,066,600 8,994,300 10,375,800 11,547,200"
+Google,google_env_2026,90,total_emissions,14920100.0,tCO2e,2023,GHGP-aligned,"GHGP-aligned emissions tCO2e 10,354,500 9,369,400 11,159,000 12,598,600 14,920,100 15,937,300 18,847,100"
+Google,google_env_2026,90,total_emissions,10906100.0,tCO2e,2023,ambition-based,"Ambition-based emissions tCO2e 8,002,500 7,152,400 8,462,000 9,558,600 10,906,100 12,233,300 14,473,100"
+Google,google_env_2025,5,total_emissions,11.5,million tCO2e,2024,,"For context, Google's total emissions in 2024 were 11.5 million tCO e."
+Google,google_env_2025,80,total_emissions,11.5,million tCO2e,2024,ambition-based,"In 2024, our total ambition-based emissions were approximately 11.5 million tCO2e"
+Google,google_env_2025,80,total_emissions,11547200.0,tCO2e,2024,ambition-based,"Total ambition-based emissions 73,100 3,059,100 739,000* 5,561,000* 714,000 853,000 12,000 399,000 137,000 11,547,200"
+Google,google_env_2025,81,total_emissions,11.5,million tCO2e,2024,ambition-based,"In 2024, our total ambition-based emissions were 11.5 million tCO2e"
+Google,google_env_2025,82,total_emissions,11.5,million tCO2e,2024,ambition-based,"In 2024, our total ambition-based emissions were 11.5 million tCO2e"
+Google,google_env_2025,105,total_emissions,15185200.0,tCO2e,2024,market-based,"Total emissions: Scope 1, 2 (market-based), and 3 (total) tCO2e 9,867,800 8,737,400 10,520,600 11,900,300 14,296,800 15,185,200"
+Google,google_env_2025,105,total_emissions,11547200.0,tCO2e,2024,ambition-based,"Total ambition-based emissions tCO2e 7,661,800 6,682,400 8,066,600 8,994,300 10,375,800 11,547,200"
+Google,google_env_2025,112,total_emissions,3132200.0,tCO2e,2024,scope 1 + market-based scope 2,"Total operational (scope 1 + market-based scope 2) emissions 3,132,200"
+Google,google_env_2026,90,total_emissions,15937300.0,tCO2e,2024,GHGP-aligned,"GHGP-aligned emissions tCO2e 10,354,500 9,369,400 11,159,000 12,598,600 14,920,100 15,937,300 18,847,100"
+Google,google_env_2026,90,total_emissions,12233300.0,tCO2e,2024,ambition-based,"Ambition-based emissions tCO2e 8,002,500 7,152,400 8,462,000 9,558,600 10,906,100 12,233,300 14,473,100"
+Google,google_env_2026,51,total_emissions,14.5,million tCO2e,2025,ambition-based,"Google's total ambition- based emissions, which were approximately 14.5 million tCO2e in 2025."
+Google,google_env_2026,69,total_emissions,14.5,million tCO2e,2025,ambition-based,"In 2025, our total ambition-based emissions were approximately 14.5 million tCO2e (Figure 23)."
+Google,google_env_2026,69,total_emissions,14473100.0,tCO2e,2025,ambition-based,"Total ambition-based emissions 86,100 2,815,000 1,056,000 7,634,000 718,000 1,067,000 9,000 449,000 140,000 499,000 14,473,100 tCO2e"
+Google,google_env_2026,74,total_emissions,14.5,million tCO2e,2025,ambition-based,"In 2025, our total ambition-based emissions were approximately 14.5 million tCO2e"
+Google,google_env_2026,90,total_emissions,18847100.0,tCO2e,2025,GHGP-aligned,"GHGP-aligned emissions tCO2e 10,354,500 9,369,400 11,159,000 12,598,600 14,920,100 15,937,300 18,847,100"
+Google,google_env_2026,90,total_emissions,14473100.0,tCO2e,2025,ambition-based,"Ambition-based emissions tCO2e 8,002,500 7,152,400 8,462,000 9,558,600 10,906,100 12,233,300 14,473,100"
+Google,google_env_2025,110,water_consumption,3749.0,Million gallons,2020,,"Water Million 3,749 4,562 5,565 6,352 8,135 consumption gallons"
+Google,google_env_2025,110,water_consumption,4562.0,Million gallons,2021,,"Water Million 3,749 4,562 5,565 6,352 8,135 consumption gallons"
+Google,google_env_2026,96,water_consumption,4562.0,Million gallons,2021,,"Water consumption Million gallons 4,562 5,565 6,352 8,135 10,869"
+Google,google_env_2025,110,water_consumption,5565.0,Million gallons,2022,,"Water Million 3,749 4,562 5,565 6,352 8,135 consumption gallons"
+Google,google_env_2026,96,water_consumption,5565.0,Million gallons,2022,,"Water consumption Million gallons 4,562 5,565 6,352 8,135 10,869"
+Google,google_env_2025,110,water_consumption,6352.0,Million gallons,2023,,"Water Million 3,749 4,562 5,565 6,352 8,135 consumption gallons"
+Google,google_env_2026,96,water_consumption,6352.0,Million gallons,2023,,"Water consumption Million gallons 4,562 5,565 6,352 8,135 10,869"
+Google,google_env_2025,110,water_consumption,8135.0,Million gallons,2024,,"Water Million 3,749 4,562 5,565 6,352 8,135 consumption gallons"
+Google,google_env_2025,111,water_consumption,7787.0,Million gallons,2024,,"Data centers total Million gallons 9,866 2,079 7,787 51"
+Google,google_env_2025,111,water_consumption,32.1,Million gallons,2024,,"Omaha, NE Million gallons 44.3 12.2 32.1 <1"
+Google,google_env_2025,111,water_consumption,416.9,Million gallons,2024,,"Papillion, NE Million gallons 532.3 115.4 416.9 2.8"
+Google,google_env_2025,111,water_consumption,0.01,Million gallons,2024,,Million gallons 0.1 0.1 0.01 <1
+Google,google_env_2025,111,water_consumption,121.8,Million gallons,2024,,"Quilicura, Chile Million gallons 219.0 97.2 121.8 <1"
+Google,google_env_2025,111,water_consumption,393.3,Million gallons,2024,,"St. Ghislain, Belgium Million gallons 511.7 118.4 393.3 2.6"
+Google,google_env_2025,111,water_consumption,158.2,Million gallons,2024,,"Sterling, VA Million gallons 201.2 43.0 158.2 1.1"
+Google,google_env_2025,111,water_consumption,1.5,Million gallons,2024,,Million gallons 14.9 13.4 1.5 <1
+Google,google_env_2025,111,water_consumption,768.9,Million gallons,2024,,Other data center locations Million gallons 828.9 60.0 768.9 5.1
+Google,google_env_2025,112,water_consumption,8135.0,Million gallons,2024,,"2,876 Million gallons 8,135"
+Google,google_env_2025,114,water_consumption,8135.0,million gallons,2024,,"Total 11,011 2,876 8,135"
+Google,google_env_2025,114,water_consumption,7787.0,million gallons,2024,,"Data centers 9,866 2,079 7,787"
+Google,google_env_2026,96,water_consumption,8135.0,Million gallons,2024,,"Water consumption Million gallons 4,562 5,565 6,352 8,135 10,869"
+Google,google_env_2026,35,water_consumption,10.9,billion gallons,2025,,"In 2025, we consumed 10.9 billion gallons (41 billion liters or 41 million cubic meters) of water across our data centers and offices."
+Google,google_env_2026,35,water_consumption,41.0,million cubic meters,2025,,"In 2025, we consumed 10.9 billion gallons (41 billion liters or 41 million cubic meters) of water across our data centers and offices."
+Google,google_env_2026,96,water_consumption,10869.0,Million gallons,2025,,"Water consumption Million gallons 4,562 5,565 6,352 8,135 10,869"
+Google,google_env_2026,97,water_consumption,10523.0,Million gallons,2025,,"Data centers total Potable water Non-potable water Reclaimed wastewater Million gallons 13,562 10,949 1,695 918 3,039 10,523 70.2"
+Google,google_env_2025,86,water_replenished,6.0,%,2022,,6% 18% 64% 2022 2023 2024
+Google,google_env_2025,110,water_replenished,271.0,Million gallons,2022,,"Water replenished Million gallons 271 1,036 4,590"
+Google,google_env_2025,110,water_replenished,6.0,%,2022,,Water replenished % 6 18 64
+Google,google_env_2026,96,water_replenished,271.0,Million gallons,2022,,"Water replenished Million gallons 271 1,036 4,590 7,717"
+Google,google_env_2026,96,water_replenished,6.0,%,2022,,Water replenished % 6 18 63 78
+Google,google_env_2025,86,water_replenished,18.0,%,2023,,increasing replenishment of our freshwater consumption from 18% in 2023 to 64% in 2024.
+Google,google_env_2025,110,water_replenished,1036.0,Million gallons,2023,,"Water replenished Million gallons 271 1,036 4,590"
+Google,google_env_2025,110,water_replenished,18.0,%,2023,,Water replenished % 6 18 64
+Google,google_env_2026,96,water_replenished,1036.0,Million gallons,2023,,"Water replenished Million gallons 271 1,036 4,590 7,717"
+Google,google_env_2026,96,water_replenished,18.0,%,2023,,Water replenished % 6 18 63 78
+Google,google_env_2025,8,water_replenished,4.5,billion gallons,2024,,Our water stewardship projects replenished approximately 4.5 billion gallons of water (17 billion liters or 17 million cubic meters) in 2024 alone
+Google,google_env_2025,8,water_replenished,17.0,billion liters,2024,,Our water stewardship projects replenished approximately 4.5 billion gallons of water (17 billion liters or 17 million cubic meters) in 2024 alone
+Google,google_env_2025,8,water_replenished,17.0,million cubic meters,2024,,Our water stewardship projects replenished approximately 4.5 billion gallons of water (17 billion liters or 17 million cubic meters) in 2024 alone
+Google,google_env_2025,8,water_replenished,64.0,%,2024,,"Replenished 64% of our freshwater consumption, up from 18%"
+Google,google_env_2025,42,water_replenished,4.5,billion gallons,2024,,"In 2024, our water stewardship projects replenished approximately 4.5 billion gallons of water (17 billion liters or 17 million cubic meters)"
+Google,google_env_2025,42,water_replenished,17.0,billion liters,2024,,"In 2024, our water stewardship projects replenished approximately 4.5 billion gallons of water (17 billion liters or 17 million cubic meters)"
+Google,google_env_2025,42,water_replenished,17.0,million cubic meters,2024,,"In 2024, our water stewardship projects replenished approximately 4.5 billion gallons of water (17 billion liters or 17 million cubic meters)"
+Google,google_env_2025,42,water_replenished,64.0,% of freshwater consumption,2024,,roughly 64% of our 2024 freshwater consumption.
+Google,google_env_2025,86,water_replenished,4.5,billion gallons,2024,,"In 2024, our water stewardship projects replenished approximately 4.5 billion gallons of water (17 billion liters or 17 million cubic meters), or roughly 64% of our freshwater consumption."
+Google,google_env_2025,86,water_replenished,17.0,billion liters,2024,,"In 2024, our water stewardship projects replenished approximately 4.5 billion gallons of water (17 billion liters or 17 million cubic meters), or roughly 64% of our freshwater consumption."
+Google,google_env_2025,86,water_replenished,17.0,million cubic meters,2024,,"In 2024, our water stewardship projects replenished approximately 4.5 billion gallons of water (17 billion liters or 17 million cubic meters), or roughly 64% of our freshwater consumption."
+Google,google_env_2025,86,water_replenished,64.0,%,2024,,increasing replenishment of our freshwater consumption from 18% in 2023 to 64% in 2024.
+Google,google_env_2025,110,water_replenished,4590.0,Million gallons,2024,,"Water replenished Million gallons 271 1,036 4,590"
+Google,google_env_2025,110,water_replenished,64.0,%,2024,,Water replenished % 6 18 64
+Google,google_env_2026,78,water_replenished,63.0,% of freshwater consumption,2024,,This marks another year of steady progress from 63%180 in 2024.
+Google,google_env_2026,96,water_replenished,4590.0,Million gallons,2024,,"Water replenished Million gallons 271 1,036 4,590 7,717"
+Google,google_env_2026,96,water_replenished,63.0,%,2024,,Water replenished % 6 18 63 78
+Google,google_env_2026,8,water_replenished,7.7,billion gallons,2025,,"replenished 7.7 billion gallons of water, or roughly 78% of our 2025 freshwater consumption."
+Google,google_env_2026,8,water_replenished,78.0,%,2025,,Replenished 78% of our freshwater consumption
+Google,google_env_2026,37,water_replenished,7.7,billion gallons,2025,,These water stewardship projects replenished approximately 7.7 billion gallons of water (29 billion liters or 29 million cubic meters) in 2025 alone
+Google,google_env_2026,37,water_replenished,29.0,billion liters,2025,,These water stewardship projects replenished approximately 7.7 billion gallons of water (29 billion liters or 29 million cubic meters) in 2025 alone
+Google,google_env_2026,37,water_replenished,29.0,million cubic meters,2025,,These water stewardship projects replenished approximately 7.7 billion gallons of water (29 billion liters or 29 million cubic meters) in 2025 alone
+Google,google_env_2026,37,water_replenished,78.0,% of freshwater consumption,2025,,roughly 78% of our 2025 freshwater consumption.
+Google,google_env_2026,78,water_replenished,7.7,billion gallons,2025,,"In 2025, our water stewardship projects replenished approximately 7.7 billion gallons of water (29 billion liters or 29 million cubic meters)"
+Google,google_env_2026,78,water_replenished,29.0,billion liters,2025,,"In 2025, our water stewardship projects replenished approximately 7.7 billion gallons of water (29 billion liters or 29 million cubic meters)"
+Google,google_env_2026,78,water_replenished,29.0,million cubic meters,2025,,"In 2025, our water stewardship projects replenished approximately 7.7 billion gallons of water (29 billion liters or 29 million cubic meters)"
+Google,google_env_2026,78,water_replenished,78.0,% of freshwater consumption,2025,,or roughly 78% of our freshwater consumption (Figure 30).
+Google,google_env_2026,96,water_replenished,7717.0,Million gallons,2025,,"Water replenished Million gallons 271 1,036 4,590 7,717"
+Google,google_env_2026,96,water_replenished,78.0,%,2025,,Water replenished % 6 18 63 78
+Meta,meta_sr_2025,17,clean_energy_contracted,15.0,GW,2024,,matching 100% of the energy we use with over 15 GW of clean and renewable energy
+Meta,meta_sr_2025,18,clean_energy_contracted,15.0,GW,2024,,"Over the last decade, we have contracted for over 15 GW of new clean and renewable energy across the globe"
+Meta,meta_sr_2025,17,renewable_electricity_pct,100.0,%,2024,,matching 100% of the energy we use with over 15 GW of clean and renewable energy
+Meta,meta_sr_2025,18,renewable_electricity_pct,100.0,%,2024,,"As a result of matching 100% of our electricity use with clean and renewable energy, we have reduced our operational emissions by 6 M MT of CO2e in 2024."
+Meta,meta_sr_2025,12,scope1_emissions,47468.0,MT CO2e,2024,,"1% Scope 1 47,468"
+Meta,meta_sr_2025,12,scope2_market_emissions,1358.0,MT CO2e,2024,market-based,"<1% Scope 2 (market-based) 1,358"
+Meta,meta_sr_2025,12,scope3_emissions,8151769.0,MT CO2e,2024,Management's Criteria,"99% Scope 3 8,151,769"
+Meta,meta_sr_2025,12,total_emissions,8.2,M MT of CO2e,2024,net,"In 2024, our net emissions equaled 8.2 M MT of CO2e."
+Meta,meta_sr_2025,17,total_emissions,8.2,M MT CO2e,2024,contractual instruments applied,Our total 2024 emissions with contractual instruments applied (8.2 M MT CO2e) were 48% less than our location‑based emissions (15.6 M MT CO2e).
+Meta,meta_sr_2025,17,total_emissions,15.6,M MT CO2e,2024,location-based,Our total 2024 emissions with contractual instruments applied (8.2 M MT CO2e) were 48% less than our location‑based emissions (15.6 M MT CO2e).
+Microsoft,microsoft_esr_2025,7,clean_energy_contracted,1.8,GW,2020,,Contracted renewable energy 1.8 GW 34GW
+Microsoft,microsoft_esr_2025,5,clean_energy_contracted,19.0,GW,2024,,"In 2024, Microsoft contracted 19 GW of new renewable energy across 16 countries through power purchase agreements (PPAs)"
+Microsoft,microsoft_esr_2025,7,clean_energy_contracted,34.0,GW,2024,cumulative through 2024,Contracted renewable energy 1.8 GW 34GW
+Microsoft,microsoft_esr_2025,11,clean_energy_contracted,19.0,GW,2024,,"In 2024, we contracted an additional 19 GW of new renewable energy across 16 countries, further diversifying our energy portfolio."
+Microsoft,microsoft_esr_2025,19,clean_energy_contracted,34.0,GW,2024,,with contracted renewables increasing from 1.8 gigawatts (GW) to over 34 GW across 24 countries.
+Microsoft,microsoft_esr_2025,19,clean_energy_contracted,19.0,GW,2024,,"In 2024, we contracted an additional 19 GW of new renewable energy across 16 countries, further diversifying our energy portfolio."
+Microsoft,microsoft_esr_2026,62,clean_energy_contracted,40.0,GW,2025,,Expanded our renewable energy portfolio to include agreements encompassing up to 40GW of new renewable energy across 26 countries.
+Microsoft,microsoft_esr_2025,4,clean_energy_contracted,34.0,GW,FY24,,"To date, we have contracted 34 gigawatts (GW) of carbon-free electricity (CFE) across 24 countries, about an eighteenfold increase since 2020."
+Microsoft,microsoft_esr_2026,62,renewable_electricity_pct,100.0,%,2025,,Achieved our goal of matching 100% of our annual global electricity consumption with renewable energy
+Microsoft,microsoft_datasheet_2026,6,renewable_electricity_pct,62.0,%,FY22,,Percentage of direct renewable electricity1 – – 62 59 78 100
+Microsoft,microsoft_datasheet_2026,6,renewable_electricity_pct,59.0,%,FY23,,Percentage of direct renewable electricity1 – – 62 59 78 100
+Microsoft,microsoft_datasheet_2026,6,renewable_electricity_pct,78.0,%,FY24,,Percentage of direct renewable electricity1 – – 62 59 78 100
+Microsoft,microsoft_datasheet_2026,6,renewable_electricity_pct,100.0,%,FY25,,Percentage of direct renewable electricity1 – – 62 59 78 100
+Microsoft,microsoft_esr_2026,6,renewable_electricity_pct,100.0,%,FY25,,"In FY25, we matched 100% of our annual global electricity consumption with renewable energy."
+Microsoft,microsoft_datasheet_2026,3,scope1_emissions,118100.0,mtCO2e,FY20,,"Scope 1 118,100 123,704 139,413 144,960 143,510 170,887"
+Microsoft,microsoft_datasheet_2026,4,scope1_emissions,118100.0,mt CO2e,FY20,,"Scope 1 (mt C O 2 e) 118,100 123,704 139,413 144,960 143,510 170,887"
+Microsoft,microsoft_datasheet_2026,5,scope1_emissions,118100.0,mtCO2e,FY20,,"Subtotal 118,100 123,704 139,413 144,960 143,510 170,887"
+Microsoft,microsoft_datasheet_2026,3,scope1_emissions,123704.0,mtCO2e,FY21,,"Scope 1 118,100 123,704 139,413 144,960 143,510 170,887"
+Microsoft,microsoft_datasheet_2026,4,scope1_emissions,123704.0,mt CO2e,FY21,,"Scope 1 (mt C O 2 e) 118,100 123,704 139,413 144,960 143,510 170,887"
+Microsoft,microsoft_datasheet_2026,5,scope1_emissions,123704.0,mtCO2e,FY21,,"Subtotal 118,100 123,704 139,413 144,960 143,510 170,887"
+Microsoft,microsoft_datasheet_2026,3,scope1_emissions,139413.0,mtCO2e,FY22,,"Scope 1 118,100 123,704 139,413 144,960 143,510 170,887"
+Microsoft,microsoft_datasheet_2026,4,scope1_emissions,139413.0,mt CO2e,FY22,,"Scope 1 (mt C O 2 e) 118,100 123,704 139,413 144,960 143,510 170,887"
+Microsoft,microsoft_datasheet_2026,5,scope1_emissions,139413.0,mtCO2e,FY22,,"Subtotal 118,100 123,704 139,413 144,960 143,510 170,887"
+Microsoft,microsoft_datasheet_2026,3,scope1_emissions,144960.0,mtCO2e,FY23,,"Scope 1 118,100 123,704 139,413 144,960 143,510 170,887"
+Microsoft,microsoft_datasheet_2026,4,scope1_emissions,144960.0,mt CO2e,FY23,,"Scope 1 (mt C O 2 e) 118,100 123,704 139,413 144,960 143,510 170,887"
+Microsoft,microsoft_datasheet_2026,5,scope1_emissions,144960.0,mtCO2e,FY23,,"Subtotal 118,100 123,704 139,413 144,960 143,510 170,887"
+Microsoft,microsoft_datasheet_2026,3,scope1_emissions,143510.0,mtCO2e,FY24,,"Scope 1 118,100 123,704 139,413 144,960 143,510 170,887"
+Microsoft,microsoft_datasheet_2026,4,scope1_emissions,143510.0,mt CO2e,FY24,,"Scope 1 (mt C O 2 e) 118,100 123,704 139,413 144,960 143,510 170,887"
+Microsoft,microsoft_datasheet_2026,5,scope1_emissions,143510.0,mtCO2e,FY24,,"Subtotal 118,100 123,704 139,413 144,960 143,510 170,887"
+Microsoft,microsoft_datasheet_2026,3,scope1_emissions,170887.0,mtCO2e,FY25,,"Scope 1 118,100 123,704 139,413 144,960 143,510 170,887"
+Microsoft,microsoft_datasheet_2026,4,scope1_emissions,170887.0,mt CO2e,FY25,,"Scope 1 (mt C O 2 e) 118,100 123,704 139,413 144,960 143,510 170,887"
+Microsoft,microsoft_datasheet_2026,5,scope1_emissions,170887.0,mtCO2e,FY25,,"Subtotal 118,100 123,704 139,413 144,960 143,510 170,887"
+Microsoft,microsoft_datasheet_2026,3,scope2_location_emissions,4328916.0,mtCO2e,FY20,location-based,"Location-based 4,328,916 5,010,667 6,381,250 8,077,403 9,955,368 12,030,556"
+Microsoft,microsoft_datasheet_2026,4,scope2_location_emissions,4328916.0,mt CO2e,FY20,location-based,"Scope 2 (location-based) (mt C O 2 e) 4,328,916 5,010,667 6,381,250 8,077,403 9,955,368 12,030,556"
+Microsoft,microsoft_datasheet_2026,5,scope2_location_emissions,4328916.0,mtCO2e,FY20,location-based,"Subtotal 4,328,916 5,010,667 6,381,250 8,077,403 9,955,368 12,030,556"
+Microsoft,microsoft_datasheet_2026,3,scope2_location_emissions,5010667.0,mtCO2e,FY21,location-based,"Location-based 4,328,916 5,010,667 6,381,250 8,077,403 9,955,368 12,030,556"
+Microsoft,microsoft_datasheet_2026,4,scope2_location_emissions,5010667.0,mt CO2e,FY21,location-based,"Scope 2 (location-based) (mt C O 2 e) 4,328,916 5,010,667 6,381,250 8,077,403 9,955,368 12,030,556"
+Microsoft,microsoft_datasheet_2026,5,scope2_location_emissions,5010667.0,mtCO2e,FY21,location-based,"Subtotal 4,328,916 5,010,667 6,381,250 8,077,403 9,955,368 12,030,556"
+Microsoft,microsoft_datasheet_2026,3,scope2_location_emissions,6381250.0,mtCO2e,FY22,location-based,"Location-based 4,328,916 5,010,667 6,381,250 8,077,403 9,955,368 12,030,556"
+Microsoft,microsoft_datasheet_2026,4,scope2_location_emissions,6381250.0,mt CO2e,FY22,location-based,"Scope 2 (location-based) (mt C O 2 e) 4,328,916 5,010,667 6,381,250 8,077,403 9,955,368 12,030,556"
+Microsoft,microsoft_datasheet_2026,5,scope2_location_emissions,6381250.0,mtCO2e,FY22,location-based,"Subtotal 4,328,916 5,010,667 6,381,250 8,077,403 9,955,368 12,030,556"
+Microsoft,microsoft_datasheet_2026,3,scope2_location_emissions,8077403.0,mtCO2e,FY23,location-based,"Location-based 4,328,916 5,010,667 6,381,250 8,077,403 9,955,368 12,030,556"
+Microsoft,microsoft_datasheet_2026,4,scope2_location_emissions,8077403.0,mt CO2e,FY23,location-based,"Scope 2 (location-based) (mt C O 2 e) 4,328,916 5,010,667 6,381,250 8,077,403 9,955,368 12,030,556"
+Microsoft,microsoft_datasheet_2026,5,scope2_location_emissions,8077403.0,mtCO2e,FY23,location-based,"Subtotal 4,328,916 5,010,667 6,381,250 8,077,403 9,955,368 12,030,556"
+Microsoft,microsoft_datasheet_2026,3,scope2_location_emissions,9955368.0,mtCO2e,FY24,location-based,"Location-based 4,328,916 5,010,667 6,381,250 8,077,403 9,955,368 12,030,556"
+Microsoft,microsoft_datasheet_2026,4,scope2_location_emissions,9955368.0,mt CO2e,FY24,location-based,"Scope 2 (location-based) (mt C O 2 e) 4,328,916 5,010,667 6,381,250 8,077,403 9,955,368 12,030,556"
+Microsoft,microsoft_datasheet_2026,5,scope2_location_emissions,9955368.0,mtCO2e,FY24,location-based,"Subtotal 4,328,916 5,010,667 6,381,250 8,077,403 9,955,368 12,030,556"
+Microsoft,microsoft_datasheet_2026,3,scope2_location_emissions,12030556.0,mtCO2e,FY25,location-based,"Location-based 4,328,916 5,010,667 6,381,250 8,077,403 9,955,368 12,030,556"
+Microsoft,microsoft_datasheet_2026,4,scope2_location_emissions,12030556.0,mt CO2e,FY25,location-based,"Scope 2 (location-based) (mt C O 2 e) 4,328,916 5,010,667 6,381,250 8,077,403 9,955,368 12,030,556"
+Microsoft,microsoft_datasheet_2026,5,scope2_location_emissions,12030556.0,mtCO2e,FY25,location-based,"Subtotal 4,328,916 5,010,667 6,381,250 8,077,403 9,955,368 12,030,556"
+Microsoft,microsoft_datasheet_2026,3,scope2_market_emissions,456119.0,mtCO2e,FY20,market-based,"Market-based 456,119 429,405 288,029 393,134 259,090 2,707,428"
+Microsoft,microsoft_datasheet_2026,4,scope2_market_emissions,456119.0,mt CO2e,FY20,market-based,"Scope 2 (market-based) (mt C O 2 e) 456,119 429,405 288,029 393,134 259,090 2,707,428"
+Microsoft,microsoft_datasheet_2026,5,scope2_market_emissions,456119.0,mtCO2e,FY20,market-based,"Subtotal 456,119 429,405 288,029 393,134 259,090 2,707,428"
+Microsoft,microsoft_datasheet_2026,3,scope2_market_emissions,429405.0,mtCO2e,FY21,market-based,"Market-based 456,119 429,405 288,029 393,134 259,090 2,707,428"
+Microsoft,microsoft_datasheet_2026,4,scope2_market_emissions,429405.0,mt CO2e,FY21,market-based,"Scope 2 (market-based) (mt C O 2 e) 456,119 429,405 288,029 393,134 259,090 2,707,428"
+Microsoft,microsoft_datasheet_2026,5,scope2_market_emissions,429405.0,mtCO2e,FY21,market-based,"Subtotal 456,119 429,405 288,029 393,134 259,090 2,707,428"
+Microsoft,microsoft_datasheet_2026,3,scope2_market_emissions,288029.0,mtCO2e,FY22,market-based,"Market-based 456,119 429,405 288,029 393,134 259,090 2,707,428"
+Microsoft,microsoft_datasheet_2026,4,scope2_market_emissions,288029.0,mt CO2e,FY22,market-based,"Scope 2 (market-based) (mt C O 2 e) 456,119 429,405 288,029 393,134 259,090 2,707,428"
+Microsoft,microsoft_datasheet_2026,5,scope2_market_emissions,288029.0,mtCO2e,FY22,market-based,"Subtotal 456,119 429,405 288,029 393,134 259,090 2,707,428"
+Microsoft,microsoft_datasheet_2026,3,scope2_market_emissions,393134.0,mtCO2e,FY23,market-based,"Market-based 456,119 429,405 288,029 393,134 259,090 2,707,428"
+Microsoft,microsoft_datasheet_2026,4,scope2_market_emissions,393134.0,mt CO2e,FY23,market-based,"Scope 2 (market-based) (mt C O 2 e) 456,119 429,405 288,029 393,134 259,090 2,707,428"
+Microsoft,microsoft_datasheet_2026,5,scope2_market_emissions,393134.0,mtCO2e,FY23,market-based,"Subtotal 456,119 429,405 288,029 393,134 259,090 2,707,428"
+Microsoft,microsoft_datasheet_2026,3,scope2_market_emissions,259090.0,mtCO2e,FY24,market-based,"Market-based 456,119 429,405 288,029 393,134 259,090 2,707,428"
+Microsoft,microsoft_datasheet_2026,4,scope2_market_emissions,259090.0,mt CO2e,FY24,market-based,"Scope 2 (market-based) (mt C O 2 e) 456,119 429,405 288,029 393,134 259,090 2,707,428"
+Microsoft,microsoft_datasheet_2026,5,scope2_market_emissions,259090.0,mtCO2e,FY24,market-based,"Subtotal 456,119 429,405 288,029 393,134 259,090 2,707,428"
+Microsoft,microsoft_datasheet_2026,3,scope2_market_emissions,2707428.0,mtCO2e,FY25,market-based,"Market-based 456,119 429,405 288,029 393,134 259,090 2,707,428"
+Microsoft,microsoft_datasheet_2026,4,scope2_market_emissions,2707428.0,mt CO2e,FY25,market-based,"Scope 2 (market-based) (mt C O 2 e) 456,119 429,405 288,029 393,134 259,090 2,707,428"
+Microsoft,microsoft_datasheet_2026,5,scope2_market_emissions,2707428.0,mtCO2e,FY25,market-based,"Subtotal 456,119 429,405 288,029 393,134 259,090 2,707,428"
+Microsoft,microsoft_datasheet_2026,3,scope3_emissions,12487000.0,mtCO2e,FY20,market-based,"Subtotal emissions (Scope 3)8 12,487,000 14,358,000 16,743,000 17,123,000 16,290,000 18,243,000"
+Microsoft,microsoft_datasheet_2026,4,scope3_emissions,12307000.0,mt CO2e,FY20,management's criteria,"Subtotal emissions 12,307,000 13,219,000 13,208,000 15,574,000 15,812,000 17,412,000"
+Microsoft,microsoft_datasheet_2026,3,scope3_emissions,14358000.0,mtCO2e,FY21,market-based,"Subtotal emissions (Scope 3)8 12,487,000 14,358,000 16,743,000 17,123,000 16,290,000 18,243,000"
+Microsoft,microsoft_datasheet_2026,4,scope3_emissions,13219000.0,mt CO2e,FY21,management's criteria,"Subtotal emissions 12,307,000 13,219,000 13,208,000 15,574,000 15,812,000 17,412,000"
+Microsoft,microsoft_datasheet_2026,3,scope3_emissions,16743000.0,mtCO2e,FY22,market-based,"Subtotal emissions (Scope 3)8 12,487,000 14,358,000 16,743,000 17,123,000 16,290,000 18,243,000"
+Microsoft,microsoft_datasheet_2026,4,scope3_emissions,13208000.0,mt CO2e,FY22,management's criteria,"Subtotal emissions 12,307,000 13,219,000 13,208,000 15,574,000 15,812,000 17,412,000"
+Microsoft,microsoft_datasheet_2026,3,scope3_emissions,17123000.0,mtCO2e,FY23,market-based,"Subtotal emissions (Scope 3)8 12,487,000 14,358,000 16,743,000 17,123,000 16,290,000 18,243,000"
+Microsoft,microsoft_datasheet_2026,4,scope3_emissions,15574000.0,mt CO2e,FY23,management's criteria,"Subtotal emissions 12,307,000 13,219,000 13,208,000 15,574,000 15,812,000 17,412,000"
+Microsoft,microsoft_datasheet_2026,3,scope3_emissions,16290000.0,mtCO2e,FY24,market-based,"Subtotal emissions (Scope 3)8 12,487,000 14,358,000 16,743,000 17,123,000 16,290,000 18,243,000"
+Microsoft,microsoft_datasheet_2026,4,scope3_emissions,15812000.0,mt CO2e,FY24,management's criteria,"Subtotal emissions 12,307,000 13,219,000 13,208,000 15,574,000 15,812,000 17,412,000"
+Microsoft,microsoft_datasheet_2026,3,scope3_emissions,18243000.0,mtCO2e,FY25,market-based,"Subtotal emissions (Scope 3)8 12,487,000 14,358,000 16,743,000 17,123,000 16,290,000 18,243,000"
+Microsoft,microsoft_datasheet_2026,4,scope3_emissions,17412000.0,mt CO2e,FY25,management's criteria,"Subtotal emissions 12,307,000 13,219,000 13,208,000 15,574,000 15,812,000 17,412,000"
+Microsoft,microsoft_datasheet_2026,6,total_electricity,10770714.0,MWh,FY20,,"Electricity 10,770,714 13,621,517 18,153,454 23,567,502 29,829,540 37,026,353"
+Microsoft,microsoft_datasheet_2026,24,total_electricity,10770714.0,MWh,FY20,,"Total electricity consumed 10,770,714 13,621,517 18,153,454 23,567,502 29,829,540 37,026,353"
+Microsoft,microsoft_datasheet_2026,6,total_electricity,13621517.0,MWh,FY21,,"Electricity 10,770,714 13,621,517 18,153,454 23,567,502 29,829,540 37,026,353"
+Microsoft,microsoft_datasheet_2026,24,total_electricity,13621517.0,MWh,FY21,,"Total electricity consumed 10,770,714 13,621,517 18,153,454 23,567,502 29,829,540 37,026,353"
+Microsoft,microsoft_datasheet_2026,6,total_electricity,18153454.0,MWh,FY22,,"Electricity 10,770,714 13,621,517 18,153,454 23,567,502 29,829,540 37,026,353"
+Microsoft,microsoft_datasheet_2026,24,total_electricity,18153454.0,MWh,FY22,,"Total electricity consumed 10,770,714 13,621,517 18,153,454 23,567,502 29,829,540 37,026,353"
+Microsoft,microsoft_datasheet_2026,6,total_electricity,23567502.0,MWh,FY23,,"Electricity 10,770,714 13,621,517 18,153,454 23,567,502 29,829,540 37,026,353"
+Microsoft,microsoft_datasheet_2026,24,total_electricity,23567502.0,MWh,FY23,,"Total electricity consumed 10,770,714 13,621,517 18,153,454 23,567,502 29,829,540 37,026,353"
+Microsoft,microsoft_datasheet_2026,6,total_electricity,29829540.0,MWh,FY24,,"Electricity 10,770,714 13,621,517 18,153,454 23,567,502 29,829,540 37,026,353"
+Microsoft,microsoft_datasheet_2026,24,total_electricity,29829540.0,MWh,FY24,,"Total electricity consumed 10,770,714 13,621,517 18,153,454 23,567,502 29,829,540 37,026,353"
+Microsoft,microsoft_datasheet_2026,6,total_electricity,37026353.0,MWh,FY25,,"Electricity 10,770,714 13,621,517 18,153,454 23,567,502 29,829,540 37,026,353"
+Microsoft,microsoft_datasheet_2026,24,total_electricity,37026353.0,MWh,FY25,,"Total electricity consumed 10,770,714 13,621,517 18,153,454 23,567,502 29,829,540 37,026,353"
+Microsoft,microsoft_datasheet_2026,3,total_emissions,13061000.0,mtCO2e,FY20,market-based,"Total emissions (Scope 1 + 2 + 3)8 13,061,000 14,911,000 17,170,000 17,661,000 16,693,000 21,121,000"
+Microsoft,microsoft_datasheet_2026,4,total_emissions,12881000.0,mt CO2e,FY20,management's criteria,"Total emissions (Scope 1 + 2 + 3)1 12,881,000 13,772,000 13,635,000 16,112,000 16,215,000 20,290,000"
+Microsoft,microsoft_esr_2026,30,total_emissions,12881000.0,Metric tons CO2e,FY20,market-based,"FY20 12,881,000"
+Microsoft,microsoft_datasheet_2026,3,total_emissions,14911000.0,mtCO2e,FY21,market-based,"Total emissions (Scope 1 + 2 + 3)8 13,061,000 14,911,000 17,170,000 17,661,000 16,693,000 21,121,000"
+Microsoft,microsoft_datasheet_2026,4,total_emissions,13772000.0,mt CO2e,FY21,management's criteria,"Total emissions (Scope 1 + 2 + 3)1 12,881,000 13,772,000 13,635,000 16,112,000 16,215,000 20,290,000"
+Microsoft,microsoft_esr_2026,30,total_emissions,13772000.0,Metric tons CO2e,FY21,market-based,"FY21 13,772,000"
+Microsoft,microsoft_datasheet_2026,3,total_emissions,17170000.0,mtCO2e,FY22,market-based,"Total emissions (Scope 1 + 2 + 3)8 13,061,000 14,911,000 17,170,000 17,661,000 16,693,000 21,121,000"
+Microsoft,microsoft_datasheet_2026,4,total_emissions,13635000.0,mt CO2e,FY22,management's criteria,"Total emissions (Scope 1 + 2 + 3)1 12,881,000 13,772,000 13,635,000 16,112,000 16,215,000 20,290,000"
+Microsoft,microsoft_esr_2026,30,total_emissions,13635000.0,Metric tons CO2e,FY22,market-based,"FY22 13,635,000"
+Microsoft,microsoft_datasheet_2026,3,total_emissions,17661000.0,mtCO2e,FY23,market-based,"Total emissions (Scope 1 + 2 + 3)8 13,061,000 14,911,000 17,170,000 17,661,000 16,693,000 21,121,000"
+Microsoft,microsoft_datasheet_2026,4,total_emissions,16112000.0,mt CO2e,FY23,management's criteria,"Total emissions (Scope 1 + 2 + 3)1 12,881,000 13,772,000 13,635,000 16,112,000 16,215,000 20,290,000"
+Microsoft,microsoft_esr_2026,30,total_emissions,16112000.0,Metric tons CO2e,FY23,market-based,"FY23 16,112,000"
+Microsoft,microsoft_datasheet_2026,3,total_emissions,16693000.0,mtCO2e,FY24,market-based,"Total emissions (Scope 1 + 2 + 3)8 13,061,000 14,911,000 17,170,000 17,661,000 16,693,000 21,121,000"
+Microsoft,microsoft_datasheet_2026,4,total_emissions,16215000.0,mt CO2e,FY24,management's criteria,"Total emissions (Scope 1 + 2 + 3)1 12,881,000 13,772,000 13,635,000 16,112,000 16,215,000 20,290,000"
+Microsoft,microsoft_esr_2026,30,total_emissions,16215000.0,Metric tons CO2e,FY24,market-based,"FY24 16,215,000"
+Microsoft,microsoft_datasheet_2026,3,total_emissions,21121000.0,mtCO2e,FY25,market-based,"Total emissions (Scope 1 + 2 + 3)8 13,061,000 14,911,000 17,170,000 17,661,000 16,693,000 21,121,000"
+Microsoft,microsoft_datasheet_2026,4,total_emissions,20290000.0,mt CO2e,FY25,management's criteria,"Total emissions (Scope 1 + 2 + 3)1 12,881,000 13,772,000 13,635,000 16,112,000 16,215,000 20,290,000"
+Microsoft,microsoft_esr_2026,30,total_emissions,20290000.0,Metric tons CO2e,FY25,market-based,"FY25 20,290,000"
+Microsoft,microsoft_datasheet_2026,7,water_consumption,3990.0,ML,FY20,,"Total water consumption4 3,990 4,794 5,329 5,818 6,693 8,170"
+Microsoft,microsoft_datasheet_2026,24,water_consumption,3990.0,ML,FY20,,"Total water consumption 3,990 4,794 5,329 5,818 6,693 8,170"
+Microsoft,microsoft_esr_2025,37,water_consumption,4196000.0,m cubed,FY20,,"4,196,000"
+Microsoft,microsoft_datasheet_2026,7,water_consumption,4794.0,ML,FY21,,"Total water consumption4 3,990 4,794 5,329 5,818 6,693 8,170"
+Microsoft,microsoft_datasheet_2026,24,water_consumption,4794.0,ML,FY21,,"Total water consumption 3,990 4,794 5,329 5,818 6,693 8,170"
+Microsoft,microsoft_esr_2025,37,water_consumption,4773000.0,m cubed,FY21,,"4,773,000"
+Microsoft,microsoft_datasheet_2026,7,water_consumption,5329.0,ML,FY22,,"Total water consumption4 3,990 4,794 5,329 5,818 6,693 8,170"
+Microsoft,microsoft_datasheet_2026,24,water_consumption,5329.0,ML,FY22,,"Total water consumption 3,990 4,794 5,329 5,818 6,693 8,170"
+Microsoft,microsoft_esr_2025,37,water_consumption,6399000.0,m cubed,FY22,,"6,399,000"
+Microsoft,microsoft_datasheet_2026,7,water_consumption,5818.0,ML,FY23,,"Total water consumption4 3,990 4,794 5,329 5,818 6,693 8,170"
+Microsoft,microsoft_datasheet_2026,24,water_consumption,5818.0,ML,FY23,,"Total water consumption 3,990 4,794 5,329 5,818 6,693 8,170"
+Microsoft,microsoft_esr_2025,37,water_consumption,7844000.0,m cubed,FY23,,"7,844,000"
+Microsoft,microsoft_datasheet_2026,7,water_consumption,6693.0,ML,FY24,,"Total water consumption4 3,990 4,794 5,329 5,818 6,693 8,170"
+Microsoft,microsoft_datasheet_2026,24,water_consumption,6693.0,ML,FY24,,"Total water consumption 3,990 4,794 5,329 5,818 6,693 8,170"
+Microsoft,microsoft_esr_2025,37,water_consumption,10377000.0,m cubed,FY24,,"10,377,000"
+Microsoft,microsoft_datasheet_2026,7,water_consumption,8170.0,ML,FY25,,"Total water consumption4 3,990 4,794 5,329 5,818 6,693 8,170"
+Microsoft,microsoft_datasheet_2026,24,water_consumption,8170.0,ML,FY25,,"Total water consumption 3,990 4,794 5,329 5,818 6,693 8,170"
+Microsoft,microsoft_esr_2026,25,water_consumption,8170000.0,m3,FY25,,"6,693,000 8,170,000"
+Microsoft,microsoft_esr_2025,7,water_replenished,2.8,million cubic meters,2020,contracted water lifetime replenishment,Contracted water replenishment* 2.8M m3 104M m3
+Microsoft,microsoft_esr_2025,7,water_replenished,104.0,million cubic meters,2024,"contracted water lifetime replenishment, cumulative through 2024",Contracted water replenishment* 2.8M m3 104M m3
+Microsoft,microsoft_esr_2026,62,water_replenished,14.2,million cubic meters,2025,,"Replenished more than 14.2 million cubic meters of water, surpassing global water withdrawals for the first time."
+Microsoft,microsoft_esr_2025,29,water_replenished,2840030.0,m cubed,FY20,contracted volume,"Total contracted volume water replenishment Water m cubed 2,840,030 FY20"
+Microsoft,microsoft_esr_2025,29,water_replenished,12937207.0,m cubed,FY21,contracted volume,"12,937,207 13,230,308 25,530,485 50,031,857 FY21 FY22 FY23 FY24"
+Microsoft,microsoft_esr_2025,29,water_replenished,13230308.0,m cubed,FY22,contracted volume,"12,937,207 13,230,308 25,530,485 50,031,857 FY21 FY22 FY23 FY24"
+Microsoft,microsoft_esr_2025,29,water_replenished,25530485.0,m cubed,FY23,contracted volume,"12,937,207 13,230,308 25,530,485 50,031,857 FY21 FY22 FY23 FY24"
+Microsoft,microsoft_esr_2025,28,water_replenished,50.0,million cubic meters,FY24,,funding 27 replenishment projects that are estimated to provide more than 50 million cubic meters in volumetric water benefit over the lifetime of these projects
+Microsoft,microsoft_esr_2025,28,water_replenished,100.0,million cubic meters,FY24,,"Since the inception of this program, projects contracted are estimated to provide more than 100 million cubic meters of replenishment volume over their lifetime."
+Microsoft,microsoft_esr_2025,29,water_replenished,50031857.0,m cubed,FY24,contracted volume,"12,937,207 13,230,308 25,530,485 50,031,857 FY21 FY22 FY23 FY24"
+Microsoft,microsoft_esr_2026,24,water_replenished,14.2,million cubic meters,FY25,,"Replenished over 14.2 million cubic meters (cubic meters) of water, which, for the first time, surpassed our global water withdrawals."
+Microsoft,microsoft_esr_2026,25,water_replenished,14278782.0,m3,FY25,,"301,594 14,278,782"

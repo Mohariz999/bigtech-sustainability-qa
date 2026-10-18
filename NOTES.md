@@ -105,6 +105,71 @@ Full output: `eval/results/answers.md`. Every call is in `logs/answers.jsonl`.
 
 **What I'd fix next, in order:** (1) retrieval for tables, via the facts table in step 6; (2) default to the most recent report when no year is given (q06, q20); (3) tighten the prompt so "related but not the same" means not_found (q28).
 
+## Step 7 + 8 results: tool-calling agent vs pipeline (same 30 questions, same scoring)
+
+`agent.py`: Claude with three tools, `search_docs`, `query_facts` (the extracted facts table, structured inputs, not raw SQL) and `calculator` (arithmetic only, no code execution), in a hand-written loop capped at 8 model calls. Full results: `eval/results/answers_agent.md`, every call in `logs/answers_agent.jsonl`.
+
+| | Pipeline (`answer.py`) | **Agent (`agent.py`)** |
+|---|---|---|
+| Overall correct | 20/30 (67%) | **28/30 (93%)** |
+| Answerable questions correct | 17/26 | **24/26** |
+| Cites a correct page | 19/26 | **24/26** |
+| Says "not found" correctly | 3/4 | **4/4** |
+| Cost per question | **1.7¢** | 4.6¢ (2.7×) |
+| Latency median / p95 | **4.0s / 6.5s** | 7.7s / 12.6s |
+| Model calls per question | 1 | 2.7 on average, 5 at most |
+| Whole eval run | **$0.50** | $1.38 |
+
+| Question type | Pipeline | Agent |
+|---|---|---|
+| Single facts (15) | 12 | 14 |
+| Tables (4) | 2 | **4** |
+| Ambiguous / conflicting (4) | 2 | 3 |
+| Comparisons (3) | 1 | **3** |
+| Not found (4) | 3 | 4 |
+
+**What changed:** the agent fixed 10 pipeline failures (q05, q06, q15, q16, q19, q20, q23, q25, q26, q28). The facts table solved the table questions, and the calculator solved the comparisons. It used `query_facts` 27 times, `search_docs` 27 times and `calculator` 12 times. Example (q26): it looked up both years, calculated 38.4% growth, and **noticed by itself** that the 2025 report gives a different 2024 figure, so it reported both growth rates.
+
+**The 2 "misses" are grading problems, not agent errors:**
+- q04: the agent calculated **33.6%** from the data table, which Google's text rounds to "34%". The scorer wants the exact string "34%".
+- q22: the agent computed **+61.7%**, and the key accepts "62".
+I kept the strict score (28/30) instead of editing the key to fit. But it shows that **exact-string grading is too strict for free-text answers**. Next would be a number-aware check (33.6 ≈ 34) or an LLM judge, with its own spot checks.
+
+**Things that went wrong:**
+
+19. **A misleading metric.** The report counted "retries" as "questions with more than one model call", which is every question for an agent, so it showed "30 retries". It now shows model calls per question for the agent.
+20. **The rounding check was too strict.** The model wrote "38.4%" when the calculator said 38.4446, and the grounding check flagged it. Now a rounded version of a source number counts as grounded (shared helper in `answer.py`, with a test).
+
+**When to use which:** the agent wins on accuracy (+26 points), the pipeline on cost and speed. In production I'd send simple single-fact questions down the pipeline and comparisons/tables to the agent, or just use the agent if 4.6¢ and about 8s are acceptable for the use case. The eval makes that a measured decision instead of a guess.
+
+## Step 6 results: structured extraction (`extract.py`)
+
+223 candidate pages (20+ numbers and 3+ metric words) → Claude with a fixed schema of 13 metrics → Pydantic → quote and value checks → `facts` table (copy in `eval/results/facts.csv`). Scored by `eval/run_extraction.py`, results in `eval/results/extraction.md`.
+
+| Metric | Result |
+|---|---|
+| Known facts found correctly (recall) | **19/19** (Google, Microsoft, Amazon; PUE, electricity, emissions, water, CFE, renewables) |
+| Facts stored | 680 |
+| Facts rejected by the checks | 5 of 685, all "value not in quote" |
+| Pages failed | 0 of 223 |
+| **Precision, random sample of 25 checked by hand** | **19 clearly right, 5 probably right but the quote is too short to prove it, 1 wrong** |
+| Cost / time | **$3.92**, 574k tokens in / 81k out, median 3.5s per page, 4 pages in parallel |
+
+**What the 92 "conflicts" (same company, metric and year, different values) turned out to be:**
+- **Same number in different units:** Microsoft water as "14.2 million m³" and as "14,278,800 m³". Needs unit normalisation.
+- **Different accounting bases, all real:** Microsoft management's criteria vs standard, Google ambition-based vs GHG-Protocol, Apple net vs gross.
+- **Restatements between report years:** Google's 2024 data-centre electricity is 30,637,100 MWh in the 2026 report but 30,825,600 in the 2025 report; Amazon's 2024 total emissions are 68.25 vs 69.55.
+- **Real errors:** Apple "data-centre electricity" collected per-site figures (e.g. one data centre's 563M kWh) under the company-level metric.
+
+**Things that went wrong in extraction:**
+
+15. **Quotes shortened with "...".** In the 5-page trial, 6 of 38 facts were rejected because the model abbreviated table rows. One prompt line ("never shorten with '...'") took that to 5 of 685 on the full run.
+16. **A check can pass without meaning much.** Some quotes are just fragments ("47.40 2.76"): the value is there, so the check passes, but the quote doesn't show which row or year it came from. Fix: require the row label in the quote for table rows.
+17. **Site-level vs company-level.** The schema has no field for "this is one data centre, not the company total", so Apple's per-site figures landed in the company metric. Fix: add a `scope` field (company / site / region).
+18. **Scientific notation bug (agent).** `{value:g}` turned 42,415,800 into "4.24158e+07" when showing facts to the agent. Caught by a unit test before any real run.
+
+**What I'd do next:** normalise units (MWh ↔ TWh, million m³ ↔ m³), add the `scope` field, require row labels in table quotes, and give a human a review screen for the conflicts.
+
 ## Step 5: answering with citations (how it works)
 
 `answer.py`: hybrid search → top 5 passages → Claude (`claude-opus-5-5`, effort `medium`) → JSON answer → checks.
@@ -127,9 +192,9 @@ Full output: `eval/results/answers.md`. Every call is in `logs/answers.jsonl`.
 | 3 | Ingest + chunk into **SQLite** ✅ | `documents` and `chunks` tables (company, data year, page) | Structured, queryable data; SQL |
 | 4 | Retrieval ✅ | Hybrid search, company/year filter first: **73% hit@5** | Retrieval |
 | 5 | Answer with citations ✅ **67% correct, 84% when search finds the page** | Answers only from retrieved text, cites report + page, otherwise "not found" | Retrieval, failure modes |
-| 6 | Structured extraction | Pydantic schema: company, metric (PUE, emissions, water...), value, unit, year, page → `facts` table | Structured extraction |
-| 7 | Small agent | Tools: `search_docs`, `query_facts` (SQL), `calculator`. Compare with the plain pipeline | Tool-calling agents |
-| 8 | Run the full eval | Retrieval hit@5, answer accuracy, not-found accuracy, pipeline vs agent | Evaluation |
+| 6 | Structured extraction ✅ **19/19 known facts, 680 stored, $3.92** | Pydantic schema: company, metric (PUE, emissions, water...), value, unit, year, page → `facts` table | Structured extraction |
+| 7 | Small agent ✅ **93% vs 67% for the pipeline** | Tools: `search_docs`, `query_facts` (SQL), `calculator`. Compare with the plain pipeline | Tool-calling agents |
+| 8 | Run the full eval ✅ | Retrieval hit@5, answer accuracy, not-found accuracy, pipeline vs agent | Evaluation |
 | 9 | Cost + reliability ✅ **1.7¢ and 4s per question** | Tokens, $, latency per question; retries, timeouts | Cost, latency, failure modes |
 | 10 | Ship it | FastAPI + simple page, Dockerfile, GitHub Actions running tests on every push | Full-stack, CI/CD |
 | 11 | README | Results, failures, cost per query, next steps | Communication |
