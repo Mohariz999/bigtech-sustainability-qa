@@ -107,6 +107,18 @@ def numbers_in(text: str) -> set[str]:
     return {n.replace(",", "") for n in re.findall(r"\d[\d,]*(?:\.\d+)?", text)}
 
 
+def ungrounded_numbers(answer: str, source_text: str) -> set[str]:
+    """Numbers in the answer that don't appear in the sources, even after rounding.
+    '38.4' is grounded by a source '38.4446'; '38' is grounded by '38.4446'; '42.4' is not grounded by '42415800'."""
+    sources = [float(n) for n in numbers_in(source_text)]
+    missing = set()
+    for n in numbers_in(answer):
+        decimals = len(n.split(".")[1]) if "." in n else 0
+        if not any(round(s, decimals) == float(n) for s in sources):
+            missing.add(n)
+    return missing
+
+
 def grounding_problems(parsed: ModelAnswer, hits) -> list[str]:
     problems = []
     cited_text = ""
@@ -122,7 +134,7 @@ def grounding_problems(parsed: ModelAnswer, hits) -> list[str]:
     if parsed.status == "answered":
         if not parsed.citations:
             problems.append("answered without any citation")
-        missing = numbers_in(parsed.answer) - numbers_in(cited_text)
+        missing = ungrounded_numbers(parsed.answer, cited_text)
         if missing:
             problems.append(f"numbers not in cited passages: {sorted(missing)}")
     return problems

@@ -155,3 +155,9 @@ def test_year_from_source_label_is_not_flagged():
     # Found in the first real run: "(2026 report)" comes from the label google_env_2026, not the passage text.
     r = run(FakeClient(response(reply(answer="Google's 2025 PUE was 1.09 (2026 report)."))))
     assert r["problems"] == []
+
+
+def test_rounded_numbers_count_as_grounded():
+    from answer import ungrounded_numbers
+    assert ungrounded_numbers("grew about 38.4% (38%)", "result 38.4446") == set()
+    assert ungrounded_numbers("about 42.4 TWh", "42,415,800 MWh") == {"42.4"}
