@@ -120,10 +120,12 @@ def calculate(expression: str) -> float:
 
 
 class Agent:
-    def __init__(self, searcher: Searcher | None = None, client: anthropic.Anthropic | None = None):
+    def __init__(self, searcher: Searcher | None = None, client: anthropic.Anthropic | None = None,
+                 db: sqlite3.Connection | None = None):
         load_dotenv()
         self.searcher = searcher or Searcher()
-        self.db = sqlite3.connect(DB_PATH, check_same_thread=False)
+        # Tests pass their own in-memory db, so a fresh checkout (no data/corpus.sqlite) can still run them.
+        self.db = db or sqlite3.connect(DB_PATH, check_same_thread=False)
         self.client = client or anthropic.Anthropic(timeout=90.0, max_retries=3)
 
     # -- tools ---------------------------------------------------------------

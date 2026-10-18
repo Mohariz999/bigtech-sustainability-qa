@@ -27,8 +27,7 @@ def final(answer, citations, status="answered"):
 
 
 def make_agent(client):
-    agent = Agent(searcher=FakeSearcher(), client=client)
-    agent.db = sqlite3.connect(":memory:")
+    agent = Agent(searcher=FakeSearcher(), client=client, db=sqlite3.connect(":memory:"))
     agent.db.executescript("CREATE TABLE documents (doc_id TEXT);" + FACTS_SCHEMA)
     agent.db.executemany(
         "INSERT INTO facts (fact_id, company, doc_id, page, metric, value, unit, period, basis, quote) VALUES (?,?,?,?,?,?,?,?,?,?)",
