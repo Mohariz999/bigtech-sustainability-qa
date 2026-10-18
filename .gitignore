@@ -1,0 +1,17 @@
+# Downloaded third-party reports: rebuild with `python fetch_docs.py`
+docs/*.pdf
+
+# Secrets
+.env
+
+# Python
+__pycache__/
+*.pyc
+.venv/
+
+# Generated data
+*.sqlite
+*.db
+index/
+
+.DS_Store
