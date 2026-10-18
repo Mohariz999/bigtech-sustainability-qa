@@ -13,12 +13,15 @@ Writes eval/results/answers.md (summary + every failure) and logs/answers.jsonl
 Run:  python eval/run_answers.py --dry-run     # estimate cost, no API calls
       python eval/run_answers.py --limit 3     # try 3 questions first
       python eval/run_answers.py               # all 30
+      python eval/run_answers.py --rescore     # re-score the saved log after editing the answer key (free)
 """
 import argparse
 import json
 import pathlib
 import statistics
 import sys
+
+import anthropic
 
 ROOT = pathlib.Path(__file__).resolve().parent.parent
 sys.path.insert(0, str(ROOT))
@@ -68,11 +71,14 @@ def main() -> None:
     ap = argparse.ArgumentParser()
     ap.add_argument("--dry-run", action="store_true")
     ap.add_argument("--limit", type=int)
+    ap.add_argument("--rescore", action="store_true")
     args = ap.parse_args()
 
     questions = [json.loads(l) for l in open(ROOT / "eval" / "questions.jsonl") if l.strip()][:args.limit]
     if args.dry_run:
         return dry_run(questions)
+    if args.rescore:
+        return rescore(questions)
 
     answerer = Answerer()
     LOGS.mkdir(exist_ok=True)
@@ -80,14 +86,37 @@ def main() -> None:
     rows = []
     with open(LOGS / "answers.jsonl", "w") as log:
         for q in questions:
-            r = answerer.answer(q["question"])
+            try:
+                r = answerer.answer(q["question"])
+            except anthropic.AuthenticationError:
+                sys.exit("The API rejected the key (401). Check ANTHROPIC_API_KEY in .env: it should be "
+                         "the full key from console.anthropic.com, starting with sk-ant-.")
+            except anthropic.APIError as e:  # still failing after the SDK's retries: record it, keep going
+                r = {"question": q["question"], "status": "error", "answer": "", "citations": [], "calls": [],
+                     "retrieved": [], "problems": [f"API error: {type(e).__name__}"], "cost_usd": 0.0, "latency_s": 0.0}
             r.update(id=q["id"], category=q["category"], expected=q["answer"],
                      correct=is_correct(q, r), cites_gold=cites_gold(q, r))
             log.write(json.dumps(r) + "\n")
             rows.append((q, r))
             print(f"{q['id']} {'✓' if r['correct'] else '✗'} [{r['status']}] ${r['cost_usd']:.4f} "
                   f"{r['latency_s']}s  {r['answer'][:90]}")
+    write_report(rows)
 
+
+def rescore(questions: list[dict]) -> None:
+    """Re-apply the (possibly edited) answer key to the saved answers. No API calls."""
+    saved = {r["id"]: r for r in map(json.loads, open(LOGS / "answers.jsonl"))}
+    rows = []
+    for q in questions:
+        r = saved[q["id"]]
+        r.update(expected=q["answer"], correct=is_correct(q, r), cites_gold=cites_gold(q, r))
+        rows.append((q, r))
+    with open(LOGS / "answers.jsonl", "w") as log:
+        log.writelines(json.dumps(r) + "\n" for _, r in rows)
+    write_report(rows)
+
+
+def write_report(rows: list[tuple[dict, dict]]) -> None:
     ans = [(q, r) for q, r in rows if not q["category"].startswith("not_found")]
     nf = [(q, r) for q, r in rows if q["category"].startswith("not_found")]
     lat = sorted(r["latency_s"] for _, r in rows)

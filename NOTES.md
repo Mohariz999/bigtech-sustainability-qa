@@ -73,7 +73,39 @@ Hybrid beats both methods on their own, which supports combining them.
 
 **What still fails (7 of 26):** 3 of 4 **table** questions (numbers in a flat row; the question words aren't near them), 2 questions with **no single year** that drift to the older report, and 2 where the answer is in a summary sentence that ranks below more detailed pages. Fix for the tables: step 6 (extract table values into a `facts` table and query it with SQL).
 
-## Step 5: answering with citations (built and tested; not yet run on the real API)
+## Step 5 results: first real run (all 30 questions, `claude-opus-5-5`)
+
+Full output: `eval/results/answers.md`. Every call is in `logs/answers.jsonl`.
+
+| Metric | Result |
+|---|---|
+| Overall correct | **20/30 (67%)**. The raw score was 19/30; one answer-key error was fixed (see below) |
+| Answer correct (answerable) | 17/26 (65%) |
+| Says "not found" when it should | 3/4 |
+| **Correct when search found the right page** | **16/19 (84%)** |
+| Made-up numbers caught | 0. The 3 grounding flags were the model's own arithmetic or report year |
+| Cost | **$0.50 for 30 questions, 1.7 cents per question** (82k tokens in, 9k out) |
+| Latency | median 4.0s, p95 6.5s, max 7.3s |
+| Retries / errors | 0 / 0 |
+
+**Why the 10 failures happened:**
+
+| Cause | Questions | What it means |
+|---|---|---|
+| Search never found the right page | q05, q06, q15, q16, q19, q26 (6) | The main bottleneck. In 4 of 6 the model **said "not found" instead of guessing**. q06 answered from the older report instead. |
+| Right page found, answer incomplete | q20 (used the 2024 figure), q23 (missed the 65% hourly figure), q25 (said it couldn't compare) | The model was cautious. Two of these are the year/definition traps working as designed. |
+| Fell for a "not found" trap | q28 (IEA projection) | It gave a related Google projection and noted it wasn't attributed to the IEA, but still marked it "answered". It should have said not found. |
+
+**More things that went wrong (the log continues):**
+
+11. **My answer key was wrong, and the model was right.** For Microsoft's FY25 total emissions, the model said 20,290,000 tCO2e and I'd marked it wrong (expecting 21,121,000). Reading the fact sheet again: Microsoft publishes **two totals**, Table 1A under standard GHG Protocol accounting (21.1M) and Table 1B "with management's criteria" (20.3M), which is the one the main report uses. I fixed the key, kept a note, and report both scores. `--rescore` re-applies the key to the saved answers for free.
+12. **My grounding check had a false alarm.** In the 3-question trial, the model wrote "(2026 report)", taking the year from the source label I give it, and my check flagged "2026" as not in the passage. Fixed: the label counts too, and there's a test for it.
+13. **Derived numbers get flagged, and that's correct.** The model added Amazon's Scope 1+2+3 to get 80.85 and subtracted two PUEs to get 0.05. Both are right, but they're not in the source text, so the check flags them. LLM arithmetic should be verified, which is why the agent step adds a calculator tool.
+14. **A bad API key crashed the whole run.** The first try used a truncated key, and the runner died with a traceback. Now it stops with a clear message, and other API errors are recorded per question instead of crashing the run.
+
+**What I'd fix next, in order:** (1) retrieval for tables, via the facts table in step 6; (2) default to the most recent report when no year is given (q06, q20); (3) tighten the prompt so "related but not the same" means not_found (q28).
+
+## Step 5: answering with citations (how it works)
 
 `answer.py`: hybrid search → top 5 passages → Claude (`claude-opus-5-5`, effort `medium`) → JSON answer → checks.
 
@@ -83,7 +115,7 @@ Hybrid beats both methods on their own, which supports combining them.
 - **No passages → no LLM call** (no cost).
 - **Reliability:** 90-second timeout, 3 automatic retries with backoff (SDK), refusal handled, and a server-side fallback model if Claude declines.
 - **Cost + latency logged per call:** tokens in/out, $ (cache reads and writes priced separately), seconds. `eval/run_answers.py --dry-run` estimates a full run at **about $0.61, roughly 2 cents per question**, before spending anything.
-- **15 unit tests** (`tests/test_answer.py`) use a fake Claude client, so the logic is tested for free: made-up numbers get flagged, bad quotes get flagged, invalid JSON is retried, refusals are handled, and the scoring rules work.
+- **16 unit tests** (`tests/test_answer.py`) use a fake Claude client, so the logic is tested for free: made-up numbers get flagged, bad quotes get flagged, invalid JSON is retried, refusals are handled, and the scoring rules work.
 - **Prompt caching: deliberately not used.** The fixed system prompt is below the minimum size the API caches, so turning it on would do nothing. If the prompt grew, it would be worth it.
 
 ## Plan
@@ -94,10 +126,10 @@ Hybrid beats both methods on their own, which supports combining them.
 | 2 | Eval questions ✅ | 30 checked questions | Evaluation |
 | 3 | Ingest + chunk into **SQLite** ✅ | `documents` and `chunks` tables (company, data year, page) | Structured, queryable data; SQL |
 | 4 | Retrieval ✅ | Hybrid search, company/year filter first: **73% hit@5** | Retrieval |
-| 5 | Answer with citations 🟡 built + tested, needs API key to run | Answers only from retrieved text, cites report + page, otherwise "not found" | Retrieval, failure modes |
+| 5 | Answer with citations ✅ **67% correct, 84% when search finds the page** | Answers only from retrieved text, cites report + page, otherwise "not found" | Retrieval, failure modes |
 | 6 | Structured extraction | Pydantic schema: company, metric (PUE, emissions, water...), value, unit, year, page → `facts` table | Structured extraction |
 | 7 | Small agent | Tools: `search_docs`, `query_facts` (SQL), `calculator`. Compare with the plain pipeline | Tool-calling agents |
 | 8 | Run the full eval | Retrieval hit@5, answer accuracy, not-found accuracy, pipeline vs agent | Evaluation |
-| 9 | Cost + reliability 🟡 built (logged per call) | Tokens, $, latency per question; retries, timeouts | Cost, latency, failure modes |
+| 9 | Cost + reliability ✅ **1.7¢ and 4s per question** | Tokens, $, latency per question; retries, timeouts | Cost, latency, failure modes |
 | 10 | Ship it | FastAPI + simple page, Dockerfile, GitHub Actions running tests on every push | Full-stack, CI/CD |
 | 11 | README | Results, failures, cost per query, next steps | Communication |
