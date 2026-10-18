@@ -115,7 +115,8 @@ def grounding_problems(parsed: ModelAnswer, hits) -> list[str]:
             problems.append(f"cites passage [{c.passage}], which doesn't exist")
             continue
         passage = hits[c.passage - 1].text
-        cited_text += " " + passage
+        # The source label is shown to the model too, so "(2026 report)" or "page 5" counts as grounded.
+        cited_text += f" {hits[c.passage - 1].doc_id} page {hits[c.passage - 1].page} {passage}"
         if re.sub(r"\s+", " ", c.quote.replace("’", "'")).strip() not in passage:
             problems.append(f"quote not found in passage [{c.passage}]: {c.quote[:60]!r}")
     if parsed.status == "answered":

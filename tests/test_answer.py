@@ -149,3 +149,9 @@ def test_citation_scoring_uses_gold_pages():
     q = {"sources": [{"doc_id": "google_env_2026", "pages": [5, 15]}]}
     assert cites_gold(q, {"citations": [{"doc_id": "google_env_2026", "page": 15}]})
     assert not cites_gold(q, {"citations": [{"doc_id": "google_env_2025", "page": 5}]})
+
+
+def test_year_from_source_label_is_not_flagged():
+    # Found in the first real run: "(2026 report)" comes from the label google_env_2026, not the passage text.
+    r = run(FakeClient(response(reply(answer="Google's 2025 PUE was 1.09 (2026 report)."))))
+    assert r["problems"] == []

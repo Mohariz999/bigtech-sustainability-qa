@@ -2,7 +2,7 @@
 
 Question answering and structured extraction over Big Tech sustainability reports (Google, Microsoft, Meta, Amazon, Apple, two years each where available). Every answer cites a report and page, the system says "not found" instead of guessing, and a 30-question evaluation set measures how often it is right.
 
-**Status:** work in progress. Documents, eval set, ingest and retrieval are done. **Hybrid search finds the right page in the top 5 for 73% of answerable questions** (keyword 58%, vector 62%); see [eval/results/retrieval.md](eval/results/retrieval.md). The Claude answer step is built and unit-tested; its eval needs an API key to run. See [NOTES.md](NOTES.md) for the plan and the failure log.
+**Status:** work in progress. Documents, eval set, ingest and retrieval are done. **Hybrid search finds the right page in the top 5 for 73% of answerable questions** (keyword 58%, vector 62%); see [eval/results/retrieval.md](eval/results/retrieval.md). **Full pipeline with Claude: 67% correct on all 30 questions, 84% when search finds the right page, 1.7 cents and 4 seconds per question**; see [eval/results/answers.md](eval/results/answers.md). See [NOTES.md](NOTES.md) for the plan and the failure log.
 
 ## Setup
 
@@ -63,7 +63,7 @@ Copy `.env.example` to `.env` and paste your Anthropic API key into it (`.env` i
 .venv/bin/python eval/run_answers.py
 ```
 
-`--dry-run` estimates the cost without calling the API (about $0.61 for all 30 questions). The full run writes `eval/results/answers.md` and logs every call (tokens, cost, latency) to `logs/answers.jsonl`.
+`--dry-run` estimates the cost without calling the API. A real run of all 30 questions cost $0.50. `--rescore` re-applies an edited answer key to the saved answers for free. The full run writes `eval/results/answers.md` and logs every call (tokens, cost, latency) to `logs/answers.jsonl`.
 
 ## Tests
 
