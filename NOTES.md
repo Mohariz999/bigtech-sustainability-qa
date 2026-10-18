@@ -44,6 +44,34 @@ A question-answering tool over Big Tech sustainability reports. It answers with 
 4. **Restated history.** Microsoft's 2025 report says emissions were +23.4% vs 2020, but the 2026 fact sheet's own figures give about +28% for the same year.
 5. **My own checker was wrong twice.** Case-insensitive "PUE" matched "PUErto Rico" in an Apple report. The fix is to match whole words only. (The first, energy-themed version of this project had the same bug: "NESO" matched "MinNESOta".)
 6. **Distractors.** "How many data centres does Amazon operate?" isn't answered anywhere, but the report says "AWS constructed 36 data centers with lower-carbon steel", which looks like an answer.
+7. **My header/footer cleanup deleted table data.** To remove repeated headers, I deleted lines that appear on many pages, after replacing digits with `#` so "Page 12" and "Page 13" match. But table rows like "456,119 429,405 288,029" also normalise to the same pattern, so whole rows of Microsoft's emissions table disappeared. Found by an automatic check ("is each question's evidence still in the chunks?"). Fix: only remove short lines with at most one number, near the top or bottom of a page.
+8. **My answer key was too strict.** The same fact is often on several pages (highlights page, detail page, appendix). Six "misses" had actually found the fact on another page. I read each one before adding it to the key. One I deliberately **didn't** add: Google 2025 report p84 also says "PUE 1.09", but that's the 2024 figure. Same number, wrong source.
+9. **The year filter first made things worse.** "Since 2021", "by 2030" and "2020 baseline" are years too. Filtering on them matched no documents, and a bug made vector search return junk instead of nothing. Fix: only filter on years some report actually has data for, and never return chunks outside the filter.
+10. **"Not found" can't be detected by search score alone.** The best-match similarity for the 4 not-found questions (0.70–0.79) falls inside the range for answerable ones (0.72–0.88, median 0.80). No threshold separates them, so the "not found" decision has to come from the LLM reading the passages (step 5).
+
+## Step 3 + 4: ingest and retrieval (done)
+
+- `ingest.py`: PDF → clean pages → 200-word chunks with 50-word overlap (never crossing a page, so every chunk has one page to cite) → SQLite (`documents`, `chunks`, FTS5 keyword index, one embedding per chunk). 2,787 chunks, about 2.5 minutes on a laptop.
+- `search.py`: keyword (SQLite FTS5 / BM25), vector (`bge-small-en-v1.5`, runs locally, free), and hybrid (Reciprocal Rank Fusion). Optional company and data-year filters run in SQL before ranking, parsed from the question text.
+- `eval/run_retrieval.py`: scores every method on the 26 answerable questions. Results: `eval/results/retrieval.md`.
+
+**Results (hit@5 = right page in the top 5):**
+
+| Version | hit@5 |
+|---|---|
+| First run (hybrid + company filter) | 50% |
+| + fixed table-deleting bug and corrected answer key | 73% |
+| + year filter, after fixing its bug (best: hybrid + company + year) | **73%** (hit@1 19% → 23%, MRR 0.38 → 0.42) |
+
+| Method (company + year filter) | hit@5 |
+|---|---|
+| keyword only | 58% |
+| vector only | 62% |
+| **hybrid** | **73%** |
+
+Hybrid beats both methods on their own, which supports combining them.
+
+**What still fails (7 of 26):** 3 of 4 **table** questions (numbers in a flat row; the question words aren't near them), 2 questions with **no single year** that drift to the older report, and 2 where the answer is in a summary sentence that ranks below more detailed pages. Fix for the tables: step 6 (extract table values into a `facts` table and query it with SQL).
 
 ## Plan
 
@@ -51,8 +79,8 @@ A question-answering tool over Big Tech sustainability reports. It answers with 
 |---|---|---|---|
 | 1 | Documents ✅ | 10 reports + manifest | – |
 | 2 | Eval questions ✅ | 30 checked questions | Evaluation |
-| 3 | Ingest + chunk into **SQLite** | `documents` and `chunks` tables (company, report year, page) | Structured, queryable data; SQL |
-| 4 | Retrieval | Embeddings + keyword search, filter by company/year first | Retrieval |
+| 3 | Ingest + chunk into **SQLite** ✅ | `documents` and `chunks` tables (company, data year, page) | Structured, queryable data; SQL |
+| 4 | Retrieval ✅ | Hybrid search, company/year filter first: **73% hit@5** | Retrieval |
 | 5 | Answer with citations | Answers only from retrieved text, cites report + page, otherwise "not found" | Retrieval, failure modes |
 | 6 | Structured extraction | Pydantic schema: company, metric (PUE, emissions, water...), value, unit, year, page → `facts` table | Structured extraction |
 | 7 | Small agent | Tools: `search_docs`, `query_facts` (SQL), `calculator`. Compare with the plain pipeline | Tool-calling agents |
