@@ -1,9 +1,9 @@
-"""Download the public document set into docs/ and write docs/manifest.csv."""
+"""Download the public report set into data/reports/ and write data/reports/manifest.csv."""
 import csv
 import pathlib
 import subprocess
 
-DOCS = pathlib.Path(__file__).parent / "docs"
+DOCS = pathlib.Path(__file__).parent / "data" / "reports"
 UA = "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/130 Safari/537.36"
 
 # (doc_id, title, company, type, report_year, data_year, url)
@@ -39,7 +39,7 @@ def fetch(url: str, dest: pathlib.Path) -> int:
 
 
 def main() -> None:
-    DOCS.mkdir(exist_ok=True)
+    DOCS.mkdir(parents=True, exist_ok=True)
     rows = []
     for doc_id, title, company, doc_type, report_year, data_year, url in SOURCES:
         dest = DOCS / f"{doc_id}.pdf"

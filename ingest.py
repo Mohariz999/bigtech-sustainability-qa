@@ -1,4 +1,4 @@
-"""Turn the PDFs in docs/ into searchable chunks in data/corpus.sqlite.
+"""Turn the PDFs in data/reports/ into searchable chunks in data/corpus.sqlite.
 
 Steps, per document:
 1. Extract text page by page (PyMuPDF).
@@ -93,9 +93,9 @@ def main() -> None:
     db = sqlite3.connect(DB_PATH)
     db.executescript(SCHEMA)
 
-    manifest = list(csv.DictReader(open(ROOT / "docs" / "manifest.csv")))
+    manifest = list(csv.DictReader(open(ROOT / "data" / "reports" / "manifest.csv")))
     for m in manifest:
-        doc = pymupdf.open(ROOT / "docs" / m["file"])
+        doc = pymupdf.open(ROOT / "data" / "reports" / m["file"])
         pages = clean_pages(doc)
         db.execute("INSERT INTO documents VALUES (?,?,?,?,?,?)",
                    (m["doc_id"], m["title"], m["company"], int(m["report_year"]), m["data_year"], len(pages)))

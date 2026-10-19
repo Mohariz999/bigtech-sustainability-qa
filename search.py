@@ -105,7 +105,7 @@ def company_in(question: str) -> str | None:
     return named[0] if len(named) == 1 else None
 
 
-DATA_YEARS = {"2024", "2025"}  # years some report in docs/ has data for
+DATA_YEARS = {"2024", "2025"}  # years some report in data/reports/ has data for
 
 
 def year_in(question: str) -> str | None:

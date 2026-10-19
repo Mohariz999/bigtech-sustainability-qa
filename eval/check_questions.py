@@ -16,7 +16,7 @@ import sys
 import pymupdf
 
 ROOT = pathlib.Path(__file__).resolve().parent.parent
-DOCS = ROOT / "docs"
+DOCS = ROOT / "data" / "reports"
 
 
 def normalise(text: str) -> str:
