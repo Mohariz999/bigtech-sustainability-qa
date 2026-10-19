@@ -1,5 +1,5 @@
 # Downloaded third-party reports: rebuild with `python fetch_docs.py`
-docs/*.pdf
+data/reports/*.pdf
 
 # Secrets
 .env
