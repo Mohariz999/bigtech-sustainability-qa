@@ -5,57 +5,75 @@
 | Metric | Result |
 |---|---|
 | Answer correct (answerable) | 24/26 (92%) |
-| Cites a correct page (answerable) | 24/26 (92%) |
-| Says not found when it should | 4/4 (100%) |
-| Overall correct | 28/30 (93%) |
+| Cites a correct page (answerable) | 22/26 (85%) |
+| Says not found when it should | 3/4 (75%) |
+| Overall correct | 27/30 (90%) |
 | Answers with a grounding problem | 4/30 (13%) |
-| Model calls per question (mean / max) | 2.7 / 5 |
+| Model calls per question (mean / max) | 2.5 / 4 |
 | Errors | 0 |
-| Total cost | $1.3848 ($0.0462 per question) |
-| Tokens in / out | 264,043 / 16,430 |
-| Latency median / p95 / max | 7.7s / 12.6s / 15.2s |
+| Total cost | $1.3120 ($0.0437 per question) |
+| Tokens in / out | 247,086 / 16,183 |
+| Latency median / p95 / max | 6.6s / 10.4s / 12.1s |
 
 ## Failures and flags
 
 - **q03** [fact] ✓ right but flagged  
   Q: How much of its 2025 freshwater consumption did Google replenish?  
-  Got [answered]: In 2025, Google's water stewardship projects replenished about 7.7 billion gallons of water (about 29 billion liters, or 7,717 million gallons in the data table). That was roughly 78% of its 2025 freshwater consumption. For comparison, Google's total water consumption across its data centers and offices in 2025 was 10.9 billion gallons.  
+  Got [answered]: In 2025, Google's water stewardship projects replenished about 7.7 billion gallons of water (7,717 million gallons, or 29 billion liters). That is roughly 78% of its 2025 freshwater consumption. Google's total water consumption across its data centers and offices that year was 10.9 billion gallons.  
   Expected: About 78% (7.7 billion gallons), through 165 projects in 97 watersheds.  
   Cited: ['google_env_2026 p8', 'google_env_2026 p96', 'google_env_2026 p35']; retrieved: ['google_env_2026 p35', 'google_env_2026 p37', 'google_env_2026 p78', 'google_env_2026 p8', 'google_env_2026 p96', 'google_env_2026 p97']  
   Problems: ["numbers not in cited sources: ['29']"]
 - **q04** [fact] ✗ wrong  
   Q: By how much did Google's water consumption change from 2024 to 2025?  
-  Got [answered]: Google's total water consumption went up by 2,734 million gallons, about 33.6%. It rose from 8,135 million gallons in 2024 to 10,869 million gallons in 2025, which Google's 2026 report rounds to 10.9 billion gallons across its data centers and offices. Both the 2025 and 2026 reports give the same 8,135 million gallon figure for 2024.  
+  Got [answered]: Google's total water consumption went up by 2,734 million gallons, or about 33.6%. It rose from 8,135 million gallons in 2024 to 10,869 million gallons in 2025 (about 10.9 billion gallons). The 2025 and 2026 reports give the same 2024 figure.  
   Expected: It increased 34%.  
   Cited: ['google_env_2026 p96', 'google_env_2025 p110', 'google_env_2026 p35']; retrieved: ['google_env_2025 p110', 'google_env_2025 p111', 'google_env_2025 p112', 'google_env_2025 p114', 'google_env_2026 p35', 'google_env_2026 p96', 'google_env_2026 p97']  
   Problems: none
+- **q05** [fact] ✓ right but flagged  
+  Q: What were Google's total ambition-based emissions in 2025, and how did they change from 2024?  
+  Got [answered]: Google's total ambition-based emissions were 14,473,100 tCO2e (about 14.5 million) in 2025. That is up from a restated 12,233,300 tCO2e in 2024, an increase of about 18.3%, which matches the 18% rise the report gives. The report says the growth was mainly driven by supply chain activities. Note that the 2025 report gave a lower 2024 figure of 11,547,200 tCO2e (about 11.5 million) before it was restated in the 2026 report.  
+  Expected: About 14.5 million tCO2e, up 18% on 2024, driven mainly by supply-chain activity.  
+  Cited: ['google_env_2026 p90', 'google_env_2026 p69', 'google_env_2025 p105']; retrieved: ['google_env_2025 p105', 'google_env_2025 p112', 'google_env_2025 p5', 'google_env_2025 p80', 'google_env_2025 p81', 'google_env_2025 p82', 'google_env_2026 p51', 'google_env_2026 p69', 'google_env_2026 p70', 'google_env_2026 p74', 'google_env_2026 p77', 'google_env_2026 p90']  
+  Problems: ["numbers not in cited sources: ['11.5']"]
 - **q13** [fact] ✓ right but flagged  
   Q: How far is Amazon towards its goal of being water positive across data centres by 2030?  
-  Got [answered]: By the end of 2025, Amazon was 75% of the way to its goal of being water positive across its data centres by 2030. That is up from 53% in 2024 and 41% in 2023, measured with Amazon's Water Positive Methodology. Replenishment projects returned 9.4 billion liters of water to communities in 2025, compared with 4.3 billion liters in 2024.  
+  Got [answered]: At the end of 2025, Amazon was 75% of the way to its goal of being water positive across its data centres by 2030. That is up from 53% in 2024 and 41% in 2023. Its replenishment projects returned 9.4 billion liters of water to communities in 2025, compared with 4.3 billion liters in 2024.  
   Expected: 75% of the way (up from 41% and then 53% in earlier years).  
-  Cited: ['amazon_sr_2025 p14', 'amazon_sr_2024 p24', 'amazon_sr_2025 p14', 'amazon_sr_2024 p25']; retrieved: ['amazon_sr_2024 p24', 'amazon_sr_2024 p25', 'amazon_sr_2024 p6', 'amazon_sr_2024 p7', 'amazon_sr_2025 p14', 'amazon_sr_2025 p16', 'amazon_sr_2025 p5']  
+  Cited: ['amazon_sr_2025 p14', 'amazon_sr_2024 p24', 'amazon_sr_2025 p16', 'amazon_sr_2024 p25']; retrieved: ['amazon_sr_2024 p24', 'amazon_sr_2024 p25', 'amazon_sr_2024 p6', 'amazon_sr_2024 p7', 'amazon_sr_2025 p14', 'amazon_sr_2025 p16', 'amazon_sr_2025 p5']  
   Problems: none
 - **q15** [fact] ✓ right but flagged  
   Q: Since when has Apple sourced 100% renewable electricity for its offices, stores and data centres?  
-  Got [answered]: According to Apple's 2025 Environmental Progress Report, Apple has sourced 100% renewable electricity for its offices, retail stores and data centres since 2018. Its 2026 report says its retail stores, data centres, R&D facilities and offices around the world still source 100% renewable electricity.  
+  Got [answered]: Since January 1, 2018, Apple has sourced 100% renewable electricity for its global facilities, which include its retail stores, data centres, R&D facilities and offices. Its 2026 report says these facilities still "currently source 100 percent renewable electricity" and lists a 100% renewable share every year in its data table.  
   Expected: Since 2018.  
-  Cited: ['apple_epr_2025 p10', 'apple_epr_2026 p24']; retrieved: ['apple_epr_2025 p10', 'apple_epr_2025 p23', 'apple_epr_2025 p24', 'apple_epr_2026 p22', 'apple_epr_2026 p24']  
+  Cited: ['apple_epr_2026 p80', 'apple_epr_2026 p24']; retrieved: ['apple_epr_2025 p23', 'apple_epr_2025 p24', 'apple_epr_2025 p86', 'apple_epr_2026 p22', 'apple_epr_2026 p24', 'apple_epr_2026 p80', 'apple_epr_2026 p95']  
   Problems: none
-- **q16** [table] ✓ right but flagged  
-  Q: How much electricity did Google's data centres consume in 2025?  
-  Got [answered]: Google's data centres used 42,415,800 MWh of electricity in 2025, which is about 42.4 TWh. That figure comes from Google's 2026 environmental report.  
-  Expected: 42,415,800 MWh (about 42.4 TWh), up from 30,637,100 MWh in 2024.  
-  Cited: ['google_env_2026 p93']; retrieved: ['google_env_2026 p93']  
-  Problems: ["numbers not in cited sources: ['42.4']"]
+- **q19** [table] ✓ right but flagged  
+  Q: What happened to Microsoft's market-based Scope 2 emissions between FY24 and FY25?  
+  Got [answered]: Microsoft's market-based Scope 2 emissions rose about 945%, from 259,090 mtCO2e in FY24 to 2,707,428 mtCO2e in FY25, roughly ten times as much. Microsoft attributes the rise mainly to two things: its datacenters expanded, and starting in FY25 it stopped buying spot EACs (short-term, unbundled renewable energy certificates from existing projects), so those certificates no longer count against its market-based Scope 2. Because of this, Scope 2 grew from nearly 2% of Microsoft's total emissions to 13%.  
+  Expected: They rose roughly tenfold, from 259,090 to 2,707,428 mtCO2e.  
+  Cited: ['microsoft_datasheet_2026 p4', 'microsoft_datasheet_2026 p9', 'microsoft_esr_2026 p30', 'microsoft_esr_2026 p6']; retrieved: ['microsoft_datasheet_2026 p13', 'microsoft_datasheet_2026 p3', 'microsoft_datasheet_2026 p4', 'microsoft_datasheet_2026 p5', 'microsoft_datasheet_2026 p9', 'microsoft_esr_2026 p30', 'microsoft_esr_2026 p6']  
+  Problems: none
 - **q20** [ambiguous_year] ✓ right but flagged  
   Q: What is Google's 24/7 carbon-free energy (CFE) percentage?  
-  Got [answered]: Google's most recent 24/7 carbon-free energy figure is about 65% for 2025, measured hourly as a global average across its data centers and offices. That is down slightly from 66% in 2024, which was up from 64% in 2023. The 2025 and 2026 reports give the same figures for the years they both cover.  
+  Got [answered]: In 2025, the most recent year reported, Google's hourly (24/7) carbon-free energy was about 65% on average across its data centers and offices. That is slightly down from 66% in 2024, which itself was up from 64% in 2023.  
   Expected: About 65% in 2025 (2026 report), roughly flat from 66% in 2024 (2025 report). A good answer gives the year.  
-  Cited: ['google_env_2026 p72', 'google_env_2026 p94', 'google_env_2025 p4']; retrieved: ['google_env_2025 p107', 'google_env_2025 p108', 'google_env_2025 p4', 'google_env_2025 p79', 'google_env_2026 p72', 'google_env_2026 p73', 'google_env_2026 p94']  
+  Cited: ['google_env_2026 p72', 'google_env_2026 p72', 'google_env_2025 p4']; retrieved: ['google_env_2025 p107', 'google_env_2025 p108', 'google_env_2025 p4', 'google_env_2025 p79', 'google_env_2026 p72', 'google_env_2026 p73', 'google_env_2026 p94']  
   Problems: ["numbers not in cited sources: ['2023']"]
+- **q21** [ambiguous_year] ✓ right but flagged  
+  Q: How much of its freshwater consumption does Google replenish?  
+  Got [answered]: In 2025, Google's water stewardship projects replenished about 7.7 billion gallons of water (29 billion liters), which is roughly 78% of its freshwater consumption. This is still short of its target of replenishing 120% by 2030. The two reports give slightly different figures for 2024: the 2025 report says 64% (about 4.5 billion gallons), while the 2026 report restates it as 63%.  
+  Expected: 78% in 2025 (2026 report), up from 64% in 2024 (2025 report).  
+  Cited: ['google_env_2026 p78', 'google_env_2026 p78', 'google_env_2026 p78', 'google_env_2025 p86']; retrieved: ['google_env_2025 p110', 'google_env_2025 p42', 'google_env_2025 p8', 'google_env_2025 p86', 'google_env_2026 p35', 'google_env_2026 p37', 'google_env_2026 p78', 'google_env_2026 p8', 'google_env_2026 p96']  
+  Problems: none
 - **q22** [restated_numbers] ✗ wrong  
   Q: By how much have Microsoft's total emissions increased compared with its 2020 baseline?  
-  Got [answered]: In FY25, the most recent year reported, Microsoft's total Scope 1+2+3 emissions were about 57.5% above its FY20 baseline when Scope 3 is measured on its management's-criteria basis: they rose from 12,881,000 to 20,290,000 mt CO2e, an increase of about 7.4 million tonnes. On the other basis in the data sheet (market-based, with Scope 3 not on management's criteria), they rose about 61.7%, from 13,061,000 to 21,121,000 mtCO2e. Note: these percentages are my own calculations from the reported figures; the reports themselves give separate baseline comparisons for FY24 only (Scope 1 and 2 down 29.9%, Scope 3 up 26%).  
+  Got [answered]: Microsoft's total emissions (Scopes 1, 2 and 3) were about 57.5% higher in FY25 than in FY20 under the management's criteria basis, rising from 12,881,000 to 20,290,000 mtCO2e. The datasheet also gives a second market-based series, which shows a rise of about 61.7%, from 13,061,000 to 21,121,000 mtCO2e. These percentages are my calculations from the reported figures. The reports themselves give percentage changes only by scope for FY24 against 2020: Scope 1 and 2 were down 29.9% and Scope 3 was up 26%.  
   Expected: The 2025 report says 23.4% (as of FY24). The 2026 report doesn't state a percentage, but its data fact sheet gives 21,121,000 for FY25 against 13,061,000 for FY20, about +62%. The fact sheet's FY24 figure (16,693,000) implies about +28%, not 23.4%, so the history appears to have been restated.  
-  Cited: ['microsoft_datasheet_2026 p4', 'microsoft_datasheet_2026 p3', 'microsoft_esr_2025 p5', 'microsoft_esr_2025 p11']; retrieved: ['microsoft_datasheet_2026 p3', 'microsoft_datasheet_2026 p4', 'microsoft_datasheet_2026 p9', 'microsoft_esr_2025 p11', 'microsoft_esr_2025 p5', 'microsoft_esr_2026 p30']  
-  Problems: ["numbers not in cited sources: ['25', '7.4']"]
+  Cited: ['microsoft_datasheet_2026 p4', 'microsoft_datasheet_2026 p3', 'microsoft_esr_2025 p5', 'microsoft_esr_2025 p11']; retrieved: ['microsoft_datasheet_2026 p3', 'microsoft_datasheet_2026 p4', 'microsoft_datasheet_2026 p6', 'microsoft_datasheet_2026 p9', 'microsoft_esr_2025 p11', 'microsoft_esr_2025 p5', 'microsoft_esr_2026 p30', 'microsoft_esr_2026 p6']  
+  Problems: ["numbers not in cited sources: ['25']"]
+- **q28** [not_found] ✗ wrong  
+  Q: What does the IEA project for global data centre electricity demand in 2030?  
+  Got [answered]: I couldn't find the IEA named as the source of a 2030 data centre electricity forecast. The closest figure is in Google's 2025 environmental report. It says data centres are projected to make up about 3% of global electricity demand in 2030, up from 1.5% in 2024, and about one-tenth of the growth in demand by 2030. The passage cites this to a footnote, not to the IEA by name, and it gives no TWh figure. Google does name the IEA elsewhere, but only for a 2035 projection about AI cutting emissions.  
+  Expected: NOT_FOUND  
+  Cited: ['google_env_2025 p12', 'google_env_2025 p12', 'google_env_2025 p13']; retrieved: ['apple_epr_2025 p101', 'google_env_2025 p113', 'google_env_2025 p12', 'google_env_2025 p13', 'google_env_2025 p18', 'google_env_2025 p19', 'google_env_2025 p21', 'microsoft_esr_2025 p82']  
+  Problems: none

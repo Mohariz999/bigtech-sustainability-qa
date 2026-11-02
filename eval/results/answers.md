@@ -4,94 +4,100 @@
 
 | Metric | Result |
 |---|---|
-| Answer correct (answerable) | 17/26 (65%) |
-| Cites a correct page (answerable) | 19/26 (73%) |
+| Answer correct (answerable) | 16/26 (62%) |
+| Cites a correct page (answerable) | 18/26 (69%) |
 | Says not found when it should | 3/4 (75%) |
-| Overall correct | 20/30 (67%) |
-| Answers with a grounding problem | 3/30 (10%) |
+| Overall correct | 19/30 (63%) |
+| Answers with a grounding problem | 1/30 (3%) |
 | Retries | 0 |
 | Errors | 0 |
-| Total cost | $0.5039 ($0.0168 per question) |
-| Tokens in / out | 82,326 / 8,729 |
-| Latency median / p95 / max | 4.0s / 6.5s / 7.3s |
+| Total cost | $0.5109 ($0.0170 per question) |
+| Tokens in / out | 85,416 / 8,461 |
+| Latency median / p95 / max | 3.4s / 6.6s / 7.9s |
 
 ## Failures and flags
 
 - **q05** [fact] ✗ wrong  
   Q: What were Google's total ambition-based emissions in 2025, and how did they change from 2024?  
-  Got [answered]: The passages do not state Google's absolute total ambition-based emissions for 2025. They do say these emissions rose 18% from 2024 to 2025, with 2025 scope 3 (ambition-based) emissions of approximately 11.6 million tCO2e making up 80% of the 2025 carbon footprint. For comparison, the 2025 report puts 2024 total ambition-based emissions at approximately 11.5 million tCO2e.  
+  Got [answered]: The passages do not state Google's total 2025 ambition-based emissions as a single figure. The 2026 report says total ambition-based emissions rose 18% from 2024 to 2025, and the 2025 report puts the 2024 total at approximately 11.5 million tCO2e. For 2025, the 2026 report gives scope 3 (ambition-based) emissions of approximately 11.6 million tCO2e, which it says was 80% of the total 2025 carbon footprint.  
   Expected: About 14.5 million tCO2e, up 18% on 2024, driven mainly by supply-chain activity.  
-  Cited: ['google_env_2026 p70', 'google_env_2026 p70', 'google_env_2025 p80']; retrieved: ['google_env_2026 p74', 'google_env_2026 p70', 'google_env_2025 p80', 'google_env_2026 p77', 'google_env_2026 p4']  
+  Cited: ['google_env_2026 p70', 'google_env_2025 p80', 'google_env_2026 p70']; retrieved: ['google_env_2026 p74', 'google_env_2026 p70', 'google_env_2025 p80', 'google_env_2026 p77', 'google_env_2026 p4']  
   Problems: none
 - **q06** [fact] ✗ wrong  
   Q: How much new renewable energy has Microsoft contracted, and how much of it is online?  
-  Got [answered]: According to the 2025 report, Microsoft contracted an additional 19 GW of new renewable energy across 16 countries in 2024, bringing its total contracted renewables to over 34 GW across 24 countries. The passages do not say how many GW of this are online; they only state that Microsoft brought 45 carbon-free electricity projects online across 15 countries through PPAs.  
+  Got [answered]: In 2024, Microsoft contracted an additional 19 GW of new renewable energy across 16 countries, bringing its contracted renewables to over 34 GW across 24 countries (2025 report). On what is online, Microsoft says it brought 45 carbon-free electricity projects online across 15 countries through PPAs, but the passages do not give the online capacity in GW.  
   Expected: Agreements for up to 40 GW across 26 countries since the programme began, of which 19 GW are online.  
   Cited: ['microsoft_esr_2025 p19', 'microsoft_esr_2025 p19', 'microsoft_esr_2025 p19']; retrieved: ['microsoft_esr_2025 p19', 'microsoft_esr_2025 p19', 'microsoft_esr_2025 p5', 'microsoft_datasheet_2026 p17', 'microsoft_datasheet_2026 p6']  
   Problems: none
+- **q13** [fact] ✓ right but flagged  
+  Q: How far is Amazon towards its goal of being water positive across data centres by 2030?  
+  Got [answered]: According to the 2025 Sustainability Report, Amazon was 75% of the way toward its goal of being water positive across data centers by 2030 by the end of 2025. This is up from 53% in 2024 and 41% in 2023.  
+  Expected: 75% of the way (up from 41% and then 53% in earlier years).  
+  Cited: ['amazon_sr_2025 p14', 'amazon_sr_2024 p24']; retrieved: ['amazon_sr_2025 p14', 'amazon_sr_2024 p24', 'amazon_sr_2025 p5', 'amazon_sr_2024 p24', 'amazon_sr_2025 p14']  
+  Problems: none
 - **q15** [fact] ✗ wrong  
   Q: Since when has Apple sourced 100% renewable electricity for its offices, stores and data centres?  
-  Got [not_found]: The passages do not say when Apple began sourcing 100 percent renewable electricity for its offices, stores and data centers; they only state that these facilities currently do so (2026 report). The only start date given is for a single facility, the Mesa, Arizona data center, described as "100 percent renewable since opening March 2017."  
+  Got [not_found]: The passages say Apple currently sources 100 percent renewable electricity for its retail stores, data centers, R&D facilities and offices, but they do not say when this began across all facilities. The only start date given is for a single site: the Mesa, Arizona data center, which has been 100 percent renewable since it opened in March 2017.  
   Expected: Since 2018.  
   Cited: ['apple_epr_2026 p24', 'apple_epr_2025 p100']; retrieved: ['apple_epr_2026 p24', 'apple_epr_2025 p24', 'apple_epr_2026 p22', 'apple_epr_2025 p23', 'apple_epr_2025 p100']  
   Problems: none
 - **q16** [table] ✗ wrong  
   Q: How much electricity did Google's data centres consume in 2025?  
-  Got [not_found]: The passages do not state the total electricity consumed by Google's data centres in 2025. They mention only a 37% annual increase in electricity demand and approximately 65% carbon-free energy across data centers and offices, not an absolute consumption figure.  
+  Got [not_found]: The passages do not state how much electricity Google's data centres consumed in 2025. They report only a 37% annual increase in electricity demand, not an absolute consumption figure.  
   Expected: 42,415,800 MWh (about 42.4 TWh), up from 30,637,100 MWh in 2024.  
   Cited: ['google_env_2026 p72']; retrieved: ['google_env_2026 p10', 'google_env_2026 p113', 'google_env_2026 p15', 'google_env_2026 p72', 'google_env_2026 p116']  
   Problems: none
-- **q18** [table] ✓ right but flagged  
+- **q18** [table] ✗ wrong  
   Q: What was Amazon's carbon footprint in 2025?  
-  Got [answered]: The passages do not state a single total figure. Amazon's 2025 data table shows Scope 1 emissions of 15.37 MMT CO2e, Scope 2 emissions of 3.74 MMT CO2e and Scope 3 emissions of 61.74 MMT CO2e, which add up to about 80.85 MMT CO2e, with a carbon intensity of 112.8 grams of CO2e per $ of revenue. Absolute emissions rose 16% from 2024 to 2025, and supply chain emissions made up 76% of the carbon footprint.  
+  Got [answered]: The passages do not state a single total for Amazon's 2025 carbon footprint, but they give its components: Scope 1 emissions of 15.37 MMT CO2e, Scope 2 emissions of 3.74 MMT CO2e and Scope 3 emissions of 61.74 MMT CO2e. Carbon intensity was 112.8 grams of CO2e per $ of revenue. From 2024 to 2025, absolute emissions increased 16% and carbon intensity increased 3%.  
   Expected: 80.85 MMTCO2e, up 16% from 69.55 in 2024.  
-  Cited: ['amazon_sr_2025 p46', 'amazon_sr_2025 p46', 'amazon_sr_2025 p46', 'amazon_sr_2025 p46', 'amazon_sr_2025 p7', 'amazon_sr_2025 p7']; retrieved: ['amazon_sr_2025 p13', 'amazon_sr_2025 p7', 'amazon_sr_2025 p13', 'amazon_sr_2025 p46', 'amazon_sr_2025 p20']  
-  Problems: ["numbers not in cited passages: ['80.85']"]
+  Cited: ['amazon_sr_2025 p46', 'amazon_sr_2025 p46', 'amazon_sr_2025 p46', 'amazon_sr_2025 p46', 'amazon_sr_2025 p7']; retrieved: ['amazon_sr_2025 p13', 'amazon_sr_2025 p7', 'amazon_sr_2025 p13', 'amazon_sr_2025 p46', 'amazon_sr_2025 p20']  
+  Problems: none
 - **q19** [table] ✗ wrong  
   Q: What happened to Microsoft's market-based Scope 2 emissions between FY24 and FY25?  
-  Got [not_found]: The passages do not give a separate market-based Scope 2 figure for FY24 or FY25. They report only combined Scope 1, 2 and 3 emissions (market-based), which rose from 16,215,000 metric tons CO2e in FY24 to 20,290,000 in FY25, a 25% increase according to the 2026 report. That report attributes the rise partly to datacenter expansion and to stopping the use of unbundled renewable energy certificates.  
+  Got [not_found]: The passages do not give separate market-based Scope 2 figures for FY24 or FY25. They only report combined Scope 1, 2 and 3 emissions, which rose from 16,215,000 (FY24) to 20,290,000 metric tons CO2e (FY25), a 25% increase. The report attributes this partly to stopping the use of non-additional, unbundled renewable energy certificates.  
   Expected: They rose roughly tenfold, from 259,090 to 2,707,428 mtCO2e.  
   Cited: ['microsoft_esr_2026 p30', 'microsoft_esr_2026 p30', 'microsoft_esr_2026 p30']; retrieved: ['microsoft_datasheet_2026 p16', 'microsoft_esr_2026 p30', 'microsoft_esr_2025 p12', 'microsoft_esr_2026 p64', 'microsoft_datasheet_2026 p9']  
   Problems: none
 - **q20** [ambiguous_year] ✗ wrong  
   Q: What is Google's 24/7 carbon-free energy (CFE) percentage?  
-  Got [answered]: According to the 2025 report, Google's 24/7 CFE percentage rose from 64% to 66% in 2024, measured as the global average across its data centers and offices. Nine out of 20 grid regions with Google-owned and -operated data centers achieved at least 80% CFE. The 2026 report passage provided does not give a newer figure.  
+  Got [answered]: According to the 2025 report (the most recent report giving a figure), Google's 24/7 CFE percentage rose from 64% to 66% in 2024, measured as the global average across its data centers and offices. Nine out of 20 grid regions with Google-owned and -operated data centers reached at least 80% CFE.  
   Expected: About 65% in 2025 (2026 report), roughly flat from 66% in 2024 (2025 report). A good answer gives the year.  
   Cited: ['google_env_2025 p4', 'google_env_2025 p79']; retrieved: ['google_env_2025 p79', 'google_env_2025 p101', 'google_env_2025 p4', 'google_env_2026 p103', 'google_env_2025 p79']  
-  Problems: ["numbers not in cited passages: ['2026']"]
+  Problems: none
 - **q21** [ambiguous_year] ✓ right but flagged  
   Q: How much of its freshwater consumption does Google replenish?  
-  Got [answered]: According to the most recent (2026) report, Google's water stewardship projects replenished approximately 7.7 billion gallons of water in 2025, or roughly 78% of its freshwater consumption, up from 63% in 2024. (The 2025 report had put the 2024 figure at roughly 64%, which the 2026 report restates as 63%.) Google aims to replenish 120% of the freshwater volume it consumes, on average, across its offices and data centers by 2030.  
+  Got [answered]: According to the 2026 report (FY2025), Google's water stewardship projects replenished approximately 7.7 billion gallons of water (29 billion liters or 29 million cubic meters), or roughly 78% of its 2025 freshwater consumption, up from 63% in 2024. Google aims to replenish 120% of the freshwater volume it consumes, on average, across its offices and data centers by 2030.  
   Expected: 78% in 2025 (2026 report), up from 64% in 2024 (2025 report).  
-  Cited: ['google_env_2026 p78', 'google_env_2026 p78', 'google_env_2025 p86', 'google_env_2026 p78']; retrieved: ['google_env_2025 p86', 'google_env_2026 p78', 'google_env_2026 p78', 'google_env_2026 p8', 'google_env_2026 p96']  
+  Cited: ['google_env_2026 p78', 'google_env_2026 p78', 'google_env_2026 p78', 'google_env_2026 p96']; retrieved: ['google_env_2025 p86', 'google_env_2026 p78', 'google_env_2026 p78', 'google_env_2026 p8', 'google_env_2026 p96']  
   Problems: none
 - **q23** [ambiguous_definition] ✗ wrong  
   Q: Did Google run on 100% renewable energy in 2025?  
-  Got [answered]: Not exactly. In 2025 Google matched 100% of its electricity consumption with renewable energy purchases on a global and annual basis, but the passages do not say its operations ran on renewable power at all times. Google achieved this despite a 37% annual increase in electricity demand, and more than 25 contracted projects came online, adding nearly 2 GW of new clean energy.  
+  Got [answered]: Not exactly: the report says Google matched 100% of its 2025 electricity consumption with renewable energy purchases on a global and annual basis, not that it ran on renewable power at every moment. It achieved this despite a 37% annual increase in electricity demand, with more than 25 contracted projects coming online that added nearly 2 GW of new clean energy.  
   Expected: Only on an annual, global matching basis: it matched 100% of its electricity consumption with renewable energy purchases for the ninth year in a row. On an hourly 24/7 basis, only about 65% of its electricity was carbon-free.  
   Cited: ['google_env_2026 p4', 'google_env_2026 p4', 'google_env_2026 p28']; retrieved: ['google_env_2026 p28', 'google_env_2026 p4', 'google_env_2026 p114', 'google_env_2026 p20', 'google_env_2026 p105']  
   Problems: none
 - **q24** [comparison] ✓ right but flagged  
   Q: How does Google's 2025 data centre PUE compare with Amazon's?  
-  Got [answered]: In 2025, Google's data centers operated with a fleet-wide average PUE of 1.09, while Amazon's data centers achieved a global PUE of 1.14. Google's figure is therefore 0.05 lower, meaning less overhead energy per unit of IT energy.  
+  Got [answered]: In 2025, Google's data centers operated with a fleet-wide average PUE of 1.09, while Amazon's data centers achieved a global PUE of 1.14. This means Google's reported PUE was 0.05 lower (more efficient) than Amazon's. Amazon also reported that its 1.14 was nearly 9% better than the public cloud industry average of 1.25.  
   Expected: Google 1.09 and Amazon 1.14, so Google's is lower (more efficient). Both are well below the industry averages they cite.  
   Cited: ['google_env_2026 p71', 'amazon_sr_2025 p10']; retrieved: ['google_env_2026 p71', 'amazon_sr_2025 p10', 'google_env_2026 p15', 'google_env_2026 p87', 'google_env_2026 p111']  
   Problems: ["numbers not in cited passages: ['0.05']"]
 - **q25** [comparison] ✗ wrong  
   Q: Who has signed more clean energy deals, Google or Microsoft?  
-  Got [not_found]: The passages cannot answer this comparison because they give no total count or volume of clean energy deals for Microsoft. They mention only Microsoft's Qcells partnership for up to 12 GW of solar modules and services. For Google, the most recent figure (2026 report) is more than 240 agreements, totalling nearly 35 GW of net-new clean energy, signed from 2010 to 2025.  
+  Got [not_found]: The passages cannot answer this comparison because they give no count of Microsoft's clean energy agreements. The most recent Google figure, from the 2026 report, is more than 240 agreements to purchase nearly 35 GW of net-new clean energy from 2010 to 2025. For Microsoft, the passages describe only individual arrangements, such as a Qcells partnership for up to 12 GW of solar modules.  
   Expected: The numbers aren't comparable. Google reports over 12 GW of net-new clean energy signed in 2025 alone. Microsoft reports up to 40 GW cumulative since its programme began (19 GW online). A good answer points out the difference.  
   Cited: ['google_env_2026 p18', 'microsoft_esr_2025 p20']; retrieved: ['google_env_2025 p22', 'google_env_2025 p4', 'google_env_2026 p18', 'microsoft_esr_2025 p20', 'google_env_2025 p22']  
   Problems: none
 - **q26** [comparison] ✗ wrong  
   Q: How much did Google's data centre electricity use grow from 2024 to 2025?  
-  Got [not_found]: The passages do not say how much Google's data center electricity use grew from 2024 to 2025. The 2025 report gives electricity figures only up to 2024, and the only 2026-report passage covers certifications, not electricity consumption.  
+  Got [not_found]: The passages do not say how much Google's data center electricity use grew from 2024 to 2025. The 2025 report gives electricity figures only through 2024, and the 2026 report excerpt covers certifications, not electricity consumption.  
   Expected: From 30,637,100 MWh to 42,415,800 MWh, about 38%. Google's report separately cites a 37% increase in its overall electricity demand.  
   Cited: []; retrieved: ['google_env_2025 p21', 'google_env_2025 p12', 'google_env_2025 p107', 'google_env_2026 p111', 'google_env_2025 p84']  
   Problems: none
 - **q28** [not_found] ✗ wrong  
   Q: What does the IEA project for global data centre electricity demand in 2030?  
-  Got [answered]: Google's 2025 environmental report says data centers are projected to account for about one-tenth of the growth in global electricity demand by 2030, and to represent only about 3% of total global electricity demand in 2030. However, the passage cites this projection only by footnote and does not name the IEA as its source, so the passages do not confirm that this is the IEA's figure.  
+  Got [answered]: Google's 2025 environmental report projects that data centers will represent only about 3% of total global electricity demand in 2030 and account for about one-tenth of the growth in global electricity demand by 2030. The passage cites a footnote for this figure but does not name the IEA as its source, so it cannot be confirmed from these passages that this is the IEA's projection.  
   Expected: NOT_FOUND  
   Cited: ['google_env_2025 p12', 'google_env_2025 p12']; retrieved: ['google_env_2025 p12', 'microsoft_esr_2025 p82', 'google_env_2025 p96', 'microsoft_esr_2026 p31', 'google_env_2026 p106']  
   Problems: none
