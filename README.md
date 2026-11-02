@@ -55,7 +55,7 @@ Measured on 30 hand-written questions with verified answers, using `claude-opus-
 | "Not found" questions handled correctly | agent 3/4, pipeline 3/4 |
 | Made-up numbers caught by the grounding check | 0 |
 
-The agent does best on tables (4/4 vs 1/4) and comparisons (3/3 vs 1/3), at 2.6× the cost. Two of its three misses are mostly my grader being too strict: it wrote 33.6% where the answer key expects the text "34%", and 61.7% where it expects "62" (though it led with 57.5% from a different emissions series). The third is real: asked for an IEA projection the reports don't contain, it gave Google's figure instead of saying "not found". These are the scores after the safety guards were added; the first run, before them, was 28/30 and 20/30, which is within run-to-run variation. Current results: [eval/results/answers_agent.md](eval/results/answers_agent.md) and [eval/results/answers.md](eval/results/answers.md); failure analysis of the first run: **[docs/evaluation.md](docs/evaluation.md)**.
+The agent does best on tables (4/4 vs 1/4) and comparisons (3/3 vs 1/3), at 2.6× the cost. Two of its three misses are mostly my grader being too strict: it wrote 33.6% where the answer key expects the text "34%", and 61.7% where it expects "62" (though it led with 57.5% from a different emissions series). The third is real: asked for an IEA projection the reports don't contain, it gave Google's figure instead of saying "not found". These are the scores after the safety guards were added; the first run, before them, was 28/30 and 20/30, which is within run-to-run variation. Full results and failure analysis: **[docs/evaluation.md](docs/evaluation.md)**.
 
 ## How it works
 
