@@ -11,8 +11,9 @@ For each page that looks like it holds metrics (enough numbers + metric words):
    Facts that fail are rejected and counted, not stored.
 4. Company, document and page are added by this code, not by the model.
 
-Results: `facts` table in data/corpus.sqlite, a copy in eval/results/facts.csv,
-and every call (tokens, cost, latency, rejections) in logs/extraction.jsonl.
+Results: full successful runs publish into an empty `facts` table in data/corpus.sqlite.
+Each run saves facts.csv and extraction.jsonl under logs/extraction-runs/<unique-id>/.
+Limited/failed runs never replace facts; historical eval/results and logs stay intact.
 
 Run:  python extract.py --dry-run      # list pages + cost estimate, no API calls
       python extract.py --limit 5      # try 5 pages
@@ -22,10 +23,12 @@ import argparse
 import collections
 import csv
 import json
+import math
 import pathlib
 import re
 import sqlite3
 import time
+import uuid
 from concurrent.futures import ThreadPoolExecutor
 from typing import Literal
 
@@ -33,6 +36,7 @@ import anthropic
 from pydantic import BaseModel, ValidationError
 
 from answer import MODEL, PRICES, cost, load_dotenv, numbers_in
+from fact_quality import atomic, migrate, quality_for
 
 ROOT = pathlib.Path(__file__).parent
 DB_PATH = ROOT / "data" / "corpus.sqlite"
@@ -194,6 +198,42 @@ class Extractor:
         return log
 
 
+def ensure_empty_facts(db: sqlite3.Connection) -> None:
+    """Refuse replacement before an extraction run can spend money."""
+    exists = db.execute("SELECT 1 FROM sqlite_master WHERE type='table' AND name='facts'").fetchone()
+    if exists and db.execute("SELECT COUNT(*) FROM facts").fetchone()[0]:
+        raise ValueError("Existing facts are preserved. Extract into a separate empty database.")
+
+
+def publish_facts(db: sqlite3.Connection, logs: list[dict], expected_pages: set[tuple]) -> None:
+    """Publish a complete successful extraction to an empty store, atomically.
+
+    Partial/limited or failed runs remain run artifacts only. Never delete old rows.
+    Caller owns any surrounding transaction; nested savepoints do not commit it.
+    """
+    actual = [(log["doc_id"], log["page"]) for log in logs]
+    if (not expected_pages or len(actual) != len(set(actual)) or set(actual) != expected_pages
+            or any(log["status"] != "ok" for log in logs)):
+        raise ValueError("Incomplete or failed extraction; facts were not published")
+    with atomic(db):
+        ensure_empty_facts(db)
+        # executescript implicitly commits: execute the simple DDL statements individually.
+        for statement in FACTS_SCHEMA.split(";"):
+            if statement.strip():
+                db.execute(statement)
+        for log in logs:
+            for row in log["kept"]:
+                if (row["doc_id"], row["page"]) != (log["doc_id"], log["page"]):
+                    raise ValueError("fact source does not match extraction page")
+                if any(flag.startswith("source_") for flag in quality_for(db, row)["flags"]):
+                    raise ValueError("invalid fact source attribution")
+                if not math.isfinite(row["value"]):
+                    raise ValueError("non-finite fact value")
+                db.execute("INSERT INTO facts (company,doc_id,page,metric,value,unit,period,basis,quote) "
+                           "VALUES (:company,:doc_id,:page,:metric,:value,:unit,:period,:basis,:quote)", row)
+        migrate(db)
+
+
 def estimate(pages: list[dict]) -> float:
     inp, out = PRICES[MODEL]
     in_tok = sum((len(SYSTEM) + len(p["text"])) / 4 + 50 for p in pages)
@@ -208,17 +248,22 @@ def main() -> None:
     args = ap.parse_args()
 
     db = sqlite3.connect(DB_PATH, check_same_thread=False)
-    pages = candidate_pages(db)[:args.limit]
+    all_pages = candidate_pages(db)
+    pages = all_pages[:args.limit]
     per_doc = collections.Counter(p["doc_id"] for p in pages)
     print(f"{len(pages)} candidate pages: " + ", ".join(f"{d} {n}" for d, n in sorted(per_doc.items())))
     print(f"Estimated cost on {MODEL}: about ${estimate(pages):.2f}")
     if args.dry_run:
         return
 
+    ensure_empty_facts(db)
+    if not pages:
+        raise SystemExit("No candidate pages; no extraction performed")
     extractor = Extractor()
-    (ROOT / "logs").mkdir(exist_ok=True)
+    run_dir = ROOT / "logs" / "extraction-runs" / uuid.uuid4().hex
+    run_dir.mkdir(parents=True)
     logs = []
-    with ThreadPoolExecutor(WORKERS) as pool, open(ROOT / "logs" / "extraction.jsonl", "w") as logfile:
+    with ThreadPoolExecutor(WORKERS) as pool, open(run_dir / "extraction.jsonl", "x") as logfile:
         futures = [pool.submit(extractor.extract_page, p) for p in pages]
         for i, fut in enumerate(futures, 1):
             try:
@@ -234,16 +279,17 @@ def main() -> None:
             print(f"[{i}/{len(pages)}] {log['doc_id']} p{log['page']}: {log['status']}, "
                   f"{len(log['kept'])} kept, {len(log['rejected'])} rejected, ${log['cost_usd']:.4f}")
 
-    db.executescript("DROP TABLE IF EXISTS facts;" + FACTS_SCHEMA)
     kept = [f for log in logs for f in log["kept"]]
-    db.executemany("INSERT INTO facts (company, doc_id, page, metric, value, unit, period, basis, quote) "
-                   "VALUES (:company, :doc_id, :page, :metric, :value, :unit, :period, :basis, :quote)", kept)
-    db.commit()
-    (ROOT / "eval" / "results").mkdir(exist_ok=True)
-    with open(ROOT / "eval" / "results" / "facts.csv", "w", newline="") as f:
+    with open(run_dir / "facts.csv", "x", newline="") as f:
         w = csv.DictWriter(f, fieldnames=["company", "doc_id", "page", "metric", "value", "unit", "period", "basis", "quote"])
         w.writeheader()
         w.writerows(sorted(kept, key=lambda r: (r["company"], r["metric"], r["period"], r["doc_id"], r["page"])))
+    if args.limit is not None:
+        print("Limited run: artifacts saved, facts table unchanged.")
+    else:
+        publish_facts(db, logs, {(p["doc_id"], p["page"]) for p in all_pages})
+        db.commit()
+    print(f"Run artifacts: {run_dir.relative_to(ROOT)} (historical artifacts unchanged)")
 
     rejected = [f for log in logs for f in log["rejected"]]
     calls = [c for log in logs for c in log["calls"]]
