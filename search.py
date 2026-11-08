@@ -46,17 +46,23 @@ class Searcher:
         self.model = TextEmbedding(EMBED_MODEL)
 
     # -- filtering -----------------------------------------------------------
-    def _allowed_ids(self, company: str | None, data_year: str | None) -> set[int] | None:
-        if not company and not data_year:
-            return None
-        sql = "SELECT c.chunk_id FROM chunks c JOIN documents d USING (doc_id) WHERE 1=1"
-        args: list = []
+    @staticmethod
+    def _filter_sql(company: str | None, data_year: str | None) -> tuple[str, list]:
+        """SQL conditions on documents d for the metadata filter (empty string: no filter)."""
+        sql, args = "", []
         if company:
             sql += " AND d.company = ?"
             args.append(company)
         if data_year:  # '2025' matches data_year '2025' and 'FY2025'
             sql += " AND d.data_year IN (?, ?)"
             args += [data_year, f"FY{data_year}"]
+        return sql, args
+
+    def _allowed_ids(self, company: str | None, data_year: str | None) -> set[int] | None:
+        if not company and not data_year:
+            return None
+        where, args = self._filter_sql(company, data_year)
+        sql = "SELECT c.chunk_id FROM chunks c JOIN documents d USING (doc_id) WHERE 1=1" + where
         return {r[0] for r in self.db.execute(sql, args)}
 
     def _hits(self, scored: list[tuple[int, float]]) -> list[Hit]:
@@ -73,12 +79,14 @@ class Searcher:
         if not terms:
             return []
         fts_query = " OR ".join(f'"{t}"' for t in terms)
-        allowed = self._allowed_ids(company, data_year)
+        # The filter is part of the query, so the LIMIT counts only chunks that pass it.
+        where, args = self._filter_sql(company, data_year)
         rows = self.db.execute(
-            "SELECT rowid, bm25(chunks_fts) FROM chunks_fts WHERE chunks_fts MATCH ? ORDER BY bm25(chunks_fts) LIMIT 500",
-            (fts_query,)).fetchall()
-        rows = [(cid, -s) for cid, s in rows if allowed is None or cid in allowed]  # bm25(): lower = better
-        return self._hits(rows[:k])
+            "SELECT chunks_fts.rowid, bm25(chunks_fts) FROM chunks_fts "
+            "JOIN chunks c ON c.chunk_id = chunks_fts.rowid JOIN documents d USING (doc_id) "
+            "WHERE chunks_fts MATCH ?" + where + " ORDER BY bm25(chunks_fts) LIMIT ?",
+            [fts_query, *args, k]).fetchall()
+        return self._hits([(cid, -s) for cid, s in rows])  # bm25(): lower = better
 
     def vector(self, query: str, k: int = 5, company=None, data_year=None) -> list[Hit]:
         q = np.asarray(next(iter(self.model.query_embed([query]))), dtype=np.float32)
