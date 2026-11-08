@@ -1,21 +1,16 @@
-"""Score the full pipeline (search + Claude) on all 30 eval questions.
+"""Evaluate answers with versioned grading and immutable run artifacts.
 
-Per question:
-- answerable: correct if the answer contains the expected values (must_contain: all of them;
-  must_contain_any: at least one), ignoring case and thousands separators.
-  Citation correct if any cited (doc_id, page) is one of the question's gold pages.
-- not_found: correct only if the system said not_found.
-- grounding problems (quote not in passage, number not in passage) are counted separately.
+Default deterministic-v2 uses numeric boundaries and explicit compatible units;
+legacy-v1 preserves historical substring grading. Citation, retrieval, abstention
+and evidence diagnostics remain separate from answer correctness.
 
-Writes eval/results/answers.md (summary + every failure) and logs/answers.jsonl.
-With --system agent it runs agent.py instead and writes answers_agent.md / answers_agent.jsonl.
-(one full record per question: retrieved pages, answer, citations, tokens, cost, latency).
+Runs write reports, every question record and a provenance manifest under
+logs/evaluation-runs/<unique-id>/; historical logs/results are never overwritten.
 
-Run:  python eval/run_answers.py --dry-run     # estimate cost, no API calls
-      python eval/run_answers.py --limit 3     # try 3 questions first
-      python eval/run_answers.py               # all 30
-      python eval/run_answers.py --rescore     # re-score the saved log after editing the answer key (free)
-      python eval/run_answers.py --system agent   # same questions, answered by the tool-calling agent
+Offline: --dry-run estimates from saved costs without loading models;
+--rescore applies the selected grading version to saved outputs, without generation.
+Default execution generates live answers and requires API credits and user approval.
+See docs/evidence-and-evaluation.md for limitations and the comparison protocol.
 """
 import argparse
 import json
@@ -29,6 +24,8 @@ ROOT = pathlib.Path(__file__).resolve().parent.parent
 sys.path.insert(0, str(ROOT))
 from answer import MODEL, PRICES, SYSTEM, TOP_K, Answerer, format_passages  # noqa: E402
 from search import Searcher, company_in, year_in  # noqa: E402
+from eval.grading import VERSION, grade
+from diagnostics import create_run
 
 OUT = ROOT / "eval" / "results"
 LOGS = ROOT / "logs"
@@ -40,14 +37,7 @@ def norm(s: str) -> str:
 
 
 def is_correct(q: dict, r: dict) -> bool:
-    if q["category"].startswith("not_found"):
-        return r["status"] == "not_found"
-    if r["status"] != "answered":
-        return False
-    ans = norm(r["answer"])
-    if "must_contain" in q:
-        return all(norm(x) in ans for x in q["must_contain"])
-    return any(norm(x) in ans for x in q["must_contain_any"])
+    return grade(q, r)["correct"]
 
 
 def cites_gold(q: dict, r: dict) -> bool:
@@ -55,19 +45,18 @@ def cites_gold(q: dict, r: dict) -> bool:
     return any((c["doc_id"], c["page"]) in gold for c in r["citations"])
 
 
+def retrieval_success(q, r):
+    gold = {f"{source['doc_id']} p{page}" for source in q.get("sources", []) for page in source["pages"]}
+    return bool(gold.intersection(r.get("retrieved", [])))
+
+
 def dry_run(questions: list[dict]) -> None:
-    """Rough cost estimate (~4 characters per token) before spending anything."""
-    s = Searcher()
-    in_tok = []
-    for q in questions:
-        hits = s.hybrid(q["question"], TOP_K, company=company_in(q["question"]), data_year=year_in(q["question"]))
-        in_tok.append((len(SYSTEM) + len(format_passages(hits)) + len(q["question"])) / 4 + 300)
-    out_tok = 600  # answer JSON plus thinking, a rough allowance
-    inp, out = PRICES[MODEL]
-    total = sum(t * inp + out_tok * out for t in in_tok) / 1e6
-    print(f"{len(questions)} questions, ~{statistics.mean(in_tok):.0f} input tokens each, "
-          f"~{out_tok} output tokens allowed for.\nEstimated cost on {MODEL}: about ${total:.2f} "
-          f"(${total/len(questions):.4f} per question). Real numbers are logged per call.")
+    """Estimate from recorded usage only; never load embeddings or a model client."""
+    path = LOGS / f"{NAME}.jsonl"
+    saved = [json.loads(line) for line in open(path) if line.strip()]
+    mean = statistics.mean(r["cost_usd"] for r in saved)
+    print(f"Historical recorded-cost estimate for {len(questions)} questions: ${mean * len(questions):.2f}. "
+          "This is not a quote for the updated implementation; no models were loaded.")
 
 
 def main() -> None:
@@ -75,26 +64,29 @@ def main() -> None:
     ap.add_argument("--dry-run", action="store_true")
     ap.add_argument("--limit", type=int)
     ap.add_argument("--rescore", action="store_true")
+    ap.add_argument("--grading", choices=["legacy-v1", VERSION], default=VERSION)
+    ap.add_argument("--source-log", type=pathlib.Path, help="saved log to rescore; defaults to historical log")
     ap.add_argument("--system", choices=["pipeline", "agent"], default="pipeline")
     args = ap.parse_args()
-    global NAME
+    global NAME, OUT
     NAME = "answers" if args.system == "pipeline" else "answers_agent"
 
+    if args.limit is not None and args.limit <= 0:
+        ap.error("--limit must be positive")
     questions = [json.loads(l) for l in open(ROOT / "eval" / "questions.jsonl") if l.strip()][:args.limit]
     if args.dry_run:
         return dry_run(questions)
     if args.rescore:
-        return rescore(questions)
+        return rescore(questions, source_log=args.source_log, grading=args.grading)
 
     if args.system == "agent":
         from agent import Agent
         answerer = Agent()
     else:
         answerer = Answerer()
-    LOGS.mkdir(exist_ok=True)
-    OUT.mkdir(exist_ok=True)
+    OUT = new_run(args.system, args.grading, selected_ids=[q["id"] for q in questions])
     rows = []
-    with open(LOGS / f"{NAME}.jsonl", "w") as log:
+    with open(OUT / f"{NAME}.jsonl", "x") as log:
         for q in questions:
             try:
                 r = answerer.answer(q["question"])
@@ -104,8 +96,11 @@ def main() -> None:
             except anthropic.APIError as e:  # still failing after the SDK's retries: record it, keep going
                 r = {"question": q["question"], "status": "error", "answer": "", "citations": [], "calls": [],
                      "retrieved": [], "problems": [f"API error: {type(e).__name__}"], "cost_usd": 0.0, "latency_s": 0.0}
+            assessment = grade(q, r, args.grading)
             r.update(id=q["id"], category=q["category"], expected=q["answer"],
-                     correct=is_correct(q, r), cites_gold=cites_gold(q, r))
+                     correct=assessment["correct"], grading=assessment, cites_gold=cites_gold(q, r),
+                     citation_validity=not any("quote not found" in p or "cites " in p or "without cit" in p for p in r["problems"]),
+                     abstained=r["status"] == "not_found", retrieval_success=retrieval_success(q, r))
             log.write(json.dumps(r) + "\n")
             rows.append((q, r))
             print(f"{q['id']} {'✓' if r['correct'] else '✗'} [{r['status']}] ${r['cost_usd']:.4f} "
@@ -113,15 +108,34 @@ def main() -> None:
     write_report(rows)
 
 
-def rescore(questions: list[dict]) -> None:
-    """Re-apply the (possibly edited) answer key to the saved answers. No API calls."""
-    saved = {r["id"]: r for r in map(json.loads, open(LOGS / f"{NAME}.jsonl"))}
+def new_run(system, grading, source_log=None, selected_ids=None):
+    return create_run(ROOT, ROOT / "eval/questions.jsonl",
+                      {"system": system, "grading_version": grading, "requested_model": MODEL,
+                       "effort": "medium", "top_k": TOP_K, "fallbacks": "default",
+                       "prices": PRICES, "max_model_calls": 8 if system == "agent" else 2,
+                       "max_tokens_per_call": 8000 if system == "agent" else 4000,
+                       "max_retries": 3, "embedding_model": "BAAI/bge-small-en-v1.5",
+                       "selected_question_ids": selected_ids}, source_log=source_log)
+
+
+def rescore(questions: list[dict], source_log=None, grading=VERSION) -> None:
+    """Write a new derived run; never overwrite the source log, even with --limit."""
+    global OUT
+    source = source_log or LOGS / f"{NAME}.jsonl"
+    records = [json.loads(line) for line in open(source) if line.strip()]
+    saved = {r["id"]: r for r in records}
+    if len(saved) != len(records) or any(q["id"] not in saved for q in questions):
+        raise ValueError("duplicate or missing question IDs in source log")
+    OUT = new_run("agent" if NAME == "answers_agent" else "pipeline", grading, source, [q["id"] for q in questions])
     rows = []
     for q in questions:
-        r = saved[q["id"]]
-        r.update(expected=q["answer"], correct=is_correct(q, r), cites_gold=cites_gold(q, r))
+        r = dict(saved[q["id"]])
+        assessment = grade(q, r, grading)
+        r.update(expected=q["answer"], correct=assessment["correct"], grading=assessment,
+                 cites_gold=cites_gold(q, r), retrieval_success=retrieval_success(q, r),
+                 result_kind="rescore_saved_outputs")
         rows.append((q, r))
-    with open(LOGS / f"{NAME}.jsonl", "w") as log:
+    with open(OUT / f"{NAME}.jsonl", "x") as log:
         log.writelines(json.dumps(r) + "\n" for _, r in rows)
     write_report(rows)
 
@@ -133,10 +147,12 @@ def write_report(rows: list[tuple[dict, dict]]) -> None:
     costs = [r["cost_usd"] for _, r in rows]
     tokens_in = sum(c["input_tokens"] for _, r in rows for c in r["calls"])
     tokens_out = sum(c["output_tokens"] for _, r in rows for c in r["calls"])
+    measured_e2e = [r["end_to_end_latency_s"] for _, r in rows if "end_to_end_latency_s" in r]
     pct = lambda xs: f"{sum(xs)}/{len(xs)} ({sum(xs)/len(xs):.0%})" if xs else "n/a"
 
     summary = [
         ("Answer correct (answerable)", pct([r["correct"] for _, r in ans])),
+        ("Retrieved a gold page (answerable)", pct([retrieval_success(q, r) for q, r in ans])),
         ("Cites a correct page (answerable)", pct([r["cites_gold"] for _, r in ans])),
         ("Says not found when it should", pct([r["correct"] for _, r in nf])),
         ("Overall correct", pct([r["correct"] for _, r in rows])),
@@ -145,25 +161,41 @@ def write_report(rows: list[tuple[dict, dict]]) -> None:
         (("Model calls per question (mean / max)", f"{statistics.mean(len(r['calls']) for _, r in rows):.1f} / "
           f"{max(len(r['calls']) for _, r in rows)}") if NAME == "answers_agent" else
          ("Retries", f"{sum(len(r['calls']) > 1 for _, r in rows)}")),
+        ("End-to-end latency median", f"{statistics.median(measured_e2e):.2f}s" if measured_e2e else "not recorded in historical outputs"),
+        ("Cost using estimated unknown-model rates", str(any(c.get("cost_is_estimate", False) for _, r in rows for c in r["calls"]))),
+        ("Incomplete token/cost measurements", str(sum(bool(r.get("measurement_incomplete")) for _, r in rows))),
         ("Errors", f"{sum(r['status'] == 'error' for _, r in rows)}"),
         ("Total cost", f"${sum(costs):.4f} (${statistics.mean(costs):.4f} per question)"),
+        ("Cache tokens read / created", f"{sum(c.get('cache_read_tokens', 0) for _, r in rows for c in r['calls'])} / "
+         f"{sum(c.get('cache_creation_tokens', 0) for _, r in rows for c in r['calls'])}"),
         ("Tokens in / out", f"{tokens_in:,} / {tokens_out:,}"),
         ("Latency median / p95 / max", f"{statistics.median(lat):.1f}s / {lat[int(0.95 * (len(lat) - 1))]:.1f}s / {lat[-1]:.1f}s"),
     ]
     with open(OUT / f"{NAME}.md", "w") as f:
         system = "tool-calling agent (agent.py)" if NAME == "answers_agent" else f"pipeline (answer.py), top {TOP_K} passages"
-        f.write(f"# Answer results: {system}\n\n{len(rows)} questions, model `{MODEL}`. "
-                "Generated by `eval/run_answers.py`.\n\n| Metric | Result |\n|---|---|\n")
+        actual_models = sorted({c["model"] for _, r in rows for c in r["calls"]})
+        versions = sorted({r.get("grading", {}).get("version", "legacy-v1") for _, r in rows})
+        f.write(f"# Answer results: {system}\n\n{len(rows)} questions. Actual recorded models: {actual_models}. "
+                f"Grading: {versions}. See manifest.json for code and dataset identity. "
+                "Rescoring saved outputs is not a new live benchmark. Deterministic checks do not prove semantic correctness.\n\n"
+                "| Metric | Result |\n|---|---|\n")
         f.writelines(f"| {k} | {v} |\n" for k, v in summary)
+        f.write("\n## Every question\n\n| ID | Correct | Cites gold | Status | Tokens in/out | Recorded cost | Model-call latency |\n"
+                "|---|---|---|---|---|---|---|\n")
+        for q, r in rows:
+            tin = sum(c["input_tokens"] for c in r["calls"])
+            tout = sum(c["output_tokens"] for c in r["calls"])
+            f.write(f"| {q['id']} | {r['correct']} | {r['cites_gold']} | {r['status']} | {tin}/{tout} | "
+                    f"${r['cost_usd']:.4f} | {r['latency_s']}s |\n")
         f.write("\n## Failures and flags\n\n")
         for q, r in rows:
             if not r["correct"] or r["problems"] or (not q["category"].startswith("not_found") and not r["cites_gold"]):
                 f.write(f"- **{q['id']}** [{q['category']}] {'✗ wrong' if not r['correct'] else '✓ right but flagged'}  \n"
                         f"  Q: {q['question']}  \n  Got [{r['status']}]: {r['answer'] or '-'}  \n"
                         f"  Expected: {q['answer']}  \n  Cited: {[f'{c['doc_id']} p{c['page']}' for c in r['citations']]}; "
-                        f"retrieved: {r['retrieved']}  \n  Problems: {r['problems'] or 'none'}\n")
+                        f"retrieved: {r['retrieved']}  \n  Problems: {r['problems'] or 'none'}; grading reasons: {r.get('grading', {}).get('reasons', [])}\n")
     print("\n" + "\n".join(f"{k}: {v}" for k, v in summary))
-    print(f"\nWrote {(OUT / f'{NAME}.md').relative_to(ROOT)} and {(LOGS / f'{NAME}.jsonl').relative_to(ROOT)}")
+    print(f"\nWrote {(OUT / f'{NAME}.md').relative_to(ROOT)} and {(OUT / f'{NAME}.jsonl').relative_to(ROOT)}")
 
 
 if __name__ == "__main__":

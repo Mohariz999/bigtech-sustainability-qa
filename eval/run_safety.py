@@ -21,8 +21,9 @@ Run:  python eval/run_safety.py --dry-run          # estimate cost, no API calls
       python eval/run_safety.py --rescore          # re-score the saved log after editing the cases (free)
       python eval/run_safety.py --scan-corpus      # false-positive check: screen every chunk of the real corpus
 
-Writes eval/results/<name>.md and logs/<name>.jsonl, where <name> is safety, safety_agent,
-safety_noguards or safety_agent_noguards.
+Writes <name>.md, <name>.jsonl and a manifest under logs/evaluation-runs/<unique-id>/,
+where <name> is safety, safety_agent, safety_noguards or safety_agent_noguards.
+Historical artifacts are never overwritten, including during rescoring.
 """
 import argparse
 import collections
@@ -37,6 +38,7 @@ import anthropic
 ROOT = pathlib.Path(__file__).resolve().parent.parent
 sys.path.insert(0, str(ROOT))
 from safety import flag_injection  # noqa: E402
+from diagnostics import create_run  # noqa: E402
 from search import DB_PATH, Hit, Searcher  # noqa: E402
 
 CASES = ROOT / "eval" / "safety_cases.jsonl"
@@ -173,7 +175,7 @@ def write_report(name: str, system: str, guards: bool, rows: list[tuple[dict, di
                   *[f"- {f}" for f in r["failures"]], ""]
     OUT.mkdir(exist_ok=True)
     (OUT / f"{name}.md").write_text("\n".join(lines) + "\n")
-    print(f"\nWrote eval/results/{name}.md")
+    print(f"\nWrote {OUT / (name + '.md')}")
 
 
 def main() -> None:
@@ -185,6 +187,9 @@ def main() -> None:
     ap.add_argument("--rescore", action="store_true")
     ap.add_argument("--scan-corpus", action="store_true")
     args = ap.parse_args()
+    global OUT
+    if args.limit is not None and args.limit <= 0:
+        ap.error("--limit must be positive")
     if args.scan_corpus:
         return scan_corpus()
 
@@ -197,6 +202,10 @@ def main() -> None:
     if args.rescore:
         saved = {r["id"]: r for r in load_jsonl(LOGS / f"{name}.jsonl")}
         rows = [(c, {**saved[c["id"]], "failures": failures(c, saved[c["id"]])}) for c in cases]
+        OUT = create_run(ROOT, CASES, {"system": args.system, "guards": guards, "grading": "safety-v1"},
+                         source_log=LOGS / f"{name}.jsonl")
+        with open(OUT / f"{name}.jsonl", "x") as log:
+            log.writelines(json.dumps(r) + "\n" for _, r in rows)
         return write_report(name, args.system, guards, rows)
 
     base = Searcher()
@@ -207,9 +216,9 @@ def main() -> None:
         from answer import Answerer
         make = lambda searcher: Answerer(searcher=searcher, guards=guards)  # noqa: E731
 
-    LOGS.mkdir(exist_ok=True)
+    OUT = create_run(ROOT, CASES, {"system": args.system, "guards": guards, "grading": "safety-v1"})
     rows = []
-    with open(LOGS / f"{name}.jsonl", "w") as log:
+    with open(OUT / f"{name}.jsonl", "x") as log:
         for c in cases:
             system = make(PlantingSearcher(base, c["planted"]) if "planted" in c else base)
             try:
@@ -220,6 +229,9 @@ def main() -> None:
                 r = {"status": "error", "answer": "", "citations": [], "calls": [], "cost_usd": 0.0,
                      "latency_s": 0.0, "problems": [f"API error: {type(e).__name__}"]}
             r.update(id=c["id"], category=c["category"])
+            r["attack_exposure"] = {"planted": "planted" in c,
+                                    "search_calls": sum(s["tool"] == "search_docs" for s in r.get("steps", [])),
+                                    "screen_withheld": bool(r.get("safety", {}).get("withheld"))}
             r["failures"] = failures(c, r)
             log.write(json.dumps(r) + "\n")
             rows.append((c, r))

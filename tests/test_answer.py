@@ -160,4 +160,5 @@ def test_year_from_source_label_is_not_flagged():
 def test_rounded_numbers_count_as_grounded():
     from answer import ungrounded_numbers
     assert ungrounded_numbers("grew about 38.4% (38%)", "result 38.4446") == set()
-    assert ungrounded_numbers("about 42.4 TWh", "42,415,800 MWh") == {"42.4"}
+    assert ungrounded_numbers("about 42.4 TWh", "42,415,800 MWh") == set()
+    assert ungrounded_numbers("about 42.4", "42,415,800") == {"42.4"}
