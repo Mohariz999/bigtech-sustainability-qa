@@ -3,6 +3,8 @@ data/reports/*.pdf
 
 # Secrets
 .env
+.env.*
+!.env.example
 
 # Python
 __pycache__/
@@ -11,8 +13,20 @@ __pycache__/
 
 # Generated data
 *.sqlite
+*.sqlite-wal
+*.sqlite-shm
+*.sqlite-journal
 *.db
+*.db-wal
+*.db-shm
+*.db-journal
 index/
 
 .DS_Store
 .pytest_cache/
+
+# Local quality tools and newly generated run artifacts (historical logs stay tracked)
+.ruff_cache/
+logs/evaluation-runs/
+logs/extraction-runs/
+fact-quality-report.json
