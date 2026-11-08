@@ -16,12 +16,14 @@ answer must appear in a cited source (a calculator result counts as a source).
 
 Safety (see safety.py): search results that read like instructions to an AI are withheld
 before Claude sees them, the final answer is checked for pieces of the system prompt, and
-the calculator caps exponents so an expression like 9**9**9 can't hang the process.
+the calculator caps expression size, nesting, exponents and the size of every number, so an
+expression like 9**9**9 can't hang the process.
 
 Try it: python agent.py "How much did Google's data centre electricity use grow from 2024 to 2025?"
 """
 import ast
 import json
+import math
 import operator
 import re
 import sqlite3
@@ -40,6 +42,10 @@ from search import DB_PATH, Searcher
 EFFORT = "medium"
 MAX_STEPS = 8          # cost guard: at most 8 model calls per question
 MAX_EXPONENT = 100     # calculator guard: larger powers are never needed and can hang the process
+MAX_EXPR_CHARS = 500   # calculator guards: report arithmetic is short, so anything bigger is refused
+MAX_EXPR_NODES = 200
+MAX_EXPR_DEPTH = 100   # a sum of n numbers nests n deep, so this allows long sums
+MAX_MAGNITUDE = 1e30   # no number in the expression or any step of it may be larger (the largest extracted fact is ~5e8)
 COMPANIES = ["Google", "Microsoft", "Meta", "Amazon", "Apple"]
 
 SYSTEM = """You answer questions about company sustainability reports (Google, Microsoft, Meta, Amazon, Apple;
@@ -116,20 +122,50 @@ _OPS = {ast.Add: operator.add, ast.Sub: operator.sub, ast.Mult: operator.mul, as
         ast.Pow: operator.pow, ast.USub: operator.neg, ast.UAdd: operator.pos}
 
 
+def period_matches(period: str, year: str) -> bool:
+    """Does a fact's period describe this year? Periods are written as '2025', 'FY25', 'FY 2025', 'January 2025'..."""
+    return year in period or re.search(rf"FY\s?{re.escape(year[-2:])}\b", period, re.I) is not None
+
+
+def _checked(value):
+    """Every number, given or computed, must be a finite real no larger than MAX_MAGNITUDE."""
+    if isinstance(value, complex) or not math.isfinite(value):
+        raise ValueError("the result is not a finite number")
+    if abs(value) > MAX_MAGNITUDE:
+        raise ValueError(f"numbers larger than {MAX_MAGNITUDE:g} are not allowed")
+    return value
+
+
 def calculate(expression: str) -> float:
-    """Arithmetic only: walks the parsed expression instead of calling eval(), so no code can run."""
+    """Arithmetic only: walks the parsed expression instead of calling eval(), so no code can run.
+    Size, nesting and magnitude are capped first, so no input can hang the process or exhaust memory."""
+    if len(expression) > MAX_EXPR_CHARS:
+        raise ValueError(f"expressions longer than {MAX_EXPR_CHARS} characters are not allowed")
+    tree = ast.parse(expression.replace(",", ""), mode="eval").body
+    nodes, stack = 0, [(tree, 1)]
+    while stack:  # iterative, so a deep tree can't overflow the stack while it is being measured
+        node, depth = stack.pop()
+        nodes += 1
+        if nodes > MAX_EXPR_NODES or depth > MAX_EXPR_DEPTH:
+            raise ValueError("the expression is too long or too deeply nested")
+        stack += [(child, depth + 1) for child in ast.iter_child_nodes(node)
+                  if not isinstance(child, (ast.operator, ast.unaryop))]  # count numbers and operations, not '+' signs
+
     def ev(node):
-        if isinstance(node, ast.Constant) and isinstance(node.value, (int, float)):
-            return node.value
+        if isinstance(node, ast.Constant) and type(node.value) in (int, float):
+            return _checked(node.value)
         if isinstance(node, ast.BinOp) and type(node.op) in _OPS:
             left, right = ev(node.left), ev(node.right)
             if isinstance(node.op, ast.Pow) and abs(right) > MAX_EXPONENT:
                 raise ValueError(f"exponents above {MAX_EXPONENT} are not allowed")
-            return _OPS[type(node.op)](left, right)
+            try:
+                return _checked(_OPS[type(node.op)](left, right))
+            except OverflowError:
+                raise ValueError(f"numbers larger than {MAX_MAGNITUDE:g} are not allowed") from None
         if isinstance(node, ast.UnaryOp) and type(node.op) in _OPS:
-            return _OPS[type(node.op)](ev(node.operand))
+            return _checked(_OPS[type(node.op)](ev(node.operand)))
         raise ValueError("only numbers and + - * / ** ( ) are allowed")
-    return ev(ast.parse(expression.replace(",", ""), mode="eval").body)
+    return ev(tree)
 
 
 class Agent:
@@ -163,10 +199,11 @@ class Agent:
         if company != "any":
             sql += " AND company = ?"
             args.append(company)
+        if year != "any":  # filtered in SQL, before the LIMIT, so rows for later companies aren't cut off
+            self.db.create_function("period_matches", 2, period_matches, deterministic=True)
+            sql += " AND period_matches(period, ?)"
+            args.append(year)
         rows = self.db.execute(sql + " ORDER BY company, period, doc_id LIMIT 40", args).fetchall()
-        if year != "any":  # periods are written as '2025', 'FY25', 'FY2025'...
-            short = year[-2:]
-            rows = [r for r in rows if year in r[6] or re.search(rf"FY\s?{short}\b", r[6], re.I)]
         out = []
         for fid, comp, doc_id, page, value, unit, period, basis, quote in rows:
             sid = f"F{fid}"
