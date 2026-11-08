@@ -34,13 +34,19 @@ from typing import Literal
 import anthropic
 from pydantic import BaseModel, ValidationError
 
-from answer import MODEL, cost, load_dotenv, ungrounded_numbers
+from answer import MODEL, PRICES, cost, load_dotenv, ungrounded_numbers
 from extract import METRICS
 from fact_quality import quality_for, qualification
-from safety import leaks_system_prompt, screen
+from diagnostics import request_record, end_to_end
+from grounding import evidence_diagnostics, normalized_text
+from safety import leaks_system_prompt, screen, flag_injection
 from search import DB_PATH, Searcher
 
 EFFORT = "medium"
+MAX_TOOL_CALLS = 24
+MAX_TOOL_RESULT_CHARS = 24000
+MAX_CONTEXT_CHARS = 160000
+MAX_REPEATED_TOOL_CALLS = 2
 MAX_STEPS = 8          # cost guard: at most 8 model calls per question
 MAX_EXPONENT = 100     # calculator guard: larger powers are never needed and can hang the process
 MAX_EXPR_CHARS = 500   # calculator guards: report arithmetic is short, so anything bigger is refused
@@ -219,9 +225,14 @@ class Agent:
                 continue  # cumulative/range observations are not annual facts
             if len(out) == 40:
                 break
+            if self.guards and (flags := flag_injection(quote)):
+                self._withheld.append({"doc_id": doc_id, "page": page, "flags": flags, "source_type": "fact"})
+                continue
             note = qualification(fact, quality)
             sid = f"F{fid}"
-            sources[sid] = {"doc_id": doc_id, "page": page, "text": f"{doc_id} page {page} {fmt(value)} {unit} {period} {quote}"}
+            sources[sid] = {"doc_id": doc_id, "page": page, "company": comp, "metric": metric,
+                            "quality": quality,
+                            "text": f"{doc_id} page {page} {fmt(value)} {unit} {period} {quote}"}
             out.append(f"[{sid}] {comp} {metric} {period}: {fmt(value)} {unit}"
                        f"{f' ({basis})' if basis else ''} — {doc_id} p{page}: \"{quote}\" [{note}]")
         return "\n".join(out) or "No facts found."
@@ -232,35 +243,80 @@ class Agent:
         except (ValueError, SyntaxError, ZeroDivisionError) as e:
             return f"Error: {e}", True
         sid = f"C{sum(s.startswith('C') for s in sources) + 1}"
-        sources[sid] = {"doc_id": None, "page": None, "text": f"{expression} = {fmt(round(result, 4))}"}
+        sources[sid] = {"doc_id": None, "page": None, "kind": "calculation", "text": f"{expression} = {fmt(round(result, 4))}"}
         return f"[{sid}] {expression} = {fmt(round(result, 4))}", False
 
     def run_tool(self, name: str, args: dict, sources: dict) -> tuple[str, bool]:
-        if name == "search_docs":
-            return self._search_docs(args["query"], args["company"], args["year"], sources), False
-        if name == "query_facts":
-            return self._query_facts(args["company"], args["metric"], args["year"], sources), False
-        if name == "calculator":
-            return self._calculator(args["expression"], sources)
-        return f"Error: unknown tool {name}", True
+        """Validate locally even with strict hosted schemas; preserve source state on error."""
+        required = {"search_docs": {"query", "company", "year"},
+                    "query_facts": {"company", "metric", "year"}, "calculator": {"expression"}}
+        if name not in required:
+            return f"Error: unknown tool {name}", True
+        if (not isinstance(args, dict) or set(args) != required[name]
+                or any(type(v) is not str for v in args.values())):
+            return "Error: invalid tool arguments", True
+        if name != "calculator":
+            if args["company"] not in COMPANIES + ["any"]:
+                return "Error: invalid company", True
+            if args["year"] != "any" and not re.fullmatch(r"20\d{2}", args["year"]):
+                return "Error: year must be YYYY or any", True
+        if name == "query_facts" and args["metric"] not in METRICS:
+            return "Error: invalid metric", True
+        if name == "search_docs" and (not args["query"].strip() or len(args["query"]) > 2000):
+            return "Error: invalid search query length", True
+        pending = dict(sources)
+        try:
+            if name == "search_docs":
+                result = self._search_docs(args["query"], args["company"], args["year"], pending), False
+            elif name == "query_facts":
+                result = self._query_facts(args["company"], args["metric"], args["year"], pending), False
+            else:
+                result = self._calculator(args["expression"], pending)
+        except sqlite3.Error:
+            return "Error: fact/search database unavailable", True
+        except (OSError, TimeoutError):
+            return "Error: local retrieval unavailable", True
+        if (not isinstance(result, tuple) or len(result) != 2 or type(result[1]) is not bool
+                or not isinstance(result[0], str) or len(result[0]) > MAX_TOOL_RESULT_CHARS):
+            return "Error: tool result exceeds output budget", True
+        if not result[1]:
+            sources.update(pending)
+        return result
 
     # -- loop ----------------------------------------------------------------
     def answer(self, question: str) -> dict:
+        request_start = time.perf_counter()
         messages = [{"role": "user", "content": question}]
         sources: dict[str, dict] = {}
         self._withheld = []
-        record = {"question": question, "steps": [], "calls": [],
+        record = {**request_record("agent_tools"), "question": question, "steps": [], "calls": [],
                   "safety": {"withheld": self._withheld, "leak": False}}
         final_text = None
+        tool_count, repeated, termination = 0, {}, None
         for step in range(MAX_STEPS):
+            if len(str(messages)) > MAX_CONTEXT_CHARS:
+                termination = "context budget reached"
+                break
             start = time.perf_counter()
-            resp = self.client.beta.messages.create(
-                model=MODEL, max_tokens=8000, system=SYSTEM, tools=TOOLS, messages=messages,
-                output_config={"effort": EFFORT, "format": {"type": "json_schema", "schema": ANSWER_SCHEMA}},
-                betas=["server-side-fallback-2026-07-01"], fallbacks="default",
-            )
+            try:
+                resp = self.client.beta.messages.create(
+                    model=MODEL, max_tokens=8000, system=SYSTEM, tools=TOOLS, messages=messages,
+                    output_config={"effort": EFFORT, "format": {"type": "json_schema", "schema": ANSWER_SCHEMA}},
+                    betas=["server-side-fallback-2026-07-01"], fallbacks="default",
+                )
+            except anthropic.AuthenticationError:
+                raise
+            except anthropic.APIError as exc:
+                termination = f"API error: {type(exc).__name__}"
+                record["measurement_incomplete"] = True
+                record.setdefault("errors", []).append({"type": type(exc).__name__, "step": step + 1,
+                                                         "latency_s": end_to_end(start)})
+                break
             record["calls"].append({"step": step + 1, "model": resp.model, "stop_reason": resp.stop_reason,
                                     "input_tokens": resp.usage.input_tokens, "output_tokens": resp.usage.output_tokens,
+                                    "cache_read_tokens": getattr(resp.usage, "cache_read_input_tokens", 0) or 0,
+                                    "cache_creation_tokens": getattr(resp.usage, "cache_creation_input_tokens", 0) or 0,
+                                    "cost_is_estimate": resp.model not in PRICES,
                                     "latency_s": round(time.perf_counter() - start, 2),
                                     "cost_usd": round(cost(resp.model, resp.usage), 6)})
             if resp.stop_reason == "refusal":
@@ -269,19 +325,35 @@ class Agent:
             if not tool_uses:
                 final_text = next((b.text for b in resp.content if b.type == "text"), "")
                 break
+            if len({tu.id for tu in tool_uses}) != len(tool_uses):
+                termination = "duplicate tool use identifiers"
+                break
+            if tool_count + len(tool_uses) > MAX_TOOL_CALLS:
+                termination = "tool call budget reached"
+                break
             messages.append({"role": "assistant", "content": resp.content})  # keep thinking + tool_use blocks
             results = []
             for tu in tool_uses:
-                output, is_error = self.run_tool(tu.name, tu.input, sources)
-                record["steps"].append({"tool": tu.name, "input": tu.input, "error": is_error})
+                tool_count += 1
+                key = json.dumps([tu.name, tu.input], sort_keys=True)
+                repeated[key] = repeated.get(key, 0) + 1
+                tool_start = time.perf_counter()
+                if repeated[key] > MAX_REPEATED_TOOL_CALLS:
+                    output, is_error = "Error: repeated identical tool call refused", True
+                else:
+                    output, is_error = self.run_tool(tu.name, tu.input, sources)
+                record["steps"].append({"tool": tu.name, "input": tu.input, "error": is_error,
+                                        "latency_s": end_to_end(tool_start), "output_chars": len(output),
+                                        "outcome": output if is_error else "ok"})
                 results.append({"type": "tool_result", "tool_use_id": tu.id, "content": output, "is_error": is_error})
             messages.append({"role": "user", "content": results})  # all results in one message
 
         totals = {"cost_usd": round(sum(c["cost_usd"] for c in record["calls"]), 6),
                   "latency_s": round(sum(c["latency_s"] for c in record["calls"]), 2),
-                  "retrieved": sorted({f"{s['doc_id']} p{s['page']}" for s in sources.values() if s["doc_id"]})}
+                  "retrieved": sorted({f"{s['doc_id']} p{s['page']}" for s in sources.values() if s["doc_id"]}),
+                  "end_to_end_latency_s": end_to_end(request_start), "tool_calls": tool_count}
         reason = ("refused" if record["calls"] and record["calls"][-1]["stop_reason"] == "refusal"
-                  else "step limit reached" if final_text is None else None)
+                  else termination or "step limit reached" if final_text is None else None)
         parsed = None
         if not reason:
             try:
@@ -289,17 +361,20 @@ class Agent:
             except ValidationError as e:
                 reason = f"invalid final answer: {e.errors()[0]['msg']}"
         if parsed is None:
+            totals["end_to_end_latency_s"] = end_to_end(request_start)
             return {**record, **totals, "status": "error", "answer": "", "citations": [], "problems": [reason]}
 
-        citations, problems, cited_text = [], [], ""
+        citations, problems, cited_text, valid_sources = [], [], "", []
         for c in parsed.citations:
             src = sources.get(c.source_id)
             if src is None:
                 problems.append(f"cites {c.source_id}, which no tool returned")
                 continue
-            cited_text += " " + src["text"]
-            if re.sub(r"\s+", " ", c.quote).strip() not in re.sub(r"\s+", " ", src["text"]):
+            if not c.quote.strip() or normalized_text(c.quote) not in normalized_text(src["text"]):
                 problems.append(f"quote not found in {c.source_id}: {c.quote[:60]!r}")
+            else:
+                cited_text += " " + src["text"] + " " + (src["doc_id"] or "").replace("_", " ")
+                valid_sources.append(src)
             if src["doc_id"]:
                 citations.append({"source_id": c.source_id, "doc_id": src["doc_id"], "page": src["page"],
                                   "quote": c.quote})
@@ -309,11 +384,14 @@ class Agent:
             missing = ungrounded_numbers(parsed.answer, cited_text)
             if missing:
                 problems.append(f"numbers not in cited sources: {sorted(missing)}")
+        evidence = evidence_diagnostics(parsed.answer, valid_sources, question)
+        problems += [f"evidence {check['code']}: {check['detail']}" for check in evidence['checks']]
         if leaks_system_prompt(parsed.answer, SYSTEM):
             record["safety"]["leak"] = True
             problems.append("answer repeats part of the system prompt")
+        totals["end_to_end_latency_s"] = end_to_end(request_start)
         return {**record, **totals, "status": parsed.status, "answer": parsed.answer,
-                "citations": citations, "problems": problems}
+                "citations": citations, "problems": problems, "evidence_validation": evidence}
 
 
 if __name__ == "__main__":

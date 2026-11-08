@@ -32,6 +32,8 @@ import anthropic
 from pydantic import BaseModel, Field, ValidationError
 
 from safety import leaks_system_prompt, screen
+from diagnostics import request_record, end_to_end
+from grounding import evidence_diagnostics, normalized_text, numeric_support
 from search import Searcher, company_in, year_in
 
 ROOT = pathlib.Path(__file__).parent
@@ -118,14 +120,9 @@ def numbers_in(text: str) -> set[str]:
 
 def ungrounded_numbers(answer: str, source_text: str) -> set[str]:
     """Numbers in the answer that don't appear in the sources, even after rounding.
-    '38.4' is grounded by a source '38.4446'; '38' is grounded by '38.4446'; '42.4' is not grounded by '42415800'."""
-    sources = [float(n) for n in numbers_in(source_text)]
-    missing = set()
-    for n in numbers_in(answer):
-        decimals = len(n.split(".")[1]) if "." in n else 0
-        if not any(round(s, decimals) == float(n) for s in sources):
-            missing.add(n)
-    return missing
+    '38.4' can match rounded '38.4446'. Explicit compatible units allow
+    deterministic conversions; bare '42.4' is not '42415800'."""
+    return set(numeric_support(answer, source_text))
 
 
 def grounding_problems(parsed: ModelAnswer, hits) -> list[str]:
@@ -137,9 +134,10 @@ def grounding_problems(parsed: ModelAnswer, hits) -> list[str]:
             continue
         passage = hits[c.passage - 1].text
         # The source label is shown to the model too, so "(2026 report)" or "page 5" counts as grounded.
-        cited_text += f" {hits[c.passage - 1].doc_id} page {hits[c.passage - 1].page} {passage}"
-        if re.sub(r"\s+", " ", c.quote.replace("’", "'")).strip() not in passage:
+        if not c.quote.strip() or normalized_text(c.quote) not in normalized_text(passage):
             problems.append(f"quote not found in passage [{c.passage}]: {c.quote[:60]!r}")
+        else:
+            cited_text += f" {hits[c.passage - 1].doc_id.replace('_', ' ')} page {hits[c.passage - 1].page} {passage}"
     if parsed.status == "answered":
         if not parsed.citations:
             problems.append("answered without any citation")
@@ -170,28 +168,41 @@ class Answerer:
         )
 
     def answer(self, question: str) -> dict:
+        request_start = time.perf_counter()
         company, year = company_in(question), year_in(question)
         hits = self.searcher.hybrid(question, TOP_K, company=company, data_year=year)
         withheld = []
         if self.guards:
             hits, withheld = screen(hits)
-        record = {"question": question, "filters": {"company": company, "data_year": year},
+        record = {**request_record("hybrid"), "question": question, "filters": {"company": company, "data_year": year},
                   "retrieved": [f"{h.doc_id} p{h.page}" for h in hits], "calls": [],
                   "safety": {"withheld": withheld, "leak": False}}
         if not hits:  # nothing usable after filters and screening: don't pay for an LLM call
             return {**record, "status": "not_found", "answer": "", "citations": [], "problems": [],
-                    "cost_usd": 0.0, "latency_s": 0.0}
+                    "cost_usd": 0.0, "latency_s": 0.0,
+                    "end_to_end_latency_s": end_to_end(request_start)}
 
         messages = [{"role": "user", "content": f"Passages:\n\n{format_passages(hits)}\n\nQuestion: {question}"}]
         parsed, error = None, None
         for attempt in range(2):  # one retry if the output fails validation
             start = time.perf_counter()
-            resp = self._call(messages)
+            try:
+                resp = self._call(messages)
+            except anthropic.AuthenticationError:
+                raise
+            except anthropic.APIError as exc:
+                error = f"API error: {type(exc).__name__}"
+                record["measurement_incomplete"] = True
+                record.setdefault("errors", []).append({"type": type(exc).__name__, "attempt": attempt + 1,
+                                                         "latency_s": end_to_end(start)})
+                break
             latency = time.perf_counter() - start
             record["calls"].append({
                 "attempt": attempt + 1, "model": resp.model, "stop_reason": resp.stop_reason,
                 "input_tokens": resp.usage.input_tokens, "output_tokens": resp.usage.output_tokens,
                 "cache_read_tokens": getattr(resp.usage, "cache_read_input_tokens", 0) or 0,
+                "cache_creation_tokens": getattr(resp.usage, "cache_creation_input_tokens", 0) or 0,
+                "cost_is_estimate": resp.model not in PRICES,
                 "latency_s": round(latency, 2), "cost_usd": round(cost(resp.model, resp.usage), 6)})
             if resp.stop_reason == "refusal":
                 error = "refused"
@@ -206,17 +217,25 @@ class Answerer:
                              {"role": "user", "content": f"Your reply did not match the schema ({error}). Reply again with valid JSON only."}]
 
         totals = {"cost_usd": round(sum(c["cost_usd"] for c in record["calls"]), 6),
-                  "latency_s": round(sum(c["latency_s"] for c in record["calls"]), 2)}
+                  "latency_s": round(sum(c["latency_s"] for c in record["calls"]), 2),
+                  "end_to_end_latency_s": end_to_end(request_start)}
         if parsed is None:
+            totals["end_to_end_latency_s"] = end_to_end(request_start)
             return {**record, **totals, "status": "error", "answer": "", "citations": [], "problems": [error]}
         citations = [{"passage": c.passage, "doc_id": hits[c.passage - 1].doc_id, "page": hits[c.passage - 1].page,
                       "quote": c.quote} for c in parsed.citations if 1 <= c.passage <= len(hits)]
         problems = grounding_problems(parsed, hits)
+        valid_sources = [{"doc_id": hits[c.passage-1].doc_id, "text": hits[c.passage-1].text}
+                         for c in parsed.citations if 1 <= c.passage <= len(hits)
+                         and c.quote.strip() and normalized_text(c.quote) in normalized_text(hits[c.passage-1].text)]
+        evidence = evidence_diagnostics(parsed.answer, valid_sources, question)
+        problems += [f"evidence {check['code']}: {check['detail']}" for check in evidence['checks']]
         if leaks_system_prompt(parsed.answer, SYSTEM):
             record["safety"]["leak"] = True
             problems.append("answer repeats part of the system prompt")
+        totals["end_to_end_latency_s"] = end_to_end(request_start)
         return {**record, **totals, "status": parsed.status, "answer": parsed.answer,
-                "citations": citations, "problems": problems}
+                "citations": citations, "problems": problems, "evidence_validation": evidence}
 
 
 if __name__ == "__main__":
