@@ -118,8 +118,8 @@ def test_request_uses_schema_and_fallback():
 def test_cost_counts_cache_writes_and_reads():
     usage = SimpleNamespace(input_tokens=1_000_000, output_tokens=1_000_000,
                             cache_creation_input_tokens=1_000_000, cache_read_input_tokens=1_000_000)
-    # 4 (input) + 5 (cache write, 1.25x) + 0.4 (cache read, 0.1x) + 20 (output)
-    assert abs(cost("claude-opus-5-5", usage) - 29.4) < 1e-9
+    # 4 (input) + 5 (legacy write estimate) + 0.2 (Opus 5.5 cache read) + 20 (output)
+    assert abs(cost("claude-opus-5-5", usage) - 29.2) < 1e-9
 
 
 # -- scoring rules in eval/run_answers.py -----------------------------------

@@ -34,7 +34,7 @@ from typing import Literal
 import anthropic
 from pydantic import BaseModel, ValidationError
 
-from answer import MODEL, PRICES, cost, load_dotenv, ungrounded_numbers
+from answer import MODEL, cost, cost_is_estimate, cache_usage, load_dotenv, ungrounded_numbers
 from extract import METRICS
 from fact_quality import quality_for, qualification
 from diagnostics import request_record, end_to_end
@@ -316,7 +316,8 @@ class Agent:
                                     "input_tokens": resp.usage.input_tokens, "output_tokens": resp.usage.output_tokens,
                                     "cache_read_tokens": getattr(resp.usage, "cache_read_input_tokens", 0) or 0,
                                     "cache_creation_tokens": getattr(resp.usage, "cache_creation_input_tokens", 0) or 0,
-                                    "cost_is_estimate": resp.model not in PRICES,
+                                    **cache_usage(resp.usage),
+                                    "cost_is_estimate": cost_is_estimate(resp.model, resp.usage),
                                     "latency_s": round(time.perf_counter() - start, 2),
                                     "cost_usd": round(cost(resp.model, resp.usage), 6)})
             if resp.stop_reason == "refusal":

@@ -35,7 +35,7 @@ from typing import Literal
 import anthropic
 from pydantic import BaseModel, ValidationError
 
-from answer import MODEL, PRICES, cost, load_dotenv, numbers_in
+from answer import MODEL, PRICES, cost, cache_usage, cost_is_estimate, load_dotenv, numbers_in
 from fact_quality import atomic, migrate, quality_for
 
 ROOT = pathlib.Path(__file__).parent
@@ -174,6 +174,9 @@ class Extractor:
             resp = self._call(messages)
             log["calls"].append({"attempt": attempt + 1, "model": resp.model, "stop_reason": resp.stop_reason,
                                  "input_tokens": resp.usage.input_tokens, "output_tokens": resp.usage.output_tokens,
+                                 "cache_read_tokens": getattr(resp.usage, "cache_read_input_tokens", 0) or 0,
+                                 "cache_creation_tokens": getattr(resp.usage, "cache_creation_input_tokens", 0) or 0,
+                                 **cache_usage(resp.usage), "cost_is_estimate": cost_is_estimate(resp.model, resp.usage),
                                  "latency_s": round(time.perf_counter() - start, 2),
                                  "cost_usd": round(cost(resp.model, resp.usage), 6)})
             if resp.stop_reason == "refusal":

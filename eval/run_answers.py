@@ -22,7 +22,7 @@ import anthropic
 
 ROOT = pathlib.Path(__file__).resolve().parent.parent
 sys.path.insert(0, str(ROOT))
-from answer import MODEL, PRICES, SYSTEM, TOP_K, Answerer, format_passages  # noqa: E402
+from answer import MODEL, PRICES, CACHE_READ_MULTIPLIERS, CACHE_WRITE_MULTIPLIERS, SYSTEM, TOP_K, Answerer, format_passages  # noqa: E402
 from search import Searcher, company_in, year_in  # noqa: E402
 from eval.grading import VERSION, grade
 from diagnostics import create_run
@@ -112,7 +112,8 @@ def new_run(system, grading, source_log=None, selected_ids=None):
     return create_run(ROOT, ROOT / "eval/questions.jsonl",
                       {"system": system, "grading_version": grading, "requested_model": MODEL,
                        "effort": "medium", "top_k": TOP_K, "fallbacks": "default",
-                       "prices": PRICES, "max_model_calls": 8 if system == "agent" else 2,
+                       "prices": PRICES, "cache_read_multipliers": CACHE_READ_MULTIPLIERS,
+                       "cache_write_multipliers": CACHE_WRITE_MULTIPLIERS, "max_model_calls": 8 if system == "agent" else 2,
                        "max_tokens_per_call": 8000 if system == "agent" else 4000,
                        "max_retries": 3, "embedding_model": "BAAI/bge-small-en-v1.5",
                        "selected_question_ids": selected_ids}, source_log=source_log)
