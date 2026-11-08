@@ -36,6 +36,7 @@ from pydantic import BaseModel, ValidationError
 
 from answer import MODEL, cost, load_dotenv, ungrounded_numbers
 from extract import METRICS
+from fact_quality import quality_for, qualification
 from safety import leaks_system_prompt, screen
 from search import DB_PATH, Searcher
 
@@ -203,13 +204,26 @@ class Agent:
             self.db.create_function("period_matches", 2, period_matches, deterministic=True)
             sql += " AND period_matches(period, ?)"
             args.append(year)
-        rows = self.db.execute(sql + " ORDER BY company, period, doc_id LIMIT 40", args).fetchall()
+        # Qualify scope before truncating: location-specific figures cannot crowd out totals.
+        rows = self.db.execute(sql + " ORDER BY company, period, doc_id, fact_id", args).fetchall()
         out = []
         for fid, comp, doc_id, page, value, unit, period, basis, quote in rows:
+            fact = dict(company=comp, doc_id=doc_id, page=page, metric=metric, value=value,
+                        unit=unit, period=period, basis=basis, quote=quote)
+            quality = quality_for(self.db, fact)
+            # This tool has no location selector: it serves company-level questions.
+            # Unknown legacy scope remains visible, explicitly unverified, for compatibility.
+            if quality["scope"] in ("site", "region"):
+                continue
+            if year != "any" and quality["period"]["kind"] == "range":
+                continue  # cumulative/range observations are not annual facts
+            if len(out) == 40:
+                break
+            note = qualification(fact, quality)
             sid = f"F{fid}"
             sources[sid] = {"doc_id": doc_id, "page": page, "text": f"{doc_id} page {page} {fmt(value)} {unit} {period} {quote}"}
             out.append(f"[{sid}] {comp} {metric} {period}: {fmt(value)} {unit}"
-                       f"{f' ({basis})' if basis else ''} — {doc_id} p{page}: \"{quote}\"")
+                       f"{f' ({basis})' if basis else ''} — {doc_id} p{page}: \"{quote}\" [{note}]")
         return "\n".join(out) or "No facts found."
 
     def _calculator(self, expression, sources):
