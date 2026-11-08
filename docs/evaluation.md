@@ -1,4 +1,9 @@
-# Evaluation
+# Historical evaluation
+
+These saved results predate the filtering, fact-quality and evidence/reliability
+changes. They use the original legacy grading and are not measurements of the
+current implementation. Original results and failures are preserved below.
+See [current grading and final comparison protocol](evidence-and-evaluation.md).
 
 Everything in this project is measured against hand-written test sets that were built **before** the system they test:
 
@@ -50,7 +55,7 @@ Each question has the expected answer, the values the answer must contain, the c
 
 ## Pipeline vs agent
 
-These are the runs made after the prompt-injection guards were added (the prompts now treat passages and tool results as untrusted data). The first runs, before the guards, scored 20/30 for the pipeline and 28/30 for the agent; each system now misses one more question, which is within run-to-run variation. The agent's earlier "not found" success on q28 did not repeat.
+These are the runs made after the prompt-injection guards were added (the prompts now treat passages and tool results as untrusted data). The first runs, before the guards, scored 20/30 for the pipeline and 28/30 for the agent; each system missed one more question. These single runs cannot isolate guard effects or quantify variability. The agent's earlier "not found" success on q28 did not repeat.
 
 | | Pipeline (`answer.py`) | **Agent (`agent.py`)** |
 |---|---|---|

@@ -1,0 +1,3 @@
+-r requirements.txt
+# Optional correctness linting; application dependencies remain unchanged.
+ruff==0.14.14
