@@ -43,6 +43,10 @@ TOP_K = 5
 # $ per million tokens (input, output), standard API rates. The fallback models are listed
 # so a request that falls back is still priced correctly.
 PRICES = {"claude-opus-5-5": (4.00, 20.00), "claude-opus-5": (5.00, 25.00), "claude-opus-4-8": (5.00, 25.00)}
+# Standard Claude API rates, verified 2026-11-08. Other known models use 0.1x reads.
+# https://platform.claude.com/docs/en/about-claude/pricing
+CACHE_READ_MULTIPLIERS = {"claude-opus-5-5": 0.05}
+CACHE_WRITE_MULTIPLIERS = {"5m": 1.25, "1h": 2.0}
 
 SYSTEM = """You answer questions about company sustainability reports using ONLY the numbered passages provided.
 
@@ -105,12 +109,45 @@ def format_passages(hits) -> str:
     return "\n\n".join(f"[{i}] (source: {h.doc_id}, page {h.page})\n{h.text}" for i, h in enumerate(hits, start=1))
 
 
+def cache_usage(usage) -> dict:
+    """Separate cache TTLs without double-counting the aggregate creation total.
+
+    Older saved/fake usage may omit TTLs. Preserve the five-minute estimate for
+    unclassified writes and label it, rather than presenting it as exact billing.
+    """
+    total = getattr(usage, "cache_creation_input_tokens", 0) or 0
+    details = getattr(usage, "cache_creation", None)
+    def count(name):
+        return (details.get(name, 0) if isinstance(details, dict) else getattr(details, name, 0)) or 0
+    short = count("ephemeral_5m_input_tokens")
+    long = count("ephemeral_1h_input_tokens")
+    inferred = total != short + long
+    short += max(0, total - short - long)
+    return {"cache_write_5m_tokens": short, "cache_write_1h_tokens": long,
+            "cache_ttl_estimated": inferred}
+
+
+def cost_is_estimate(model: str, usage) -> bool:
+    return (model not in PRICES or cache_usage(usage)["cache_ttl_estimated"]
+            or getattr(usage, "speed", None) not in (None, "standard")
+            or getattr(usage, "inference_geo", None) not in (None, "global")
+            or getattr(usage, "service_tier", None) not in (None, "standard"))
+
+
 def cost(model: str, usage) -> float:
-    """input_tokens excludes cached tokens: cache writes bill at 1.25x input, cache reads at 0.1x."""
+    """Standard USD estimate; input_tokens excludes separately billed cache tokens.
+
+    Opus 5.5 reads: $0.20/MTok; writes: $5/MTok (5m), $8/MTok (1h).
+    output_tokens already includes thinking. Unknown rates/TTLs are flagged by
+    cost_is_estimate(); nonstandard speed/region/tier premiums are not modeled.
+    """
     inp, out = PRICES.get(model, PRICES[MODEL])
-    written = getattr(usage, "cache_creation_input_tokens", 0) or 0
+    writes = cache_usage(usage)
     read = getattr(usage, "cache_read_input_tokens", 0) or 0
-    return (usage.input_tokens * inp + written * inp * 1.25 + read * inp * 0.1 + usage.output_tokens * out) / 1e6
+    return (usage.input_tokens * inp + usage.output_tokens * out
+            + writes["cache_write_5m_tokens"] * inp * CACHE_WRITE_MULTIPLIERS["5m"]
+            + writes["cache_write_1h_tokens"] * inp * CACHE_WRITE_MULTIPLIERS["1h"]
+            + read * inp * CACHE_READ_MULTIPLIERS.get(model, 0.1)) / 1e6
 
 
 def numbers_in(text: str) -> set[str]:
@@ -202,7 +239,8 @@ class Answerer:
                 "input_tokens": resp.usage.input_tokens, "output_tokens": resp.usage.output_tokens,
                 "cache_read_tokens": getattr(resp.usage, "cache_read_input_tokens", 0) or 0,
                 "cache_creation_tokens": getattr(resp.usage, "cache_creation_input_tokens", 0) or 0,
-                "cost_is_estimate": resp.model not in PRICES,
+                **cache_usage(resp.usage),
+                "cost_is_estimate": cost_is_estimate(resp.model, resp.usage),
                 "latency_s": round(latency, 2), "cost_usd": round(cost(resp.model, resp.usage), 6)})
             if resp.stop_reason == "refusal":
                 error = "refused"
