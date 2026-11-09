@@ -1,0 +1,20 @@
+{
+  "sqlite_sha256": "46c6189aff897f1847269923eda1b0fee944c8817c7c71233b1c44cdcd8d954f",
+  "counts": {
+    "documents": 10,
+    "chunks": 2787,
+    "facts": 680
+  },
+  "pdf_sha256": {
+    "amazon_sr_2024.pdf": "654b1e1cd9e0d3b6709d4c1e2a83e6c0fc8553e91556dca74bfcc78a0a44af6a",
+    "amazon_sr_2025.pdf": "9cd85811e377e4bd3f8df6ba388fe0f9248710c849953e9b8c243b16a4d8e2d1",
+    "apple_epr_2025.pdf": "597676e8b48ac45529303abc7ef47425ca62ff4efc3a375962a077a033525f74",
+    "apple_epr_2026.pdf": "294587a989beb1bd2c1688e0bf67d18c601b55dcf582343ca87e917dc2aec38a",
+    "google_env_2025.pdf": "00bf26d9a1899c6d034e9b6f8ba8943dc3902e177038921283c74936264c5c10",
+    "google_env_2026.pdf": "6a23a6db212d5d7da8d887e773e98e78ee16b98eaf8d627a4e31f98b6f487ca3",
+    "meta_sr_2025.pdf": "b44a27d7c12636d45b698269cac0300dfb53e9519c636e978386a48cdb110483",
+    "microsoft_datasheet_2026.pdf": "0fd180837df00b3427c3eae484a492224b8f18c381e82a2aed98b04553a197f6",
+    "microsoft_esr_2025.pdf": "7c20672f907103daa14a0c10c1ed8407f693108ad1869836ae348bc7c397aad9",
+    "microsoft_esr_2026.pdf": "20918e9fc4a02241f55d12f1f5b6228a832b706499f9963a1a3f91e3d3e693ba"
+  }
+}
