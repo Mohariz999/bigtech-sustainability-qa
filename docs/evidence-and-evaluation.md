@@ -138,4 +138,4 @@ At the final stage:
    failures. Report lower or unchanged accuracy transparently. Do not substitute
    changed grading rules for a measured engineering improvement.
 
-No paid command was run and README numerical claims were not changed in this phase.
+The completed matched comparison is documented in the [benchmark report](benchmark-2026-11-09.md).

@@ -9,7 +9,7 @@ data/reports/*.pdf
 # Python
 __pycache__/
 *.pyc
-.venv/
+/.venv
 
 # Generated data
 *.sqlite

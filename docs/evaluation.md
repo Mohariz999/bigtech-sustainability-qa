@@ -1,17 +1,19 @@
 # Historical evaluation
 
+For the fresh matched deterministic-v2 comparison, see [9 November 2026 results](benchmark-2026-11-09.md). The historical results below use different grading.
+
 These saved results predate the filtering, fact-quality and evidence/reliability
 changes. They use the original legacy grading and are not measurements of the
 current implementation. Original results and failures are preserved below.
 See [current grading and final comparison protocol](evidence-and-evaluation.md).
 
-Everything in this project is measured against hand-written test sets that were built **before** the system they test:
+The historical evaluation uses these hand-written development sets:
 
 | Set | What it measures | Scorer | Results |
 |---|---|---|---|
 | [`eval/questions.jsonl`](../eval/questions.jsonl): 30 questions | Search, pipeline answers, agent answers | `eval/run_retrieval.py`, `eval/run_answers.py` | [`retrieval.md`](../eval/results/retrieval.md), [`answers.md`](../eval/results/answers.md), [`answers_agent.md`](../eval/results/answers_agent.md) |
 | [`eval/facts_gold.jsonl`](../eval/facts_gold.jsonl): 19 facts | Structured extraction | `eval/run_extraction.py` | [`extraction.md`](../eval/results/extraction.md) |
-| [`eval/safety_cases.jsonl`](../eval/safety_cases.jsonl): 30 attacks | Prompt injection, fabrication, prompt leaks, misuse | `eval/run_safety.py` | [`safety.md`](../eval/results/safety.md), [`safety_agent.md`](../eval/results/safety_agent.md), [`safety_noguards.md`](../eval/results/safety_noguards.md); summary in the [README](../README.md#safety-evaluation) |
+| [`eval/safety_cases.jsonl`](../eval/safety_cases.jsonl): 30 attacks | Prompt injection, fabrication, prompt leaks, misuse | `eval/run_safety.py` | [`safety.md`](../eval/results/safety.md), [`safety_agent.md`](../eval/results/safety_agent.md), [`safety_noguards.md`](../eval/results/safety_noguards.md) |
 
 Every model call from the runs is in [`logs/`](../logs/): retrieved pages, answer, citations, tokens, cost and latency. All runs use `claude-opus-5-5`.
 

@@ -39,3 +39,4 @@ jobs:
       # Fake clients and temporary/in-memory databases; sockets blocked by conftest.
       # No API secrets, reports, corpus database or embedding model are needed.
       - run: python -m pytest -q
+      - run: python -m eval.verify_benchmark

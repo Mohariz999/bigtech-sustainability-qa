@@ -1,0 +1,212 @@
+{
+  "grading_version": "deterministic-v2",
+  "grader_sha256": "984299e2ed27b23cafaa373459abf48fc35abd60bf7b6372690df4097b200499",
+  "summary": {
+    "baseline-pipeline": {
+      "correct": 20,
+      "total": 30,
+      "accuracy": 0.6666666666666666,
+      "input_tokens": 85416,
+      "output_tokens": 8617,
+      "cache_read_tokens": 0,
+      "cache_creation_tokens": 0,
+      "cost_usd": 0.514004,
+      "model_calls": 30,
+      "model_api_latency_median_s": 3.654989458504133,
+      "application_e2e_median_s": 3.684733958041761,
+      "end_to_end_including_budget_checks_median_s": 4.002472333027981,
+      "cites_gold_answerable": 19,
+      "not_found_correct": 3,
+      "errors": 0,
+      "failed_questions": [
+        "q05",
+        "q06",
+        "q15",
+        "q16",
+        "q19",
+        "q20",
+        "q23",
+        "q25",
+        "q26",
+        "q28"
+      ],
+      "models": {
+        "claude-opus-5-5": 30
+      },
+      "native_flagged_answers": [
+        "q18",
+        "q20",
+        "q24"
+      ]
+    },
+    "final-pipeline": {
+      "correct": 21,
+      "total": 30,
+      "accuracy": 0.7,
+      "input_tokens": 85416,
+      "output_tokens": 8460,
+      "cache_read_tokens": 0,
+      "cache_creation_tokens": 0,
+      "cost_usd": 0.510864,
+      "model_calls": 30,
+      "model_api_latency_median_s": 3.2884235415258445,
+      "application_e2e_median_s": 3.32619900003192,
+      "end_to_end_including_budget_checks_median_s": 3.672704958502436,
+      "cites_gold_answerable": 19,
+      "not_found_correct": 4,
+      "errors": 0,
+      "failed_questions": [
+        "q05",
+        "q06",
+        "q15",
+        "q16",
+        "q19",
+        "q20",
+        "q23",
+        "q25",
+        "q26"
+      ],
+      "models": {
+        "claude-opus-5-5": 30
+      },
+      "native_flagged_answers": [
+        "q03",
+        "q12",
+        "q18",
+        "q21",
+        "q24"
+      ]
+    },
+    "baseline-agent": {
+      "correct": 25,
+      "total": 30,
+      "accuracy": 0.8333333333333334,
+      "input_tokens": 236648,
+      "output_tokens": 15632,
+      "cache_read_tokens": 0,
+      "cache_creation_tokens": 0,
+      "cost_usd": 1.259232,
+      "model_calls": 74,
+      "model_api_latency_median_s": 7.115810166520532,
+      "application_e2e_median_s": 7.173357166524511,
+      "end_to_end_including_budget_checks_median_s": 8.003399270994123,
+      "cites_gold_answerable": 23,
+      "not_found_correct": 3,
+      "errors": 0,
+      "failed_questions": [
+        "q04",
+        "q22",
+        "q25",
+        "q26",
+        "q28"
+      ],
+      "models": {
+        "claude-opus-5-5": 74
+      },
+      "native_flagged_answers": [
+        "q16",
+        "q22",
+        "q23"
+      ]
+    },
+    "final-agent": {
+      "correct": 26,
+      "total": 30,
+      "accuracy": 0.8666666666666667,
+      "input_tokens": 291448,
+      "output_tokens": 16422,
+      "cache_read_tokens": 0,
+      "cache_creation_tokens": 0,
+      "cost_usd": 1.494232,
+      "model_calls": 77,
+      "model_api_latency_median_s": 6.5611788335081656,
+      "application_e2e_median_s": 6.596562812512275,
+      "end_to_end_including_budget_checks_median_s": 7.322217270499095,
+      "cites_gold_answerable": 22,
+      "not_found_correct": 4,
+      "errors": 0,
+      "failed_questions": [
+        "q04",
+        "q22",
+        "q25",
+        "q26"
+      ],
+      "models": {
+        "claude-opus-5-5": 77
+      },
+      "native_flagged_answers": [
+        "q05",
+        "q06",
+        "q12",
+        "q15",
+        "q16",
+        "q18",
+        "q19",
+        "q20",
+        "q21",
+        "q22",
+        "q25",
+        "q26"
+      ]
+    }
+  },
+  "changed_verdicts": {
+    "pipeline": [
+      {
+        "id": "q28",
+        "before_correct": false,
+        "after_correct": true
+      }
+    ],
+    "agent": [
+      {
+        "id": "q28",
+        "before_correct": false,
+        "after_correct": true
+      }
+    ]
+  },
+  "spent_usd": 3.778332,
+  "contract": {
+    "baseline": "0aeb7785b462d0589b371ebf15b7f008cc6de7c2",
+    "final": "fc2031bc765e1c5ea4e25ce085d1b6462db2f208",
+    "grader": "final deterministic-v2",
+    "grading_file_sha256": "984299e2ed27b23cafaa373459abf48fc35abd60bf7b6372690df4097b200499",
+    "dataset_sha256": "156e66fa7d2a0d5cc525e02bca9560870be05a4fbf7e414b253ac9f26fe30f89",
+    "sdk": "1.15.0",
+    "phases": [
+      [
+        "baseline",
+        "pipeline"
+      ],
+      [
+        "final",
+        "pipeline"
+      ],
+      [
+        "baseline",
+        "agent"
+      ],
+      [
+        "final",
+        "agent"
+      ]
+    ],
+    "budget_limit_usd": 6,
+    "automatic_paid_retries": 0,
+    "harness_sha256": "9ac285b80842a2b73f275ce173d6dca506e4e5f7240af60d9d6a5226af7f7dad",
+    "reservation_rates_per_million": {
+      "input_or_1h_write": 30,
+      "output": 75
+    },
+    "model": {
+      "name": "claude-opus-5-5",
+      "effort": "medium",
+      "fallbacks": "default"
+    }
+  },
+  "standard_rates_usd_per_million": {
+    "input": 4,
+    "output": 20
+  }
+}
