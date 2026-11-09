@@ -9,6 +9,7 @@ python3.12 -m venv .venv
 .venv/bin/python -m pip check
 .venv/bin/python -m ruff check .
 .venv/bin/python -m pytest -q
+.venv/bin/python -m eval.verify_benchmark
 ```
 
 Use `python3.13` when appropriate. Tests need no API key, PDF, corpus database or
@@ -26,7 +27,7 @@ instantiate models or clients with side effects during collection.
 - `pip check` verifies installed dependency compatibility, not vulnerability absence.
 - CI targets Python 3.12/3.13 with a timeout, minimal read permission and no persisted
   checkout credentials. Action commits are pinned; Dependabot can propose updates
-  monthly after this configuration is merged. Updates are reviewed, not auto-merged.
+  monthly. Updates are reviewed, not auto-merged.
 - Strict static typing and whole-repository formatting are deferred: the fake-client
   interfaces and dictionary records need a focused typing change, not blanket ignores.
   No claim of full type safety or formatting enforcement is made.
@@ -68,4 +69,5 @@ report those gaps instead of filling them with estimates.
 The final paid comparison must follow
 [the approval-gated protocol](docs/evidence-and-evaluation.md#final-live-comparison--approval-required).
 Record failed as well as successful questions and report equal/lower accuracy
-transparently. README's old figures are historical until approved new measurement.
+transparently. See the [matched benchmark report](docs/benchmark-2026-11-09.md) for an example.
+The benchmark verifier checks saved evidence offline and does not rewrite it.
